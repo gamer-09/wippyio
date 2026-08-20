@@ -119,7 +119,7 @@
     }
 
     emptyState.style.display = 'none';
-    grid.innerHTML = filtered.map(cardHTML).join('');
+    grid.innerHTML = filtered.map((p, i) => cardHTML(p, i)).join('');
 
     // Attach click handlers
     grid.querySelectorAll('.card').forEach((card) => {
@@ -131,7 +131,7 @@
     });
   }
 
-  function cardHTML(p) {
+  function cardHTML(p, index) {
     const date = formatDate(p.createdAt);
     const badge = completionBadge(p.completionStatus);
     const summary = escapeHTML(truncate(p.summary || 'No summary yet.', 220));
@@ -144,8 +144,11 @@
          </a>`
       : '';
 
+    // Stagger: cap at 12 so the last cards still appear quickly
+    const delay = Math.min(index, 12) * 40;
+
     return `
-      <article class="card" data-id="${escapeAttr(p.id)}">
+      <article class="card" data-id="${escapeAttr(p.id)}" style="animation-delay:${delay}ms">
         <div class="card-header">
           <h3 class="card-title">${escapeHTML(p.name)}</h3>
           <span class="card-badge ${badge.cls}">${badge.label}</span>

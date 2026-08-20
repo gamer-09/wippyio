@@ -213,6 +213,18 @@ header::before {
   .grid { grid-template-columns: 1fr; }
 }
 
+/* ---- Card Entrance Animation ---- */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* ---- Project Card ---- */
 .card {
   background: var(--bg-card);
@@ -223,6 +235,7 @@ header::before {
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
+  animation: cardFadeIn 0.4s ease both;
 }
 .card::before {
   content: '';
