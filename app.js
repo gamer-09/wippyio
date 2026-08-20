@@ -17,6 +17,7 @@
   const $$ = (sel) => document.querySelectorAll(sel);
   const grid = $('#projectGrid');
   const list = $('#projectList');
+  const timeline = $('#projectTimeline');
   const emptyState = $('#emptyState');
   const searchInput = $('#searchInput');
   const searchClear = $('#searchClear');
@@ -174,23 +175,31 @@
     if (sorted.length === 0) {
       grid.innerHTML = '';
       list.innerHTML = '';
+      timeline.innerHTML = '';
       emptyState.style.display = '';
       $('#emptyTitle').textContent = searchQuery ? `No matches for "${searchInput.value.trim()}"` : 'No projects in the vault';
       return;
     }
     emptyState.style.display = 'none';
 
+    // Hide all views first
+    grid.style.display = 'none';
+    list.style.display = 'none';
+    timeline.style.display = 'none';
+
     // Render view
     if (viewMode === 'grid') {
       grid.style.display = '';
-      list.style.display = 'none';
       grid.innerHTML = sorted.map((p, i) => cardHTML(p, i)).join('');
       attachCardEvents(grid);
-    } else {
-      grid.style.display = 'none';
+    } else if (viewMode === 'list') {
       list.style.display = '';
       list.innerHTML = sorted.map((p, i) => listHTML(p, i)).join('');
       attachCardEvents(list);
+    } else {
+      timeline.style.display = '';
+      timeline.innerHTML = timelineHTML(sorted);
+      attachCardEvents(timeline);
     }
   }
 
@@ -285,6 +294,69 @@
     </article>`;
   }
 
+  // ---- Timeline HTML ----
+  function timelineHTML(projects) {
+    // Group projects by month
+    const groups = [];
+    let lastKey = '';
+    for (const p of projects) {
+      const d = p.createdAt ? new Date(p.createdAt) : null;
+      const key = d ? `${d.getFullYear()}-${String(d.getMonth()).padStart(2, '0')}` : 'unknown';
+      const label = d ? d.toLocaleDateString('en-US', { year: 'numeric', month: 'long' }) : 'Unknown date';
+      if (key !== lastKey) {
+        groups.push({ key, label, items: [] });
+        lastKey = key;
+      }
+      groups[groups.length - 1].items.push(p);
+    }
+
+    let html = '<div class="tl-track">';
+    let globalIdx = 0;
+
+    for (const group of groups) {
+      html += `<div class="tl-group">
+        <div class="tl-date-marker">
+          <span class="tl-date-dot"></span>
+          <span class="tl-date-label">${esc(group.label)}</span>
+        </div>`;
+
+      for (const p of group.items) {
+        const badge = completionBadge(p.completionStatus);
+        const date = fmtDateShort(p.createdAt);
+        const langs = (p.topLanguages || []).slice(0, 2).map((l) => l.name).join(', ');
+        const side = globalIdx % 2 === 0 ? 'left' : 'right';
+        const ghLink = p.githubUrl
+          ? `<a class="tl-gh" href="${escA(p.githubUrl)}" target="_blank" rel="noopener noreferrer" title="GitHub" onclick="event.stopPropagation()">
+               <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+             </a>` : '';
+        const delay = Math.min(globalIdx, 16) * 50;
+
+        html += `<div class="tl-item tl-${side}" data-id="${escA(p.id)}" style="animation-delay:${delay}ms">
+          <div class="tl-connector"><span class="tl-dot ${p.completionStatus === 'completed' ? 'tl-dot-done' : ''}"></span></div>
+          <div class="tl-card">
+            <div class="tl-card-top">
+              <span class="tl-card-date">${esc(date)}</span>
+              <span class="card-badge ${badge.cls}" style="font-size:0.65rem;padding:0.15rem 0.5rem">${badge.label}</span>
+            </div>
+            <h4 class="tl-card-name">${esc(p.name)}</h4>
+            <p class="tl-card-summary">${esc(truncate(p.summary || 'No summary yet.', 120))}</p>
+            <div class="tl-card-bottom">
+              <span class="tl-card-meta">${esc(p.totalSizeLabel || '')} · ${p.fileCount || 0} files</span>
+              ${langs ? `<span class="tl-card-langs">${esc(langs)}</span>` : ''}
+              ${ghLink}
+            </div>
+          </div>
+        </div>`;
+        globalIdx++;
+      }
+
+      html += '</div>';
+    }
+
+    html += '</div>';
+    return html;
+  }
+
   // ---- Popup ----
   function openPopup(p) {
     const date = fmtDate(p.createdAt);
@@ -344,6 +416,11 @@
     if (!d) return 'Unknown';
     try { return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }); }
     catch { return d; }
+  }
+  function fmtDateShort(d) {
+    if (!d) return '';
+    try { return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
+    catch { return ''; }
   }
   function truncate(t, max) {
     if (!t) return '';

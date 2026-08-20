@@ -71,6 +71,9 @@
             <button class="view-btn" data-view="list" aria-label="List view">
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
             </button>
+            <button class="view-btn" data-view="timeline" aria-label="Timeline view">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18"><line x1="12" y1="2" x2="12" y2="22"/><circle cx="12" cy="6" r="2.5" fill="currentColor"/><circle cx="12" cy="14" r="2.5" fill="currentColor"/><line x1="14.5" y1="6" x2="20" y2="6"/><line x1="4" y1="14" x2="9.5" y2="14"/></svg>
+            </button>
           </div>
 
           <select class="sort-select" id="sortSelect">
@@ -101,6 +104,9 @@
 
     <!-- List view -->
     <section class="list-view" id="projectList" style="display:none;"></section>
+
+    <!-- Timeline view -->
+    <section class="timeline-view" id="projectTimeline" style="display:none;"></section>
 
     <!-- Empty state -->
     <section class="empty-state" id="emptyState" style="display:none;">
