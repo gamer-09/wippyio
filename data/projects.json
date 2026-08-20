@@ -1,6 +1,204 @@
 {
   "projects": [
     {
+      "id": "mt1p9jq7-2469820d1e",
+      "name": "Half-made-world-Reference",
+      "createdAt": "2026-08-20T15:53:19.904Z",
+      "updatedAt": "2026-08-20T15:54:37.788Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "Still building core features",
+      "summary": "## Description\nThis project is an interactive web application designed as a searchable and editable knowledge base for the lore, magic systems, and characters of a fantasy novel titled \"Half-Made World.\" It aims to centralize worldbuilding details that were originally scattered across documents, providing a dynamic reference hub for the author.\n\n## Highlights\n*   Features a full-stack web application with a React/TypeScript frontend and a Node/Express backend.\n*   Persists worldbuilding data, relationships, and story links to local JSON files on disk.\n*   Contains 542 entries across 29 categories, including characters, skills, locations, and magic systems.\n*   Includes original source documents in Markdown and DOCX formats, such as \"Half_made world ideas.docx\" and various chapter drafts.\n*   The archive includes the full Git repository history, which may be useful for tracking development progress and changes.\n\n## Likely Tech Stack\n*   **Frontend**: React, TypeScript, Vite, CSS\n*   **Backend**: Node.js, Express.js\n*   **Data Storage**: JSON files (on disk)\n*   **Version Control**: Git\n*   **Build/Dev Tools**: npm, concurrently\n*   **Documentation**: Markdown, Microsoft Word (DOCX)\n\n## Run / Restore Notes\nTo run this project, navigate to the `Half-made-world-Reference/half-made-world-hub/` directory.\n1.  Install dependencies for both client and server: `npm run install:all`\n2.  Start the development servers: `npm run dev`\n    *   The client application will likely be accessible at `http://localhost:5173`.\n    *   The server API will run on `http://localhost:5001`.\nThe project is marked \"not completed / still in progress,\" so functionality may be incomplete. The `.git` directory is included, preserving full version history.\n\n## Tags\nworldbuilding, fantasy, novel, reference, react, typescript, node.js, express, json, git, web app, full-stack, lore, interactive, draft\nThe previous response was already complete and included the `## Tags` section. There is nothing further to add.\nAdditionally, a `regenerate-seeds.js` script exists in the server directory, suggesting a method for updating the initial dataset (`world.json`, `story-links.json`, `relationships.json`) from a live state, which could be useful for maintaining the project's foundational data.",
+      "acceptedAt": "2026-08-20T15:54:20.025Z",
+      "fileCount": 5879,
+      "totalBytes": 103376120,
+      "totalSizeLabel": "99 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 2490
+        },
+        {
+          "name": "Other",
+          "count": 1964
+        },
+        {
+          "name": "TypeScript",
+          "count": 842
+        },
+        {
+          "name": "JSON",
+          "count": 286
+        },
+        {
+          "name": "Markdown",
+          "count": 256
+        },
+        {
+          "name": "YAML",
+          "count": 23
+        },
+        {
+          "name": "React/TypeScript",
+          "count": 12
+        },
+        {
+          "name": "HTML",
+          "count": 4
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 2490
+        },
+        {
+          "name": ".map",
+          "count": 1421
+        },
+        {
+          "name": ".ts",
+          "count": 842
+        },
+        {
+          "name": "[no extension]",
+          "count": 353
+        },
+        {
+          "name": ".json",
+          "count": 286
+        },
+        {
+          "name": ".md",
+          "count": 256
+        },
+        {
+          "name": ".mts",
+          "count": 28
+        },
+        {
+          "name": ".mjs",
+          "count": 27
+        },
+        {
+          "name": ".cts",
+          "count": 27
+        },
+        {
+          "name": ".yml",
+          "count": 23
+        },
+        {
+          "name": ".cjs",
+          "count": 20
+        },
+        {
+          "name": ".cmd",
+          "count": 18
+        }
+      ],
+      "githubUrl": "https://github.com/gamer-09/Half-made-world-Reference"
+    },
+    {
+      "id": "mt1p69ft-21a4540c4b",
+      "name": "mail-organizer",
+      "createdAt": "2026-08-20T15:50:46.603Z",
+      "updatedAt": "2026-08-20T15:51:53.860Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project, named \"Mailwatch,\" is a web application designed to provide a focused email inbox. It connects to Gmail and Outlook accounts with read-only access, then filters and surfaces only messages from specified critical senders, primarily the University of New Brunswick (Fredericton) and IRCC. The application aims to help users prioritize important communications by reducing noise from other emails.\n\n## Highlights\n- Creates a focused inbox by filtering emails from predefined and user-configurable senders.\n- Integrates with both Gmail and Outlook email providers using OAuth for read-only access.\n- Features a default watchlist for University of New Brunswick (`unb.ca`, `unbsu.ca`) and IRCC (`cic.gc.ca`, `ircc.gc.ca`, etc.) domains and name hints.\n- Identifies and flags \"action required\" emails based on keywords like \"biometrics\" or \"documents requested.\"\n- Built as a client-side web application served by a simple Node.js backend.\n\n## Likely Tech Stack\n- **Languages**: JavaScript, HTML, CSS, TypeScript (for type definitions), Markdown, JSON, YAML\n- **Runtime**: Node.js\n- **Backend Framework**: Express.js\n- **Frontend**: Standard HTML, CSS, and JavaScript\n- **Authentication**: OAuth (for Google and Microsoft)\n- **Package Management**: npm or Yarn\n\n## Run / Restore Notes\n- To run this project, ensure Node.js is installed.\n- Install dependencies by running `npm install` (or `yarn install`) in the project root.\n- The application is started via `node server.js` (as indicated by `package.json` scripts).\n- Environment variables `GOOGLE_CLIENT_ID` and `MICROSOFT_CLIENT_ID` are required for OAuth integration, as shown in `.env.example`. These are public client IDs and should be configured.\n- The application will likely be accessible in a web browser on the port specified in `PORT` (defaulting to 4173).\n\n## Tags\nmail, email, inbox, javascript, nodejs, express, web, oauth, unb, ircc, productivity, filter\n## Tags\nmail, email, inbox, javascript, nodejs, express, web, oauth, unb, ircc, productivity, filter\nThe archive summary is already complete.",
+      "acceptedAt": "2026-08-20T15:51:42.876Z",
+      "fileCount": 703,
+      "totalBytes": 3243165,
+      "totalSizeLabel": "3.1 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 208
+        },
+        {
+          "name": "Other",
+          "count": 189
+        },
+        {
+          "name": "Markdown",
+          "count": 130
+        },
+        {
+          "name": "JSON",
+          "count": 99
+        },
+        {
+          "name": "TypeScript",
+          "count": 54
+        },
+        {
+          "name": "YAML",
+          "count": 21
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 208
+        },
+        {
+          "name": "[no extension]",
+          "count": 166
+        },
+        {
+          "name": ".md",
+          "count": 130
+        },
+        {
+          "name": ".json",
+          "count": 99
+        },
+        {
+          "name": ".ts",
+          "count": 54
+        },
+        {
+          "name": ".yml",
+          "count": 21
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".mjs",
+          "count": 2
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        }
+      ],
+      "githubUrl": "https://github.com/gamer-09/mail-organizer"
+    },
+    {
       "id": "msqbpdfw-c3ddc8e495",
       "name": "bash",
       "createdAt": "2026-08-12T16:48:15.694Z",
@@ -194,14 +392,14 @@
       "id": "msqb7a2k-f37177ac59",
       "name": "Phone_security_camera",
       "createdAt": "2026-08-12T16:34:11.517Z",
-      "updatedAt": "2026-08-12T16:36:04.718Z",
+      "updatedAt": "2026-08-20T16:00:58.160Z",
       "status": "stored",
       "completionStatus": "not-completed",
       "completionReason": "Still building core features",
       "summary": "## Description\nThis project, \"SEC-CAM,\" transforms a phone into a security camera, streaming live video and audio to a PC viewer over a local network using WebRTC. It aims to provide a private, low-latency surveillance solution without reliance on cloud services or accounts. The setup is designed to be zero-configuration, utilizing QR codes for easy device pairing.\n\n## Highlights\n*   **WebRTC Streaming**: Utilizes WebRTC (PeerJS) for direct, low-latency video and audio streaming between phone and PC, keeping data local.\n*   **Zero-Config Setup**: Simplifies connection with a QR code scan from the phone to link with the PC viewer.\n*   **PIN-Gated Access**: Ensures only authorized users can view the stream via a 4-digit PIN.\n*   **Auto-Reconnect**: The phone unit automatically attempts to re-establish connection after network interruptions.\n*   **Offline Capability**: A service worker caches the app shell, allowing the phone and viewer interfaces to load even without connectivity.\n*   **Motion Detection**: The `README.md` indicates planned or partial implementation of motion detection.\n\n## Likely Tech Stack\n*   **Languages**: JavaScript, TypeScript, HTML, CSS, JSON, Markdown.\n*   **Runtime**: Node.js (>=16).\n*   **Backend Framework**: Express.js.\n*   **WebRTC Signaling**: PeerJS (self-hosted).\n*   **Utilities**: QRCode, selfsigned.\n*   **Development Tools**: Nodemon, Git.\n*   **Testing**: Headless Chrome for end-to-end tests.\n\n## Run / Restore Notes\n1.  **Dependencies**: Run `npm install` in the `Phone_security_camera` directory to install project dependencies.\n2.  **Start Server**: Execute `npm start` or `node server.js` to launch the application server. By default, it runs over HTTPS, generating self-signed certificates on first run (accept the certificate warning in your browser). For localhost-only testing, `node server.js --http` can be used.\n3.  **Access**: Navigate to `/viewer.html` on your PC and `/phone.html` on your phone (after scanning the QR code displayed on the viewer).\n4.  **E2E Tests**: Run `npm run test:e2e` to execute end-to-end tests, which require a running server and Google Chrome installed.\n5.  **Completion State**: The project is marked \"still in progress,\" so some features or functionalities may be incomplete or subject to change.\n\n## Tags\nsecurity-camera, webrtc, peerjs, surveillance, nodejs, express, javascript, typescript, pwa, motion-detection, local-network\n6.  **Version Control**: A `.git` directory is present, indicating the project is under Git version control.\n\n## Tags\nsecurity-camera, webrtc, peerjs, surveillance, nodejs, express, javascript, typescript, pwa, motion-detection, local-network, web-app, realtime, qr-code, self-signed-certs, e2e-testing\n*   **Node Modules**: The archive includes the `node_modules` directory (over 1000 files, 19 MB total), which means dependencies are bundled. While this ensures immediate functionality, consider removing it for a leaner archive if dependencies can be reliably reinstalled via `npm install`.\n\n## Tags\nsecurity-camera, webrtc, peerjs, surveillance, nodejs, express, javascript, typescript, pwa, motion-detection, local-network, web-app, realtime, qr-code, self-signed-certs, e2e-testing",
       "acceptedAt": "2026-08-12T16:35:50.352Z",
       "fileCount": 2047,
-      "totalBytes": 20189396,
+      "totalBytes": 20195791,
       "totalSizeLabel": "19 MB",
       "topLanguages": [
         {
@@ -372,39 +570,39 @@
       "id": "msjwhd9s-c88aa78351",
       "name": "CreepfoIO",
       "createdAt": "2026-08-08T04:55:30.929Z",
-      "updatedAt": "2026-08-08T05:36:43.860Z",
+      "updatedAt": "2026-08-20T16:01:45.002Z",
       "status": "stored",
       "completionStatus": "not-completed",
       "completionReason": "Still building core features",
       "summary": "## Description\nCreepfoIO is a saved project archive in this vault. README evidence: CreepfoIO > **Command the invisible workforce.** > CreepfoIO turns autonomous agents into an operating company built around your direction. CreepfoIO is a dark, gothic AI operations workspace where one human—The CEO—directs a coordinated workforce of anonymous AI agents. Track projects, delegate work, review outputs, resolve blockers, and see exactly what every agent is doing through a living operational webflow.\n\n## Highlights\n- Stored on this server with 201 files totaling 1.3 MB.\n- Completion state: not completed / still in progress.\n- Most common languages/file groups: Other (184), Markdown (6), HTML (4), Python (2), JSON (2), JavaScript (1), CSS (1), SQL (1).\n- Top file extensions: [no extension] (162), .sample (14), .md (6), .html (4), .py (2), .json (2), .env.example (1), .idx (1).\n- Recognizable project files: CreepfoIO/package.json, CreepfoIO/README.md, CreepfoIO/requirements.txt.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- Markdown\n- HTML\n- Python\n- JSON\n- JavaScript\n- CSS\n- SQL\n- Node.js / npm\n- Python packaging\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\ncreepfoio, markdown, html, python, json, javascript, css, sql, node.js-npm, python-packaging",
       "acceptedAt": "2026-08-08T05:36:43.860Z",
-      "fileCount": 223,
-      "totalBytes": 1763564,
-      "totalSizeLabel": "1.7 MB",
+      "fileCount": 237,
+      "totalBytes": 2328414,
+      "totalSizeLabel": "2.2 MB",
       "topLanguages": [
         {
           "name": "Other",
-          "count": 195
+          "count": 198
         },
         {
           "name": "Markdown",
-          "count": 10
-        },
-        {
-          "name": "HTML",
-          "count": 5
+          "count": 13
         },
         {
           "name": "Python",
-          "count": 4
+          "count": 6
         },
         {
-          "name": "JSON",
-          "count": 3
+          "name": "HTML",
+          "count": 6
         },
         {
           "name": "JavaScript",
-          "count": 2
+          "count": 5
+        },
+        {
+          "name": "JSON",
+          "count": 5
         },
         {
           "name": "CSS",
@@ -426,30 +624,34 @@
         },
         {
           "name": ".md",
-          "count": 10
-        },
-        {
-          "name": ".html",
-          "count": 5
+          "count": 13
         },
         {
           "name": ".py",
-          "count": 4
+          "count": 6
+        },
+        {
+          "name": ".html",
+          "count": 6
+        },
+        {
+          "name": ".js",
+          "count": 5
         },
         {
           "name": ".json",
-          "count": 3
+          "count": 5
+        },
+        {
+          "name": ".txt",
+          "count": 4
         },
         {
           "name": ".env.example",
           "count": 2
         },
         {
-          "name": ".js",
-          "count": 2
-        },
-        {
-          "name": ".txt",
+          "name": ".pyc",
           "count": 2
         },
         {
@@ -459,10 +661,6 @@
         {
           "name": ".sql",
           "count": 2
-        },
-        {
-          "name": ".pyc",
-          "count": 1
         }
       ],
       "githubUrl": "https://github.com/gamer-09/CreepfoIO"
@@ -985,19 +1183,19 @@
       "id": "mshysjrv-928916b0e3",
       "name": "replica",
       "createdAt": "2026-08-06T20:24:39.451Z",
-      "updatedAt": "2026-08-06T20:26:27.701Z",
+      "updatedAt": "2026-08-20T16:09:46.091Z",
       "status": "stored",
       "completionStatus": "completed",
       "completionReason": "",
       "summary": "## Description\nThis project, \"REPLICA,\" is a futuristic GitHub interface designed as a \"HUD client.\" It re-skins the standard GitHub experience into a neon command interface, providing a full-featured client that runs locally using a personal access token. The project aims to offer a unique visual and interactive experience for managing GitHub repositories and activity.\n\n## Highlights\n*   A client-side Single Page Application (SPA) with a custom Node.js backend.\n*   Authenticates with GitHub using a personal access token (PAT), which is securely managed server-side.\n*   Features a distinctive \"futuristic\" UI with dark panels, scanlines, and glitch typography.\n*   Designed as a zero-dependency Node.js project with no build step, emphasizing simplicity.\n*   Includes Windows batch scripts (`start.bat`, `update.bat`) for easy execution and self-updating.\n*   The archive contains a complete Git repository, preserving full version history.\n\n## Likely Tech Stack\n*   **Languages**: JavaScript",
       "acceptedAt": "2026-08-06T20:26:27.701Z",
-      "fileCount": 145,
-      "totalBytes": 880367,
-      "totalSizeLabel": "860 KB",
+      "fileCount": 167,
+      "totalBytes": 1089051,
+      "totalSizeLabel": "1.0 MB",
       "topLanguages": [
         {
           "name": "Other",
-          "count": 139
+          "count": 161
         },
         {
           "name": "JavaScript",
@@ -1023,7 +1221,7 @@
       "topFileTypes": [
         {
           "name": "[no extension]",
-          "count": 120
+          "count": 142
         },
         {
           "name": ".sample",
@@ -2485,14 +2683,14 @@
       "id": "msfe1hjm-0ad8d5491b",
       "name": "Information-webgather",
       "createdAt": "2026-08-05T01:08:12.178Z",
-      "updatedAt": "2026-08-05T02:03:21.625Z",
+      "updatedAt": "2026-08-20T16:08:32.233Z",
       "status": "stored",
       "completionStatus": "completed",
       "completionReason": "",
       "summary": "## Description\nThis project, \"Information-webgather,\" is a Python-based web application designed to aggregate and display information from various public web sources for a specified year. It allows users to input a year and then gathers data on anime, manga, movies, TV series, and news, presenting the results as a clean, filterable gallery on a web page.\n\n## Highlights\n*   **Web Application**: A Python Flask web application with a frontend built using HTML templates, CSS, and JavaScript.\n*   **Multi-Source Data Gathering**: Integrates with multiple external APIs, including AniList, TMDB, Wikipedia, HackerNews, Jikan, MusicBrainz, and VNDB, to fetch diverse content.\n*   **Modular API Integration**: The `gather` directory contains distinct Python modules for interacting with each data source.\n*   **Dependency Management**: Includes a Python virtual environment (`.venv`) and a `requirements.txt` file for managing project dependencies.\n*   **Clear Documentation**: The `README.md` provides a good overview of the project, its data sources, and notes on an optional TMDB API key.\n\n## Likely Tech Stack\n*   **Backend Language**: Python (likely 3.14, inferred from `.pyc` files)\n*   **Web Framework**: Flask\n*   **Frontend**: HTML (Jinja2 templating), CSS, JavaScript\n*   **HTTP Client**: `requests` (Python)\n*   **Dependency Management**:",
       "acceptedAt": "2026-08-05T01:10:39.323Z",
       "fileCount": 1760,
-      "totalBytes": 21613853,
+      "totalBytes": 21613665,
       "totalSizeLabel": "21 MB",
       "topLanguages": [
         {
@@ -2546,11 +2744,11 @@
           "count": 26
         },
         {
-          "name": ".exe",
+          "name": ".sample",
           "count": 14
         },
         {
-          "name": ".sample",
+          "name": ".exe",
           "count": 14
         },
         {
