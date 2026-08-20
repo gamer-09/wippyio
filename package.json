@@ -11,5 +11,18 @@
   "dependencies": {
     "puppeteer": "^23.0.0",
     "puppeteer-core": "^25.8.0"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gamer-09/wippyio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gamer-09/wippyio/issues"
+  },
+  "homepage": "https://github.com/gamer-09/wippyio#readme"
 }

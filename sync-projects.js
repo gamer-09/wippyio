@@ -15,7 +15,7 @@
 const fs = require('fs');
 const fsp = require('fs/promises');
 const path = require('path');
-
+const http = require('http');
 
 // ---------------------------------------------------------------------------
 // Parse arguments
@@ -311,12 +311,16 @@ async function captureScreenshot(browser, projectId, webEntry) {
 
   if (!webEntry.entry) return '';
 
+  // Serve the project's web directory via HTTP so external resources load
+  const serveDir = webEntry.prefix ? path.join(webEntry.dir, webEntry.prefix) : webEntry.dir;
+  const server = await startSafeServer(serveDir);
+  const port = server.address().port;
+
   const page = await browser.newPage();
   try {
     await page.setViewport({ width: 1280, height: 800 });
-    const fileUrl = 'file:///' + webEntry.entry.replace(/\\/g, '/');
-    await page.goto(fileUrl, { waitUntil: 'domcontentloaded', timeout: 10000 });
-    await new Promise((r) => setTimeout(r, 600));
+    await page.goto(`http://127.0.0.1:${port}`, { waitUntil: 'domcontentloaded', timeout: 10000 });
+    await new Promise((r) => setTimeout(r, 1200));
     await page.screenshot({ path: outPath, type: 'jpeg', quality: 80 });
     console.log(`   📸  Captured: ${projectId}`);
     return `data/screenshots/${projectId}.jpg`;
@@ -325,7 +329,45 @@ async function captureScreenshot(browser, projectId, webEntry) {
     return '';
   } finally {
     await page.close().catch(() => {});
+    server.close();
   }
+}
+
+// Safe HTTP server — filters out node_modules and .git, auto-closes after 30s
+function startSafeServer(dir) {
+  return new Promise((resolve, reject) => {
+    const server = http.createServer((req, res) => {
+      let url;
+      try { url = decodeURIComponent(req.url.split('?')[0]); } catch { url = req.url.split('?')[0]; }
+      // Block node_modules and .git
+      if (url.includes('node_modules') || url.includes('.git')) {
+        res.writeHead(403); res.end(); return;
+      }
+      let filePath = path.join(dir, url);
+      if (filePath.endsWith('/')) filePath = path.join(filePath, 'index.html');
+      // Prevent path traversal
+      if (!filePath.startsWith(dir)) { res.writeHead(403); res.end(); return; }
+      if (!fs.existsSync(filePath)) { res.writeHead(404); res.end(); return; }
+      // If it's a directory, serve index.html
+      if (fs.statSync(filePath).isDirectory()) {
+        filePath = path.join(filePath, 'index.html');
+        if (!fs.existsSync(filePath)) { res.writeHead(404); res.end(); return; }
+      }
+      const ext = path.extname(filePath).toLowerCase();
+      const mimes = {
+        '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript',
+        '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg',
+        '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.woff': 'font/woff',
+        '.woff2': 'font/woff2', '.ttf': 'font/ttf',
+      };
+      res.writeHead(200, { 'Content-Type': mimes[ext] || 'application/octet-stream' });
+      fs.createReadStream(filePath).pipe(res);
+    });
+    server.listen(0, '127.0.0.1', () => resolve(server));
+    server.on('error', reject);
+    // Auto-close safety net
+    setTimeout(() => { try { server.close(); } catch {} }, 30000);
+  });
 }
 
 // ---------------------------------------------------------------------------
