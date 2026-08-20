@@ -287,7 +287,7 @@ function findWebEntry(projectId) {
 
 async function captureScreenshot(browser, projectId, webEntry) {
   const outPath = path.join(screenshotsDir, `${projectId}.jpg`);
-  if (fs.existsSync(outPath)) return `screenshots/${projectId}.jpg`;
+  if (fs.existsSync(outPath)) return `data/screenshots/${projectId}.jpg`;
 
   // Build if needed
   if (webEntry.needsBuild) {
@@ -319,7 +319,7 @@ async function captureScreenshot(browser, projectId, webEntry) {
     await new Promise((r) => setTimeout(r, 600));
     await page.screenshot({ path: outPath, type: 'jpeg', quality: 80 });
     console.log(`   📸  Captured: ${projectId}`);
-    return `screenshots/${projectId}.jpg`;
+    return `data/screenshots/${projectId}.jpg`;
   } catch (err) {
     console.log(`   ⚠️  Screenshot failed: ${projectId} — ${err.message.slice(0, 60)}`);
     return '';
@@ -362,7 +362,7 @@ function generateGradientCard(projectId, name, fileTypes) {
 
   const outPath = path.join(screenshotsDir, `${projectId}.svg`);
   fs.writeFileSync(outPath, svg);
-  return `screenshots/${projectId}.svg`;
+  return `data/screenshots/${projectId}.svg`;
 }
 
 function escSvg(s) {
