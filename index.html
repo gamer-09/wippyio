@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Hub — Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1 class="logo">⚡ Project Hub</h1>
+      <p class="tagline">A collection of every project I've built, archived, and curated.</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Controls -->
+    <section class="controls">
+      <div class="search-box">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search projects, languages, tags…" autocomplete="off" />
+      </div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="completed">✅ Completed</button>
+        <button class="filter-btn" data-filter="not-completed">🔧 In Progress</button>
+      </div>
+      <div class="stats" id="statsBar"></div>
+    </section>
+
+    <!-- Project grid -->
+    <section class="grid" id="projectGrid"></section>
+
+    <!-- Empty state -->
+    <section class="empty-state" id="emptyState" style="display:none;">
+      <p>No projects found.</p>
+    </section>
+  </main>
+
+  <!-- Project detail popup -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup" id="popup">
+      <button class="popup-close" id="popupClose">&times;</button>
+      <div class="popup-body" id="popupBody"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Synced from <a href="https://github.com/gamer-09/storage-packed" target="_blank">storage-packed</a> vault • Built with ❤️</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,2944 @@
+{
+  "projects": [
+    {
+      "id": "msqbpdfw-c3ddc8e495",
+      "name": "bash",
+      "createdAt": "2026-08-12T16:48:15.694Z",
+      "updatedAt": "2026-08-12T16:48:15.694Z",
+      "status": "uploaded",
+      "completionStatus": "not-completed",
+      "completionReason": "",
+      "summary": "",
+      "acceptedAt": null,
+      "fileCount": 204,
+      "totalBytes": 684418570,
+      "totalSizeLabel": "653 MB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 179
+        },
+        {
+          "name": "JavaScript",
+          "count": 10
+        },
+        {
+          "name": "HTML",
+          "count": 9
+        },
+        {
+          "name": "Markdown",
+          "count": 3
+        },
+        {
+          "name": "JSON",
+          "count": 2
+        },
+        {
+          "name": "Python",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".pdf",
+          "count": 89
+        },
+        {
+          "name": ".pptx",
+          "count": 28
+        },
+        {
+          "name": ".docx",
+          "count": 20
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": "[no extension]",
+          "count": 13
+        },
+        {
+          "name": ".js",
+          "count": 10
+        },
+        {
+          "name": ".html",
+          "count": 9
+        },
+        {
+          "name": ".jpg",
+          "count": 7
+        },
+        {
+          "name": ".png",
+          "count": 3
+        },
+        {
+          "name": ".md",
+          "count": 3
+        },
+        {
+          "name": ".json",
+          "count": 2
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "msqbakdk-ab24c34b74",
+      "name": "Note_vault",
+      "createdAt": "2026-08-12T16:36:44.841Z",
+      "updatedAt": "2026-08-12T16:39:11.870Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\n\"Note_vault\" (also known as \"Quiet Notes\") is a web-based note-taking application designed for everyday use, featuring standard note management capabilities like creation, editing, searching, and pinning. Its distinguishing feature is a concealed, encrypted private workspace, offering secure storage for sensitive information using robust cryptographic methods. The project is currently in progress.\n\n## Highlights\n*   Provides comprehensive note management, including autosave, light/dark themes, and export/import functionality for regular notes.\n*   Features a private workspace with AES-256-GCM encryption for notes and files, with keys derived from a passphrase using PBKDF2-SHA-256.\n*   Implemented as a Progressive Web App (PWA) with a service worker for offline access and an app-like desktop experience.\n*   Built with React and Vite, utilizing IndexedDB for client-side data persistence.\n*   Includes a thorough testing suite leveraging Vitest and React Testing Library for core functionalities, including cryptography.\n*   GitHub Actions workflow (`deploy-pages.yml`) suggests deployment to GitHub Pages.\n\n## Likely Tech Stack\n*   **Frontend:** React, JavaScript, TypeScript, HTML, CSS\n*   **Build Tool:** Vite\n*   **Testing:** Vitest, JSDOM, `@testing-library/react`, `fake-indexeddb`\n*   **Data Storage:** IndexedDB (browser-based)\n*   **Cryptography:** Web Crypto API (AES-GCM, PBKDF2-SHA-256)\n*   **UI Components:** `lucide-react` (icon library)\n*   **Version Control:** Git\n*   **Deployment:** GitHub Pages (inferred)\n\n## Run / Restore Notes\nThis project appears to be a standard Node.js application. To set up and run:\n1.  Ensure Node.js and a package manager (npm or yarn) are installed.\n2.  Navigate to the `Note_vault` directory.\n3.  Install project dependencies by running `npm install` (or `yarn install`).\n4.  Start the development server with `npm run dev`.\n5.  Build the project for production deployment using `npm run build`.\n6.  Run the test suite with `npm run test`.\nThe included `.git` directory preserves the project's version history.\n\n## Tags\nreact, javascript, typescript, vite, pwa, notes, encryption, indexeddb, vitest, frontend, web app, personal project, in progress\nAll sections of the archive summary were completed in the previous response. There is no further content to add.\nAll sections of the archive summary were completed in the previous response. There is no further content to add.",
+      "acceptedAt": "2026-08-12T16:39:05.075Z",
+      "fileCount": 4053,
+      "totalBytes": 77177471,
+      "totalSizeLabel": "74 MB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 2004
+        },
+        {
+          "name": "JavaScript",
+          "count": 1928
+        },
+        {
+          "name": "TypeScript",
+          "count": 62
+        },
+        {
+          "name": "JSON",
+          "count": 28
+        },
+        {
+          "name": "Markdown",
+          "count": 23
+        },
+        {
+          "name": "React",
+          "count": 5
+        },
+        {
+          "name": "YAML",
+          "count": 1
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 1928
+        },
+        {
+          "name": ".map",
+          "count": 1763
+        },
+        {
+          "name": "[no extension]",
+          "count": 135
+        },
+        {
+          "name": ".ts",
+          "count": 62
+        },
+        {
+          "name": ".mjs",
+          "count": 41
+        },
+        {
+          "name": ".json",
+          "count": 28
+        },
+        {
+          "name": ".md",
+          "count": 23
+        },
+        {
+          "name": ".mts",
+          "count": 22
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".cjs",
+          "count": 9
+        },
+        {
+          "name": ".jsx",
+          "count": 5
+        },
+        {
+          "name": ".cmd",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "msqb7a2k-f37177ac59",
+      "name": "Phone_security_camera",
+      "createdAt": "2026-08-12T16:34:11.517Z",
+      "updatedAt": "2026-08-12T16:36:04.718Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "Still building core features",
+      "summary": "## Description\nThis project, \"SEC-CAM,\" transforms a phone into a security camera, streaming live video and audio to a PC viewer over a local network using WebRTC. It aims to provide a private, low-latency surveillance solution without reliance on cloud services or accounts. The setup is designed to be zero-configuration, utilizing QR codes for easy device pairing.\n\n## Highlights\n*   **WebRTC Streaming**: Utilizes WebRTC (PeerJS) for direct, low-latency video and audio streaming between phone and PC, keeping data local.\n*   **Zero-Config Setup**: Simplifies connection with a QR code scan from the phone to link with the PC viewer.\n*   **PIN-Gated Access**: Ensures only authorized users can view the stream via a 4-digit PIN.\n*   **Auto-Reconnect**: The phone unit automatically attempts to re-establish connection after network interruptions.\n*   **Offline Capability**: A service worker caches the app shell, allowing the phone and viewer interfaces to load even without connectivity.\n*   **Motion Detection**: The `README.md` indicates planned or partial implementation of motion detection.\n\n## Likely Tech Stack\n*   **Languages**: JavaScript, TypeScript, HTML, CSS, JSON, Markdown.\n*   **Runtime**: Node.js (>=16).\n*   **Backend Framework**: Express.js.\n*   **WebRTC Signaling**: PeerJS (self-hosted).\n*   **Utilities**: QRCode, selfsigned.\n*   **Development Tools**: Nodemon, Git.\n*   **Testing**: Headless Chrome for end-to-end tests.\n\n## Run / Restore Notes\n1.  **Dependencies**: Run `npm install` in the `Phone_security_camera` directory to install project dependencies.\n2.  **Start Server**: Execute `npm start` or `node server.js` to launch the application server. By default, it runs over HTTPS, generating self-signed certificates on first run (accept the certificate warning in your browser). For localhost-only testing, `node server.js --http` can be used.\n3.  **Access**: Navigate to `/viewer.html` on your PC and `/phone.html` on your phone (after scanning the QR code displayed on the viewer).\n4.  **E2E Tests**: Run `npm run test:e2e` to execute end-to-end tests, which require a running server and Google Chrome installed.\n5.  **Completion State**: The project is marked \"still in progress,\" so some features or functionalities may be incomplete or subject to change.\n\n## Tags\nsecurity-camera, webrtc, peerjs, surveillance, nodejs, express, javascript, typescript, pwa, motion-detection, local-network\n6.  **Version Control**: A `.git` directory is present, indicating the project is under Git version control.\n\n## Tags\nsecurity-camera, webrtc, peerjs, surveillance, nodejs, express, javascript, typescript, pwa, motion-detection, local-network, web-app, realtime, qr-code, self-signed-certs, e2e-testing\n*   **Node Modules**: The archive includes the `node_modules` directory (over 1000 files, 19 MB total), which means dependencies are bundled. While this ensures immediate functionality, consider removing it for a leaner archive if dependencies can be reliably reinstalled via `npm install`.\n\n## Tags\nsecurity-camera, webrtc, peerjs, surveillance, nodejs, express, javascript, typescript, pwa, motion-detection, local-network, web-app, realtime, qr-code, self-signed-certs, e2e-testing",
+      "acceptedAt": "2026-08-12T16:35:50.352Z",
+      "fileCount": 2047,
+      "totalBytes": 20189396,
+      "totalSizeLabel": "19 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 668
+        },
+        {
+          "name": "Other",
+          "count": 463
+        },
+        {
+          "name": "TypeScript",
+          "count": 331
+        },
+        {
+          "name": "JSON",
+          "count": 273
+        },
+        {
+          "name": "Markdown",
+          "count": 254
+        },
+        {
+          "name": "YAML",
+          "count": 30
+        },
+        {
+          "name": "HTML",
+          "count": 25
+        },
+        {
+          "name": "CSS",
+          "count": 3
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 668
+        },
+        {
+          "name": ".ts",
+          "count": 331
+        },
+        {
+          "name": ".json",
+          "count": 273
+        },
+        {
+          "name": "[no extension]",
+          "count": 258
+        },
+        {
+          "name": ".md",
+          "count": 254
+        },
+        {
+          "name": ".map",
+          "count": 95
+        },
+        {
+          "name": ".mjs",
+          "count": 40
+        },
+        {
+          "name": ".yml",
+          "count": 30
+        },
+        {
+          "name": ".html",
+          "count": 25
+        },
+        {
+          "name": ".txt",
+          "count": 15
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".cjs",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "id": "msm2j97i-8171c9377e",
+      "name": "USB Phone Control [scrcpy_01]",
+      "createdAt": "2026-08-09T17:20:29.023Z",
+      "updatedAt": "2026-08-09T17:21:28.998Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project provides a Windows-based solution for controlling an Android phone from a PC, leveraging `scrcpy` for screen mirroring and input. It supports both USB and Wi-Fi (wireless debugging) connections, offering a Python-based graphical user interface (GUI) and a suite of PowerShell scripts for various control and setup tasks. The aim is to simplify the interaction with `scrcpy` and `adb` for a smoother user experience.\n\n## Highlights\n- Features a Python Tkinter GUI (`phone_control_ui.py`) for simplified phone control with a Catppuccin Mocha-inspired dark theme.\n- Includes comprehensive PowerShell scripts for device checking, wireless connection management (pairing, connect/disconnect), and initial setup.\n- Bundles `adb` (Android Debug Bridge) and `scrcpy` binaries, specifically for Windows 64-bit environments.\n- Supports both USB and wireless (Wi-Fi) debugging, including options for pairing code and QR code pairing.\n- The `README.md` indicates `setup.ps1` is designed to download the latest `scrcpy` and `platform-tools` versions automatically.\n- Project is marked as \"not completed / still in progress,\" suggesting ongoing development.\n\n## Likely Tech Stack\n- **Languages**: Python, PowerShell, Markdown, Batch\n- **GUI Framework**: Tkinter (Python)\n- **Core Tools**: scrcpy, Android Debug Bridge (adb)\n- **Runtime Environment**: Windows (64-bit implied by bundled binaries)\n- **Libraries/Dependencies**: SDL2, FFmpeg (via `avcodec`, `avformat`, `avutil` DLLs), libusb\n\n## Run / Restore Notes\n- This project is marked as \"not completed / still in progress.\"\n- To run, Python 3.x is required. The main GUI can likely be started via `python phone_control_ui.py` or by executing `start-ui.ps1`.\n- Initial setup likely involves running `setup.ps1` to ensure `adb` and `scrcpy` binaries are up-to-date and correctly configured within the `tools` directory.\n- The project relies heavily on pre-compiled Windows binaries (`.exe`, `.dll`) for `adb`, `scrcpy`, and related tools, indicating a Windows-specific execution environment.\n- PowerShell scripts (`.ps1`) are integral for managing device connections and other functionalities, so PowerShell must be enabled and accessible.\n\n## Tags\nandroid, scrcpy, phone control, usb, wireless debugging, adb, python, powershell, tkinter, windows, gui, mobile, mirroring, in-progress\nThe previous archive summary was complete and included all requested sections. There is no unfinished content to continue.\n- Note that while the `README.md` mentions `scrcpy v4.x`, the archived `scrcpy` binaries are version `2.5`, which might require an update via `setup.ps1` for full functionality as described.\n\n## Tags\nandroid, scrcpy, phone control, usb, wireless debugging, adb, python, powershell, tkinter, windows, mobile, mirroring, in-progress, version discrepancy",
+      "acceptedAt": "2026-08-09T17:21:26.011Z",
+      "fileCount": 44,
+      "totalBytes": 34124638,
+      "totalSizeLabel": "33 MB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 42
+        },
+        {
+          "name": "Python",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".ps1",
+          "count": 11
+        },
+        {
+          "name": ".dll",
+          "count": 11
+        },
+        {
+          "name": ".exe",
+          "count": 10
+        },
+        {
+          "name": ".bat",
+          "count": 2
+        },
+        {
+          "name": ".py",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        },
+        {
+          "name": ".zip",
+          "count": 1
+        },
+        {
+          "name": ".conf",
+          "count": 1
+        },
+        {
+          "name": ".txt",
+          "count": 1
+        },
+        {
+          "name": ".properties",
+          "count": 1
+        },
+        {
+          "name": ".png",
+          "count": 1
+        },
+        {
+          "name": ".vbs",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "msjwhd9s-c88aa78351",
+      "name": "CreepfoIO",
+      "createdAt": "2026-08-08T04:55:30.929Z",
+      "updatedAt": "2026-08-08T05:36:43.860Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "Still building core features",
+      "summary": "## Description\nCreepfoIO is a saved project archive in this vault. README evidence: CreepfoIO > **Command the invisible workforce.** > CreepfoIO turns autonomous agents into an operating company built around your direction. CreepfoIO is a dark, gothic AI operations workspace where one human—The CEO—directs a coordinated workforce of anonymous AI agents. Track projects, delegate work, review outputs, resolve blockers, and see exactly what every agent is doing through a living operational webflow.\n\n## Highlights\n- Stored on this server with 201 files totaling 1.3 MB.\n- Completion state: not completed / still in progress.\n- Most common languages/file groups: Other (184), Markdown (6), HTML (4), Python (2), JSON (2), JavaScript (1), CSS (1), SQL (1).\n- Top file extensions: [no extension] (162), .sample (14), .md (6), .html (4), .py (2), .json (2), .env.example (1), .idx (1).\n- Recognizable project files: CreepfoIO/package.json, CreepfoIO/README.md, CreepfoIO/requirements.txt.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- Markdown\n- HTML\n- Python\n- JSON\n- JavaScript\n- CSS\n- SQL\n- Node.js / npm\n- Python packaging\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\ncreepfoio, markdown, html, python, json, javascript, css, sql, node.js-npm, python-packaging",
+      "acceptedAt": "2026-08-08T05:36:43.860Z",
+      "fileCount": 223,
+      "totalBytes": 1763564,
+      "totalSizeLabel": "1.7 MB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 195
+        },
+        {
+          "name": "Markdown",
+          "count": 10
+        },
+        {
+          "name": "HTML",
+          "count": 5
+        },
+        {
+          "name": "Python",
+          "count": 4
+        },
+        {
+          "name": "JSON",
+          "count": 3
+        },
+        {
+          "name": "JavaScript",
+          "count": 2
+        },
+        {
+          "name": "CSS",
+          "count": 2
+        },
+        {
+          "name": "SQL",
+          "count": 2
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 171
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".md",
+          "count": 10
+        },
+        {
+          "name": ".html",
+          "count": 5
+        },
+        {
+          "name": ".py",
+          "count": 4
+        },
+        {
+          "name": ".json",
+          "count": 3
+        },
+        {
+          "name": ".env.example",
+          "count": 2
+        },
+        {
+          "name": ".js",
+          "count": 2
+        },
+        {
+          "name": ".txt",
+          "count": 2
+        },
+        {
+          "name": ".css",
+          "count": 2
+        },
+        {
+          "name": ".sql",
+          "count": 2
+        },
+        {
+          "name": ".pyc",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "msjar4qg-e6181144fe",
+      "name": "ircc-track",
+      "createdAt": "2026-08-07T18:47:14.872Z",
+      "updatedAt": "2026-08-12T16:42:25.879Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project, \"ircc-track\" (IRCC AURA), is a modern, interactive web application designed as a futuristic Canadian Visa Intelligence Platform and Application Tracker. It provides users with real-time application milestone telemetry, AI-powered ETA predictions, and comprehensive information to navigate Canadian immigration processes.\n\n## Highlights\n*   Features a \"Cyber HUD Experience\" with custom sound effects and a dynamic background for an immersive user interface.\n*   Integrates a GCMS (Global Case Management System) status decoder, policy radar, and pre-arrival checklist.\n*   Offers advanced functionalities like AI ETA prediction, 50+ country processing estimators, and a settlement funds calculator.\n*   Includes a secure document locker with OCR vault capabilities and missing defect detection.\n*   Built with a modern component-based architecture using React and styled with Tailwind CSS for a sleek, dark-themed aesthetic.\n\n## Likely Tech Stack\n*   **Frontend Framework**: React 18\n*   **Build Tool**: Vite 8\n*   **Styling**: Tailwind CSS 4, PostCSS, Autoprefixer\n*   **Languages**: JavaScript, TypeScript\n*   **Runtime**: Node.js (for development/build)\n*   **Key Libraries**: `canvas-confetti`, `lucide-react`\n\n## Run / Restore Notes\nThis project appears to be a standard Vite-based React application.\n1.  Ensure Node.js is installed (version compatible with Vite 8).\n2.  The archive includes the `node_modules` directory, so `npm install` (or `yarn install`) might not be strictly necessary if all dependencies are intact, but it's good practice to run it to ensure integrity.\n3.  Run the development server with `npm run dev`. The application should be accessible at `http://0.0.0.0:3000`.\n4.  To create a production build, use `npm run build`.\n5.  To preview the production build, use `npm run preview`.\n\n## Tags\nreact, vite, tailwind css, immigration, canada, ircc, visa tracker, frontend, javascript, typescript, web application, ui, hud\nThe archive summary is already complete as per the requested structure and content. No unfinished sections or missing fragments remain.\nThe archive summary is already complete as per the requested structure and content. No unfinished sections or missing fragments remain.",
+      "acceptedAt": "2026-08-07T18:48:45.499Z",
+      "fileCount": 6943,
+      "totalBytes": 109311362,
+      "totalSizeLabel": "104 MB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 4888
+        },
+        {
+          "name": "JavaScript",
+          "count": 1620
+        },
+        {
+          "name": "TypeScript",
+          "count": 178
+        },
+        {
+          "name": "JSON",
+          "count": 118
+        },
+        {
+          "name": "Markdown",
+          "count": 99
+        },
+        {
+          "name": "React",
+          "count": 32
+        },
+        {
+          "name": "CSS",
+          "count": 6
+        },
+        {
+          "name": "HTML",
+          "count": 2
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".map",
+          "count": 2458
+        },
+        {
+          "name": ".mjs",
+          "count": 2112
+        },
+        {
+          "name": ".js",
+          "count": 1620
+        },
+        {
+          "name": ".ts",
+          "count": 178
+        },
+        {
+          "name": "[no extension]",
+          "count": 148
+        },
+        {
+          "name": ".json",
+          "count": 118
+        },
+        {
+          "name": ".md",
+          "count": 99
+        },
+        {
+          "name": ".mts",
+          "count": 64
+        },
+        {
+          "name": ".jsx",
+          "count": 32
+        },
+        {
+          "name": ".cts",
+          "count": 28
+        },
+        {
+          "name": ".cjs",
+          "count": 18
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        }
+      ]
+    },
+    {
+      "id": "msj106vw-7f1f1bae1d",
+      "name": "legends",
+      "createdAt": "2026-08-07T14:14:21.404Z",
+      "updatedAt": "2026-08-07T15:04:55.132Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "Still building core features",
+      "summary": "## Description\nThis project, \"Legends of Virelia,\" is an in-progress, browser-based text-only RPG. Inspired by titles like Fallen London and Disco Elysium, it aims to deliver a rich narrative experience with a deep lore codex, a 3-act main storyline, and a robust consequence engine where player choices significantly impact the game world. The user has marked it as incomplete, actively building core features.\n\n## Highlights\n*   **Text-Only Browser RPG:** A self-contained, browser-based game with no build step, designed for local execution.\n*   **Consequence-Driven Narrative:** Features a \"Consequence Engine\" and \"Twist Table\" where every player action has lasting effects on the game world and story.\n*   **Extensive World-Building:** Includes a \"Lore Codex\" with over 40 entries and a structured \"3-Act Main Storyline\" for deep immersion.\n*   **Modular JavaScript Architecture:** Game logic is split across multiple `game.partX.js` files, handling UI, inventory, admin tools, audio, and choice resolution.\n*   **Dual Theme System:** Supports multiple visual themes (Text Mode, Colorful RPG, Parchment) for player customization.\n*   **Active Development History:** The presence of a comprehensive `.git` directory indicates ongoing version control and development.\n\n## Likely Tech Stack\n*   **Languages:** JavaScript, HTML, CSS, Markdown\n*   **Runtime:** Web Browser\n*   **Version Control:** Git\n*   **Local Server (Development):** Python's `http.server`\n\n## Run / Restore Notes\nTo run this project, navigate to the `legends` directory in a terminal and start a simple HTTP server. For example, using Python: `python -m http.server 8000`. Then, open a web browser and go to `http://localhost:8000/`. The project is designed with \"no build step,\" meaning it should run directly from the provided files. The extensive `.git` directory is included, preserving the full version history.\n\n## Tags\ntext rpg, browser game, javascript, html, css, narrative, lore, consequence engine, single-page application, game development, in-progress\n## Highlights\n*   **Thematic UI/UX:** Implements a distinct terminal-like aesthetic with visual effects (hit flash, shake, glows) and structured panel layouts for adventurer, story, and quest board, enhancing the text-based RPG experience.\n\n## Tags\ntext rpg, browser game, javascript, html, css, narrative, lore, consequence engine, single-page application, game development, in-progress, ui/ux, terminal style\nThe project archive summary is complete.",
+      "acceptedAt": "2026-08-07T14:39:02.124Z",
+      "fileCount": 339,
+      "totalBytes": 9478162,
+      "totalSizeLabel": "9.0 MB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 325
+        },
+        {
+          "name": "JavaScript",
+          "count": 10
+        },
+        {
+          "name": "Markdown",
+          "count": 2
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 310
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".js",
+          "count": 10
+        },
+        {
+          "name": ".md",
+          "count": 2
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".css",
+          "count": 1
+        },
+        {
+          "name": ".png",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "msi2pk64-e7031f3fe2",
+      "name": "Ext Starter [var_83]",
+      "createdAt": "2026-08-06T22:14:18.461Z",
+      "updatedAt": "2026-08-06T22:14:38.551Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nExt Starter [var_83] is a saved project archive in this vault. README evidence: New Extension A basic Chrome extension template. Installation 1. Go to `chrome://extensions/`\n\n## Highlights\n- Stored on this server with 9 files totaling 5.7 KB.\n- Completion state: not completed / still in progress.\n- Most common languages/file groups: JavaScript (3), Other (3), JSON (1), HTML (1), Markdown (1).\n- Top file extensions: .js (3), .svg (3), .json (1), .html (1), .md (1).\n- Recognizable project files: Ext Starter [var_83]/README.md.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- JavaScript\n- JSON\n- HTML\n- Markdown\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\next-starter-var_83, javascript, json, html, markdown, other, archive, local-summary",
+      "acceptedAt": "2026-08-06T22:14:34.694Z",
+      "fileCount": 9,
+      "totalBytes": 5790,
+      "totalSizeLabel": "5.7 KB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 3
+        },
+        {
+          "name": "Other",
+          "count": 3
+        },
+        {
+          "name": "JSON",
+          "count": 1
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 3
+        },
+        {
+          "name": ".svg",
+          "count": 3
+        },
+        {
+          "name": ".json",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "mshz5lln-cdaaf20883",
+      "name": "ALL-CODES-DONE-PERSONALLY-ON-PC",
+      "createdAt": "2026-08-06T20:34:48.348Z",
+      "updatedAt": "2026-08-06T21:12:27.927Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nALL-CODES-DONE-PERSONALLY-ON-PC is a saved project archive in this vault. README evidence: ALL CODES DONE PERSONALLY ON PC ALL CODE MADE BY ME\n\n## Highlights\n- Stored on this server with 3203 files totaling 150 MB.\n- Completion state: completed.\n- Most common languages/file groups: JavaScript (1484), Other (619), JSON (427), Markdown (356), HTML (119), TypeScript (104), Python (60), YAML (27).\n- Top file extensions: .js (1484), .json (427), [no extension] (369), .md (356), .html (119), .ts (104), .1 (67), .py (60).\n- Recognizable project files: ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/accepts/package.json, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/accepts/README.md, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/anymatch/package.json, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/anymatch/README.md, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/array-flatten/package.json, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/array-flatten/README.md, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/balanced-match/package.json, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/balanced-match/README.md, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/basic-auth/node_modules/safe-buffer/package.json, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/basic-auth/node_modules/safe-buffer/README.md, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/basic-auth/package.json, ALL-CODES-DONE-PERSONALLY-ON-PC/antivirus_server/node_modules/basic-auth/README.md.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- JavaScript\n- JSON\n- Markdown\n- HTML\n- TypeScript\n- Python\n- YAML\n- Node.js / npm\n- Express\n- Python packaging\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\nall-codes-done-personally-on-pc, javascript, json, markdown, html, typescript, python, yaml, node.js-npm, express",
+      "acceptedAt": "2026-08-06T21:12:27.927Z",
+      "fileCount": 3203,
+      "totalBytes": 157486286,
+      "totalSizeLabel": "150 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 1484
+        },
+        {
+          "name": "Other",
+          "count": 619
+        },
+        {
+          "name": "JSON",
+          "count": 427
+        },
+        {
+          "name": "Markdown",
+          "count": 356
+        },
+        {
+          "name": "HTML",
+          "count": 119
+        },
+        {
+          "name": "TypeScript",
+          "count": 104
+        },
+        {
+          "name": "Python",
+          "count": 60
+        },
+        {
+          "name": "YAML",
+          "count": 27
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 1484
+        },
+        {
+          "name": ".json",
+          "count": 427
+        },
+        {
+          "name": "[no extension]",
+          "count": 369
+        },
+        {
+          "name": ".md",
+          "count": 356
+        },
+        {
+          "name": ".html",
+          "count": 119
+        },
+        {
+          "name": ".ts",
+          "count": 104
+        },
+        {
+          "name": ".1",
+          "count": 67
+        },
+        {
+          "name": ".py",
+          "count": 60
+        },
+        {
+          "name": ".map",
+          "count": 60
+        },
+        {
+          "name": ".yml",
+          "count": 27
+        },
+        {
+          "name": ".txt",
+          "count": 16
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        }
+      ]
+    },
+    {
+      "id": "mshz2q1i-1a148a153d",
+      "name": "SUNNY",
+      "createdAt": "2026-08-06T20:32:34.134Z",
+      "updatedAt": "2026-08-06T21:12:58.608Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nSUNNY is a saved project archive in this vault. README evidence: Legends of Virelia A browser-based text RPG that runs entirely in the browser. This is a **static site** (no build step). You just need to serve the folder and open `http://localhost:<port>/`. Run locally (recommended)\n\n## Highlights\n- Stored on this server with 102 files totaling 3.8 MB.\n- Completion state: completed.\n- Most common languages/file groups: Other (74), JavaScript (14), HTML (7), CSS (3), JSON (2), Python (1), Markdown (1).\n- Top file extensions: [no extension] (47), .sample (14), .js (14), .png (8), .html (7), .css (3), .json (2), .idx (1).\n- Recognizable project files: SUNNY/legends-of-virelia/README.md.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- JavaScript\n- HTML\n- CSS\n- JSON\n- Python\n- Markdown\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\nsunny, javascript, html, css, json, python, markdown, other, archive, local-summary",
+      "acceptedAt": "2026-08-06T21:12:58.608Z",
+      "fileCount": 102,
+      "totalBytes": 3988355,
+      "totalSizeLabel": "3.8 MB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 74
+        },
+        {
+          "name": "JavaScript",
+          "count": 14
+        },
+        {
+          "name": "HTML",
+          "count": 7
+        },
+        {
+          "name": "CSS",
+          "count": 3
+        },
+        {
+          "name": "JSON",
+          "count": 2
+        },
+        {
+          "name": "Python",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 47
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".js",
+          "count": 14
+        },
+        {
+          "name": ".png",
+          "count": 8
+        },
+        {
+          "name": ".html",
+          "count": 7
+        },
+        {
+          "name": ".css",
+          "count": 3
+        },
+        {
+          "name": ".json",
+          "count": 2
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        },
+        {
+          "name": ".ps1",
+          "count": 1
+        },
+        {
+          "name": ".py",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "mshywuck-018f27db71",
+      "name": "planner",
+      "createdAt": "2026-08-06T20:27:59.780Z",
+      "updatedAt": "2026-08-06T20:29:50.417Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nplanner is a saved project archive in this vault. README evidence: N E X U S // Day Operations Console A futuristic, AI-aware day planner for university students. Space-opera aesthetic. Smart day orchestration with energy curves, study blocks, and adaptive scheduling. Quick start\n\n## Highlights\n- Stored on this server with 156 files totaling 590 KB.\n- Completion state: completed.\n- Most common languages/file groups: Other (73), TypeScript (68), JSON (7), JavaScript (4), Markdown (2), HTML (1), CSS (1).\n- Top file extensions: .ts (68), [no extension] (49), .sample (14), .json (7), .js (4), .map (4), .mjs (2), .md (2).\n- Recognizable project files: planner/node_modules/@google/generative-ai/package.json, planner/node_modules/@google/generative-ai/README.md, planner/node_modules/@google/generative-ai/server/package.json, planner/package.json, planner/README.md.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- TypeScript\n- JSON\n- JavaScript\n- Markdown\n- HTML\n- CSS\n- Node.js / npm\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\nplanner, typescript, json, javascript, markdown, html, css, node.js-npm, other, archive",
+      "acceptedAt": "2026-08-06T20:29:50.417Z",
+      "fileCount": 156,
+      "totalBytes": 604543,
+      "totalSizeLabel": "590 KB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 73
+        },
+        {
+          "name": "TypeScript",
+          "count": 68
+        },
+        {
+          "name": "JSON",
+          "count": 7
+        },
+        {
+          "name": "JavaScript",
+          "count": 4
+        },
+        {
+          "name": "Markdown",
+          "count": 2
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".ts",
+          "count": 68
+        },
+        {
+          "name": "[no extension]",
+          "count": 49
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".json",
+          "count": 7
+        },
+        {
+          "name": ".js",
+          "count": 4
+        },
+        {
+          "name": ".map",
+          "count": 4
+        },
+        {
+          "name": ".mjs",
+          "count": 2
+        },
+        {
+          "name": ".md",
+          "count": 2
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "mshysjrv-928916b0e3",
+      "name": "replica",
+      "createdAt": "2026-08-06T20:24:39.451Z",
+      "updatedAt": "2026-08-06T20:26:27.701Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project, \"REPLICA,\" is a futuristic GitHub interface designed as a \"HUD client.\" It re-skins the standard GitHub experience into a neon command interface, providing a full-featured client that runs locally using a personal access token. The project aims to offer a unique visual and interactive experience for managing GitHub repositories and activity.\n\n## Highlights\n*   A client-side Single Page Application (SPA) with a custom Node.js backend.\n*   Authenticates with GitHub using a personal access token (PAT), which is securely managed server-side.\n*   Features a distinctive \"futuristic\" UI with dark panels, scanlines, and glitch typography.\n*   Designed as a zero-dependency Node.js project with no build step, emphasizing simplicity.\n*   Includes Windows batch scripts (`start.bat`, `update.bat`) for easy execution and self-updating.\n*   The archive contains a complete Git repository, preserving full version history.\n\n## Likely Tech Stack\n*   **Languages**: JavaScript",
+      "acceptedAt": "2026-08-06T20:26:27.701Z",
+      "fileCount": 145,
+      "totalBytes": 880367,
+      "totalSizeLabel": "860 KB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 139
+        },
+        {
+          "name": "JavaScript",
+          "count": 2
+        },
+        {
+          "name": "JSON",
+          "count": 1
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 120
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".js",
+          "count": 2
+        },
+        {
+          "name": ".bat",
+          "count": 2
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        },
+        {
+          "name": ".json",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".css",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "mshyl5zt-eb9c3fd01e",
+      "name": "techevent",
+      "createdAt": "2026-08-06T20:18:55.001Z",
+      "updatedAt": "2026-08-06T20:24:22.374Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project, \"techevent,\" is a zero-dependency Node.js server designed to track and display tech events in Fredericton, New Brunswick, Canada. It presents event information through a clean, futuristic web interface, offering dates, locations, and navigation links. The project is currently marked as complete.\n\n## Highlights\n- A zero-dependency Node.js server, emphasizing minimal setup and runtime requirements.\n- Features a \"clean futuristic\" frontend design, including a live WebGL particle field.\n- Provides a RESTful API for accessing event data, health status, and metadata.\n- Event data is managed locally within a `data/events.json` file.\n- Includes a comprehensive `README.md` with clear setup and usage instructions.\n\n## Likely Tech Stack\n- **Languages**: JavaScript, HTML, CSS, JSON, Markdown\n- **Runtime**: Node.js (v14+)\n- **Frontend**: Vanilla JavaScript, WebGL (for particle effects)\n- **Backend**: Node.js (custom server implementation)\n- **Data Storage**: Local JSON files\n- **Version Control**: Git\n\n## Run / Restore Notes\n- Requires Node.js version 14 or higher to run.\n- No `npm install` is necessary as the project is explicitly designed with zero dependencies.\n- To start the server, navigate to the project root directory and execute `node server.js`.\n- The application will then be accessible in a web browser, typically at `http://localhost:3000`.\n- The project is marked as \"not completed / still in progress,\" suggesting that further development or missing features may be present.\n\n## Tags\nfredericton, tech-events, new-brunswick, events, node.js, javascript, server, webgl, zero-dependency, frontend, backend, json-data, in-progress",
+      "acceptedAt": "2026-08-06T20:24:17.916Z",
+      "fileCount": 124,
+      "totalBytes": 353670,
+      "totalSizeLabel": "345 KB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 116
+        },
+        {
+          "name": "JavaScript",
+          "count": 3
+        },
+        {
+          "name": "JSON",
+          "count": 2
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 99
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".js",
+          "count": 3
+        },
+        {
+          "name": ".json",
+          "count": 2
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        },
+        {
+          "name": ".css",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "mshxzdhf-539024ab34",
+      "name": "Kilo-lookup",
+      "createdAt": "2026-08-06T20:01:58.275Z",
+      "updatedAt": "2026-08-06T20:04:22.689Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nKilo-lookup is a completed, server-based AI-powered app discovery engine. It allows users to describe desired applications in natural language, utilizes the Google Gemini AI to interpret intent and refine search terms, and then sweeps live app store listings to return ranked, matching results for phone, PC, or both platforms.\n\n## Highlights\n*   Leverages Google Gemini AI for natural language processing, intent interpretation, and search term refinement.\n*   Features a futuristic web-based user interface with animated load screens, particle/grid backgrounds, and smooth transitions.\n*   Performs live sweeps of iOS and macOS app store listings to provide current results.\n*   Built with an Express.js backend serving a static frontend.\n*   Includes a settings panel for users to enter and store their own Gemini API key in browser localStorage.\n\n## Likely Tech Stack\n*   **Languages:** JavaScript, TypeScript, HTML, CSS (implied), Markdown, JSON, YAML\n*   **Runtime:** Node.js\n*   **Backend Framework:** Express.js\n*   **AI Integration:** Google Gemini API\n*   **Version Control:** Git\n\n## Run / Restore Notes\nTo run this project, navigate to the `Kilo-lookup` directory in your terminal. First, install dependencies using `npm install`. Then, start the server with `npm start`. The application should then be accessible in your browser at `http://localhost:3000`. A Google Gemini API key is required for full functionality and can be configured within the application's settings.\n\n## Tags\nai, app discovery, express, nodejs, javascript, gemini api, web app, frontend, backend, server, completed",
+      "acceptedAt": "2026-08-06T20:04:22.689Z",
+      "fileCount": 671,
+      "totalBytes": 2459890,
+      "totalSizeLabel": "2.3 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 205
+        },
+        {
+          "name": "Other",
+          "count": 161
+        },
+        {
+          "name": "Markdown",
+          "count": 130
+        },
+        {
+          "name": "JSON",
+          "count": 99
+        },
+        {
+          "name": "TypeScript",
+          "count": 54
+        },
+        {
+          "name": "YAML",
+          "count": 21
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 205
+        },
+        {
+          "name": "[no extension]",
+          "count": 139
+        },
+        {
+          "name": ".md",
+          "count": 130
+        },
+        {
+          "name": ".json",
+          "count": 99
+        },
+        {
+          "name": ".ts",
+          "count": 54
+        },
+        {
+          "name": ".yml",
+          "count": 21
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".mjs",
+          "count": 2
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        },
+        {
+          "name": ".cmd",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "mshxxgqm-1bbab0eb49",
+      "name": "achievelom-",
+      "createdAt": "2026-08-06T20:00:29.182Z",
+      "updatedAt": "2026-08-06T20:17:30.331Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\n\"COSMOGRAPHIA — The Ancient Atlas of the Heavens\" is an interactive web application that visualizes astronomical data. It presents a zoomable map of the cosmos, including real stars, planets, Messier objects, and deep-sky phenomena, all rendered with an aesthetic inspired by ancient celestial charts. The project also integrates live spaceflight news and NASA's Astronomy Picture of the Day.\n\n## Highlights\n*   Interactive celestial map featuring real astronomical data for stars, planets, and deep-sky objects.\n*   Unique aesthetic blending ancient atlas design with modern astronomical accuracy.\n*   Includes 3D views of the Milky Way, Local Group, and Observable Universe.\n*   Integrates live spaceflight news and NASA's Astronomy Picture of the Day.\n*   Data generation from public astronomical datasets is handled by a Python script.\n*   Frontend developed using React and Vite, indicating a modern web application structure.\n\n## Likely Tech Stack\n*   **Frontend Framework**: React\n*   **Build Tool/Dev Server**: Vite\n*   **Languages**: JavaScript, TypeScript, HTML, CSS (implied), Python (for data processing)\n*   **Package Manager**: npm (implied by `package.json`, `node_modules`)\n*   **Version Control**: Git\n\n## Run / Restore Notes\n*   The project is marked as \"not completed / still in progress.\"\n*   To run, navigate to the project root and install dependencies using `npm install` (or `yarn install`).\n*   Start the development server with `npm run dev` (likely on `http://localhost:5173`).\n*   Build the project for production with `npm run build`.\n*   A Python script",
+      "acceptedAt": "2026-08-06T20:17:30.331Z",
+      "fileCount": 2431,
+      "totalBytes": 43403554,
+      "totalSizeLabel": "41 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 1415
+        },
+        {
+          "name": "Other",
+          "count": 727
+        },
+        {
+          "name": "TypeScript",
+          "count": 106
+        },
+        {
+          "name": "JSON",
+          "count": 97
+        },
+        {
+          "name": "Markdown",
+          "count": 70
+        },
+        {
+          "name": "React",
+          "count": 13
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "Python",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 1415
+        },
+        {
+          "name": ".map",
+          "count": 417
+        },
+        {
+          "name": "[no extension]",
+          "count": 179
+        },
+        {
+          "name": ".ts",
+          "count": 106
+        },
+        {
+          "name": ".json",
+          "count": 97
+        },
+        {
+          "name": ".md",
+          "count": 70
+        },
+        {
+          "name": ".cts",
+          "count": 26
+        },
+        {
+          "name": ".mts",
+          "count": 25
+        },
+        {
+          "name": ".cjs",
+          "count": 15
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".jsx",
+          "count": 13
+        },
+        {
+          "name": ".cmd",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "id": "msgo3znd-d754b6110b",
+      "name": "ip-tracker",
+      "createdAt": "2026-08-05T22:37:51.289Z",
+      "updatedAt": "2026-08-06T21:25:20.926Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "Needs testing and bug fixes",
+      "summary": "## Description\nThis project, \"ip-tracker,\" is a simple web-based IP lookup tool designed to inspect network context and potentially resolve device names for given IP addresses. It appears to be a work-in-progress, providing a user interface to query IP information and distinguish between local and external addresses.\n\n## Highlights\n-   **Web-based IP Lookup**: Provides a frontend interface (`public/index.html`) for users to input and inspect IP addresses.\n-   **Node.js Backend**: Utilizes Express.js to serve static files and handle API requests.\n-   **External IP API Integration**: Fetches public IP information using the `ip-api.com` service.\n-   **Local IP Handling**: Includes logic to identify local IP addresses and attempt DNS reverse lookups for device names on the local network.\n-   **In-Progress Development**: The project is explicitly marked as \"not completed / still in progress,\" indicating potential for further development or incomplete features.\n-   **Compact Size**: The entire archive is relatively small at 4.7 MB, despite containing 786 files, largely due to `node_modules`.\n\n## Likely Tech Stack",
+      "acceptedAt": "2026-08-05T22:38:41.650Z",
+      "fileCount": 786,
+      "totalBytes": 4963570,
+      "totalSizeLabel": "4.7 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 308
+        },
+        {
+          "name": "Markdown",
+          "count": 147
+        },
+        {
+          "name": "Other",
+          "count": 139
+        },
+        {
+          "name": "JSON",
+          "count": 110
+        },
+        {
+          "name": "TypeScript",
+          "count": 59
+        },
+        {
+          "name": "YAML",
+          "count": 22
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 308
+        },
+        {
+          "name": ".md",
+          "count": 147
+        },
+        {
+          "name": "[no extension]",
+          "count": 124
+        },
+        {
+          "name": ".json",
+          "count": 110
+        },
+        {
+          "name": ".ts",
+          "count": 59
+        },
+        {
+          "name": ".yml",
+          "count": 22
+        },
+        {
+          "name": ".map",
+          "count": 6
+        },
+        {
+          "name": ".cjs",
+          "count": 3
+        },
+        {
+          "name": ".cmd",
+          "count": 1
+        },
+        {
+          "name": ".ps1",
+          "count": 1
+        },
+        {
+          "name": ".cts",
+          "count": 1
+        },
+        {
+          "name": ".lock",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "msgeu88t-a752fbf5f5",
+      "name": "Repo Scanner [rs_01]",
+      "createdAt": "2026-08-05T18:18:19.327Z",
+      "updatedAt": "2026-08-05T18:45:06.143Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nRepo Scanner [rs_01] is a saved project archive in this vault. The archive contains 1601 files (9.9 MB) with prominent languages/types: JavaScript (601), TypeScript (262), Markdown (255), Other (244), JSON (206), YAML (31), HTML (1), CSS (1).\n\n## Highlights\n- Stored on this server with 1601 files totaling 9.9 MB.\n- Completion state: not completed / still in progress.\n- Most common languages/file groups: JavaScript (601), TypeScript (262), Markdown (255), Other (244), JSON (206), YAML (31), HTML (1), CSS (1).\n- Top file extensions: .js (601), .ts (262), .md (255), .json (206), [no extension] (203), .yml (31), .txt (10), .mjs (6).\n- Recognizable project files: Repo Scanner [rs_01]/package.json, Repo Scanner [rs_01]/node_modules/ws/package.json, Repo Scanner [rs_01]/node_modules/ws/README.md, Repo Scanner [rs_01]/node_modules/wrappy/package.json, Repo Scanner [rs_01]/node_modules/wrappy/README.md, Repo Scanner [rs_01]/node_modules/whatwg-url/package.json, Repo Scanner [rs_01]/node_modules/whatwg-url/README.md, Repo Scanner [rs_01]/node_modules/webidl-conversions/package.json, Repo Scanner [rs_01]/node_modules/webidl-conversions/README.md, Repo Scanner [rs_01]/node_modules/vary/package.json, Repo Scanner [rs_01]/node_modules/vary/README.md, Repo Scanner [rs_01]/node_modules/utils-merge/package.json.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- JavaScript\n- TypeScript\n- Markdown\n- JSON\n- YAML\n- HTML\n- CSS\n- Node.js / npm\n- Express\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\nrepo-scanner-rs_01, javascript, typescript, markdown, json, yaml, html, css, node.js-npm, express",
+      "acceptedAt": "2026-08-05T18:44:17.061Z",
+      "fileCount": 1601,
+      "totalBytes": 10350904,
+      "totalSizeLabel": "9.9 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 601
+        },
+        {
+          "name": "TypeScript",
+          "count": 262
+        },
+        {
+          "name": "Markdown",
+          "count": 255
+        },
+        {
+          "name": "Other",
+          "count": 244
+        },
+        {
+          "name": "JSON",
+          "count": 206
+        },
+        {
+          "name": "YAML",
+          "count": 31
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 601
+        },
+        {
+          "name": ".ts",
+          "count": 262
+        },
+        {
+          "name": ".md",
+          "count": 255
+        },
+        {
+          "name": ".json",
+          "count": 206
+        },
+        {
+          "name": "[no extension]",
+          "count": 203
+        },
+        {
+          "name": ".yml",
+          "count": 31
+        },
+        {
+          "name": ".txt",
+          "count": 10
+        },
+        {
+          "name": ".mjs",
+          "count": 6
+        },
+        {
+          "name": ".cmd",
+          "count": 6
+        },
+        {
+          "name": ".ps1",
+          "count": 6
+        },
+        {
+          "name": ".map",
+          "count": 4
+        },
+        {
+          "name": ".markdown",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "msgekd2p-92a5b7c7d6",
+      "name": "Server Monitor [koi_12]",
+      "createdAt": "2026-08-05T18:10:39.026Z",
+      "updatedAt": "2026-08-05T18:11:23.353Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project, \"Server Monitor [koi_12]\", is a lightweight web application designed for monitoring and managing server processes. It provides a simple browser-based user interface to display system information and offers controls to terminate processes, likely for local or small-scale server administration tasks.\n\n## Highlights\n- Web-based interface for real-time server monitoring and process management.\n- Utilizes the `systeminformation` library to gather detailed system metrics (CPU, memory, network, running processes).\n- Features a frontend UI with controls to kill processes by port number or from a selected list.\n- Built on a minimal Node.js Express backend, serving both static assets and API endpoints.\n- Includes basic configuration via `.env` for server port and an optional admin token.\n\n## Likely Tech Stack\n- **Backend Runtime**: Node.js (>=18.0.0)\n- **Backend Framework**: Express.js\n- **Frontend**: HTML, CSS, Vanilla JavaScript\n- **Core Libraries**: `dotenv`, `systeminformation`\n- **Development Tools**: `nodemon`\n- **Package Manager**: npm\n\n## Run / Restore Notes\n- **Dependencies**: Although `node_modules` are present, it is recommended to run `npm install` to ensure all dependencies are correctly installed and compatible with your environment.\n- **Configuration**: Copy `Server Monitor [koi_12]/.env.example` to `Server Monitor [koi_12]/.env` and adjust the `PORT` and `ADMIN_TOKEN` variables as required.\n- **Start**:\n    - To run the server in production mode: `npm start`\n    - To run the server in development mode with auto-reloading: `npm run dev`\n- **Access**: The application will be accessible via a web browser at `http://localhost:PORT` (default `http://localhost:3000`). The main UI is served at the `/ui` path.\n- **Health Check**: A basic health check endpoint is available at `/healthz`.",
+      "acceptedAt": "2026-08-05T18:11:23.353Z",
+      "fileCount": 974,
+      "totalBytes": 4250912,
+      "totalSizeLabel": "4.1 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 368
+        },
+        {
+          "name": "Markdown",
+          "count": 182
+        },
+        {
+          "name": "Other",
+          "count": 178
+        },
+        {
+          "name": "JSON",
+          "count": 142
+        },
+        {
+          "name": "TypeScript",
+          "count": 76
+        },
+        {
+          "name": "YAML",
+          "count": 26
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 368
+        },
+        {
+          "name": ".md",
+          "count": 182
+        },
+        {
+          "name": "[no extension]",
+          "count": 154
+        },
+        {
+          "name": ".json",
+          "count": 142
+        },
+        {
+          "name": ".ts",
+          "count": 76
+        },
+        {
+          "name": ".yml",
+          "count": 26
+        },
+        {
+          "name": ".txt",
+          "count": 8
+        },
+        {
+          "name": ".cmd",
+          "count": 5
+        },
+        {
+          "name": ".ps1",
+          "count": 5
+        },
+        {
+          "name": ".markdown",
+          "count": 2
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "msg9zh3h-a01b453027",
+      "name": "worldbuild",
+      "createdAt": "2026-08-05T16:02:25.997Z",
+      "updatedAt": "2026-08-05T16:04:24.331Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "Still building core features",
+      "summary": "## Description\n\"Worldbuild\" is a text-based worldbuilding game inspired by classic \"make · do · buy\" loops. Players start with a small settlement and aim to grow it into a thriving world of realms, trade, and knowledge. The entire game logic and state reside in the browser, with progress automatically saving to `localStorage`.\n\n## Highlights\n- Features three world sizes (Small, Medium, Large) and six distinct biomes, each with production modifiers.\n- Includes a core game engine (`src/game/engine.ts`, `src/game/simulator.ts`) handling resource management, population, morale, events, and building mechanics.\n- User interface built with React components, including interactive maps, modals, and various information panels.\n- The project is front-end only, requiring no backend or external assets, and persists game state in `localStorage`.\n- Contains a development-only script (`scripts/test-repair.ts`) for sanity testing save file repair.\n- Project is marked as \"still in progress,\" indicating potential for further development or incomplete features.\n\n## Likely Tech Stack\n- **Languages**: TypeScript, JavaScript, HTML, CSS, JSON\n- **Frameworks/Libraries**: React.js\n- **Build Tool/Bundler**: Vite\n- **Package Manager**: npm (implied by `package.json` and `node_modules`)\n- **Runtime**: Node.js (for development tools)\n\n## Run / Restore Notes\nTo run this project locally:\n1.  Ensure Node.js and npm are installed.\n2.  Navigate to the project root directory in your terminal.\n3.  Install dependencies: `npm install`\n4.  Start the development server: `npm run dev`\n5.  Open your browser to `http://localhost:5173`.\n\nThe game state is automatically saved to your browser's `localStorage`. As the project is marked \"still in progress,\" expect that some features may be incomplete or subject to change.\n\n## Tags\nworldbuilding, game, text-based, react, typescript, vite, frontend, simulation, in-progress, npm, javascript, css, html",
+      "acceptedAt": "2026-08-05T16:04:02.929Z",
+      "fileCount": 2642,
+      "totalBytes": 66876066,
+      "totalSizeLabel": "64 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 1417
+        },
+        {
+          "name": "Other",
+          "count": 795
+        },
+        {
+          "name": "TypeScript",
+          "count": 235
+        },
+        {
+          "name": "JSON",
+          "count": 109
+        },
+        {
+          "name": "Markdown",
+          "count": 76
+        },
+        {
+          "name": "React/TypeScript",
+          "count": 6
+        },
+        {
+          "name": "HTML",
+          "count": 2
+        },
+        {
+          "name": "CSS",
+          "count": 2
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 1417
+        },
+        {
+          "name": ".map",
+          "count": 417
+        },
+        {
+          "name": "[no extension]",
+          "count": 245
+        },
+        {
+          "name": ".ts",
+          "count": 235
+        },
+        {
+          "name": ".json",
+          "count": 109
+        },
+        {
+          "name": ".md",
+          "count": 76
+        },
+        {
+          "name": ".cts",
+          "count": 26
+        },
+        {
+          "name": ".mts",
+          "count": 25
+        },
+        {
+          "name": ".cjs",
+          "count": 15
+        },
+        {
+          "name": ".cmd",
+          "count": 14
+        },
+        {
+          "name": ".ps1",
+          "count": 14
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        }
+      ]
+    },
+    {
+      "id": "msg8ye3i-4554330fa7",
+      "name": "antivirus_server",
+      "createdAt": "2026-08-05T15:33:35.838Z",
+      "updatedAt": "2026-08-05T15:34:23.958Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project appears to be a Node.js server designed to provide antivirus scanning capabilities, acting as a wrapper for Windows Defender and integrating custom YARA and heuristic scanning logic. It offers a basic web-based user interface for managing scans and viewing server health, and can be installed as a Windows service.\n\n## Highlights\n- Node.js backend built with Express.js, serving a simple web UI.\n- Integrates with Windows Defender for file scanning on Windows systems.\n- Supports custom YARA rules for advanced, signature-based threat detection.\n- Includes heuristic scanning logic to identify suspicious file characteristics.\n- Provides scripts for installing and uninstalling the server as a Windows service.\n- Features a basic web interface for authentication, health checks, and scan initiation.\n\n## Likely Tech Stack\n- **Languages**: JavaScript, HTML, CSS, TypeScript (for some dependencies), Markdown, JSON, YAML\n- **Runtime**: Node.js (v18 or higher)\n- **Backend Framework**: Express.js\n- **Core Libraries**: `dotenv`, `helmet`, `morgan`, `cors`, `node-windows`\n- **Security Integrations**: Windows Defender (via PowerShell), YARA (requires external CLI tool)\n- **Frontend**: Plain HTML, CSS, and JavaScript\n\n## Run / Restore Notes\n- To set up, first run `npm install` to install dependencies.\n- The server can be started with `npm start` or `npm dev` (for development with file watching).\n- For YARA",
+      "acceptedAt": "2026-08-05T15:34:17.147Z",
+      "fileCount": 991,
+      "totalBytes": 3749599,
+      "totalSizeLabel": "3.6 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 358
+        },
+        {
+          "name": "Markdown",
+          "count": 195
+        },
+        {
+          "name": "Other",
+          "count": 185
+        },
+        {
+          "name": "JSON",
+          "count": 149
+        },
+        {
+          "name": "TypeScript",
+          "count": 76
+        },
+        {
+          "name": "YAML",
+          "count": 26
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 358
+        },
+        {
+          "name": ".md",
+          "count": 195
+        },
+        {
+          "name": "[no extension]",
+          "count": 160
+        },
+        {
+          "name": ".json",
+          "count": 149
+        },
+        {
+          "name": ".ts",
+          "count": 76
+        },
+        {
+          "name": ".yml",
+          "count": 26
+        },
+        {
+          "name": ".txt",
+          "count": 8
+        },
+        {
+          "name": ".cmd",
+          "count": 4
+        },
+        {
+          "name": ".ps1",
+          "count": 4
+        },
+        {
+          "name": ".markdown",
+          "count": 2
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "msg88gk0-1ec05b3fbb",
+      "name": "Discord-Bot",
+      "createdAt": "2026-08-05T15:13:25.968Z",
+      "updatedAt": "2026-08-05T15:28:25.157Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project appears to be a Discord bot developed using Node.js and the Discord.js library. It is designed to interact with Minecraft servers, likely providing status updates or management capabilities. The project includes configuration for deployment on Render, indicating it was set up for continuous integration and hosting.\n\n## Highlights\n-   Core functionality as a Discord bot, leveraging `discord.js` for interactions.\n-   Integrates with Minecraft servers using `minecraft-server-util` to fetch information.\n-   Includes a health check endpoint (`/health`) for deployment monitoring, as configured for Render.\n-   Utilizes `dotenv` for managing environment-specific variables and sensitive data.\n-   Configured for automated deployment on Render.com via `render.yaml`.\n-   Contains a complete Git repository, preserving the project's version history.\n\n## Likely Tech Stack\n-   JavaScript\n-   Node.js\n-   Discord.js\n-   dotenv\n-   minecraft-server-util\n-   ws (WebSocket)\n-   Render (deployment platform)\n-   Git (version control)\n\n## Run / Restore Notes\n-   To install project dependencies, navigate to the `Discord-Bot` directory and run `npm install`.\n-   To start the bot, execute `npm start` from the project root.\n-   The bot requires several environment variables (e.g., `DISCORD_TOKEN`, `SERVER_SUBDOMAIN`, `OWNER_ID`, `MGMT_SECRET`, `MGMT_HOST`, `MGMT_PORT`, `PREFIX`) to function correctly. These must be provided, typically via a `.env` file (which is not included in the archive for security reasons) or directly in the deployment environment.\n-   The presence of the `.git` directory allows for full restoration of the project's commit history and branching structure.\n\n## Tags\ndiscord, bot, javascript, node.js, minecraft, render, git, automation",
+      "acceptedAt": "2026-08-05T15:28:25.157Z",
+      "fileCount": 96,
+      "totalBytes": 340733,
+      "totalSizeLabel": "333 KB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 93
+        },
+        {
+          "name": "JavaScript",
+          "count": 1
+        },
+        {
+          "name": "JSON",
+          "count": 1
+        },
+        {
+          "name": "YAML",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 76
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".js",
+          "count": 1
+        },
+        {
+          "name": ".json",
+          "count": 1
+        },
+        {
+          "name": ".yaml",
+          "count": 1
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "msg5vshc-869b3949a6",
+      "name": "Intelligent-Assistant-Core",
+      "createdAt": "2026-08-05T14:07:35.664Z",
+      "updatedAt": "2026-08-05T18:04:37.161Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "Paused or abandoned for now to be continued after getting a better laptop",
+      "summary": "## Description\nThe `Intelligent-Assistant-Core` project appears to be the foundational backend or core logic for an intelligent assistant application. It is currently under active development, suggesting an ongoing effort to build out its functionalities and integrate various components.\n\n## Highlights\n-   **Core AI Component**: Designed as the central processing unit or backend for an intelligent assistant.\n-   **Server-Side Focus**: Contains a `server/node_modules` directory, strongly indicating a server-side application built with Node.js.\n-   **TypeScript-First Development**: Heavily utilizes TypeScript for robust type checking and maintainability, alongside JavaScript.\n-   **Managed Dependencies**: Includes `node_modules` and `package-lock.json`, showing a well-managed set of project dependencies.\n-   **In-Progress State**: Marked as \"not completed / still in progress,\" indicating ongoing development and potential for future changes or incomplete features.\n\n## Likely Tech Stack\n-   **Languages**: JavaScript, TypeScript\n-   **Runtime**: Node.js\n-   **Package Manager**: npm (or Yarn, given the ecosystem)\n-   **Build/Transpilation**: TypeScript Compiler (TSC)\n-   **Networking**: Undici (HTTP/1.1 client for Node.js, inferred from `undici-types`)\n-   **Configuration**: Dotenv (implied by `.env` file)\n\n## Run / Restore Notes\n-   To restore project dependencies, navigate to the `Intelligent-Assistant-Core/server` directory (or the root if `package.json` is located there) and run `npm install` (or `yarn install`).\n-   Review the `package.json` file (expected in the `server` directory or root) for available `start`, `build`, or `dev` scripts to run the application.\n-   The `.env`",
+      "acceptedAt": "2026-08-05T14:47:19.785Z",
+      "fileCount": 16087,
+      "totalBytes": 146670635,
+      "totalSizeLabel": "140 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 7481
+        },
+        {
+          "name": "Other",
+          "count": 4586
+        },
+        {
+          "name": "TypeScript",
+          "count": 2227
+        },
+        {
+          "name": "JSON",
+          "count": 1489
+        },
+        {
+          "name": "Markdown",
+          "count": 278
+        },
+        {
+          "name": "YAML",
+          "count": 24
+        },
+        {
+          "name": "HTML",
+          "count": 2
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 7481
+        },
+        {
+          "name": ".map",
+          "count": 2946
+        },
+        {
+          "name": ".ts",
+          "count": 2227
+        },
+        {
+          "name": ".json",
+          "count": 1489
+        },
+        {
+          "name": ".flow",
+          "count": 1183
+        },
+        {
+          "name": ".md",
+          "count": 278
+        },
+        {
+          "name": "[no extension]",
+          "count": 242
+        },
+        {
+          "name": ".mjs",
+          "count": 48
+        },
+        {
+          "name": ".cjs",
+          "count": 42
+        },
+        {
+          "name": ".cts",
+          "count": 29
+        },
+        {
+          "name": ".mts",
+          "count": 29
+        },
+        {
+          "name": ".yml",
+          "count": 24
+        }
+      ]
+    },
+    {
+      "id": "msfee7mg-ef835e2af6",
+      "name": "playlist-maker",
+      "createdAt": "2026-08-05T01:18:05.848Z",
+      "updatedAt": "2026-08-05T18:05:11.460Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "insufficent api token",
+      "summary": "## Description\nThis project, \"Wavelength,\" is a self-hosted Node.js web application designed to intelligently curate local music collections. It reads metadata from local audio files, processes user descriptions with a natural language parser, and can optionally leverage Google Gemini AI and Deezer for enhanced song matching and data enrichment, ultimately generating themed, downloadable playlists.\n\n## Highlights\n- **Local Music Metadata Processing**: Scans local audio files (e.g., MP3s) for ID3 tags and other metadata using the `music-metadata` library.\n- **AI-Powered Playlist Curation**: Features a natural language parser for user descriptions, with optional integration of Google Gemini API for advanced song matching.\n- **Deezer Enrichment**: Enhances music data using the free Deezer API for additional track information.\n- **Self-Hosted Web Interface**: Provides a web-based user interface (`public/index.html`) for managing and generating playlists.\n- **Node.js Backend**: Implemented with Express.js, handling file operations, API integrations, and serving the frontend.\n- **Sample Music Included**: Contains a `test-music` directory with placeholder `.mp3` files, likely for development or testing purposes.\n\n## Likely Tech Stack\n- **Languages**: JavaScript, TypeScript (primarily for type definitions within `node_modules`).\n- **Runtime**: Node.js.\n- **Backend Framework**: Express.js.\n- **Frontend**: HTML, CSS (inline styles), vanilla JavaScript (client-side logic).",
+      "acceptedAt": "2026-08-05T01:27:33.785Z",
+      "fileCount": 1101,
+      "totalBytes": 6435572,
+      "totalSizeLabel": "6.1 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 350
+        },
+        {
+          "name": "TypeScript",
+          "count": 250
+        },
+        {
+          "name": "Other",
+          "count": 208
+        },
+        {
+          "name": "Markdown",
+          "count": 153
+        },
+        {
+          "name": "JSON",
+          "count": 118
+        },
+        {
+          "name": "YAML",
+          "count": 21
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 350
+        },
+        {
+          "name": ".ts",
+          "count": 250
+        },
+        {
+          "name": "[no extension]",
+          "count": 162
+        },
+        {
+          "name": ".md",
+          "count": 153
+        },
+        {
+          "name": ".json",
+          "count": 118
+        },
+        {
+          "name": ".yml",
+          "count": 21
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".mp3",
+          "count": 10
+        },
+        {
+          "name": ".txt",
+          "count": 5
+        },
+        {
+          "name": ".map",
+          "count": 4
+        },
+        {
+          "name": ".mjs",
+          "count": 3
+        },
+        {
+          "name": ".idx",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "msfed76i-5c59807429",
+      "name": "podcast-media01",
+      "createdAt": "2026-08-05T01:17:18.618Z",
+      "updatedAt": "2026-08-05T18:05:36.036Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "design fixing",
+      "summary": "## Description\nThis archive contains \"Gothic iPod,\" a unique media player designed with a gothic aesthetic, mimicking the classic iPod experience. It functions as a Progressive Web App (PWA) for web and mobile, and as a desktop application built with Electron, supporting both local media files and Spotify integration. The project aims to provide a themed, functional media playback experience across multiple platforms.\n\n## Highlights\n-   **Gothic-themed iPod Classic interface** with a shadowed silver body, blood-red accents, and custom typography.\n-   **Interactive click wheel** featuring momentum scrolling and subtle Web Audio API-generated click sounds.\n-   **Multi-platform deployment** as a standalone web page, installable PWA, and an Electron desktop application.\n-   **Supports local audio file playback** (MP3, WAV, FLAC, OGG, M4A, AAC) and integrates with Spotify.\n-   **Minimalist architecture** primarily using vanilla HTML, CSS, and JavaScript, with Electron for desktop packaging.\n-   **Includes build scripts** for generating Windows installers using `electron-builder`.\n\n## Likely Tech Stack\n-   **Languages**: JavaScript, HTML, CSS (inferred from `index.html`), Shell (for `build-win.sh`), JSON.\n-   **Frameworks/Libraries**: Electron (for desktop app), PWA (Service Worker, Web Manifest).\n-   **Tools**: npm/Yarn (for dependency management and scripts), electron-builder (for packaging).\n-   **Runtime**: Node.js (for Electron",
+      "acceptedAt": "2026-08-05T01:17:41.276Z",
+      "fileCount": 80,
+      "totalBytes": 254830,
+      "totalSizeLabel": "249 KB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 74
+        },
+        {
+          "name": "JavaScript",
+          "count": 2
+        },
+        {
+          "name": "Shell",
+          "count": 1
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "JSON",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 52
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".png",
+          "count": 3
+        },
+        {
+          "name": ".js",
+          "count": 2
+        },
+        {
+          "name": ".sh",
+          "count": 1
+        },
+        {
+          "name": ".svg",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".webmanifest",
+          "count": 1
+        },
+        {
+          "name": ".json",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "msfe9g1f-f1bca9fdc2",
+      "name": "School Project Helper [aas_41]",
+      "createdAt": "2026-08-05T01:14:23.476Z",
+      "updatedAt": "2026-08-05T02:02:58.023Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project, \"School Project Helper,\" is a web application designed to assist with academic tasks by leveraging artificial intelligence. It appears to provide tools for research, content generation, and information synthesis, integrating with various external services like search engines and large language models to help users create project content.\n\n## Highlights\n*   **AI-Powered Assistance**: Integrates with multiple Large Language Model (LLM) providers (OpenAI, OpenRouter, Ollama) for text generation and processing.\n*   **Web Research Capabilities**: Features web scraping (`cheerio`) and search engine integration (Serper API) to fetch and extract information from web pages.\n*   **Wikipedia Integration**: Includes dedicated functionality to search and retrieve structured content from Wikipedia.\n*   **Full-Stack JavaScript Application**: Comprises an Express.js backend for API handling and a vanilla JavaScript/HTML/CSS frontend for user interaction.\n*   **Configurable Offline Mode**: Supports an offline mode, allowing the application to run with limited functionality without requiring",
+      "acceptedAt": "2026-08-05T01:16:19.824Z",
+      "fileCount": 2156,
+      "totalBytes": 10452048,
+      "totalSizeLabel": "10.0 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 714
+        },
+        {
+          "name": "Other",
+          "count": 553
+        },
+        {
+          "name": "TypeScript",
+          "count": 414
+        },
+        {
+          "name": "Markdown",
+          "count": 236
+        },
+        {
+          "name": "JSON",
+          "count": 199
+        },
+        {
+          "name": "YAML",
+          "count": 27
+        },
+        {
+          "name": "XML",
+          "count": 8
+        },
+        {
+          "name": "HTML",
+          "count": 4
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 714
+        },
+        {
+          "name": ".ts",
+          "count": 414
+        },
+        {
+          "name": ".map",
+          "count": 352
+        },
+        {
+          "name": ".md",
+          "count": 236
+        },
+        {
+          "name": ".json",
+          "count": 199
+        },
+        {
+          "name": "[no extension]",
+          "count": 170
+        },
+        {
+          "name": ".yml",
+          "count": 27
+        },
+        {
+          "name": ".txt",
+          "count": 10
+        },
+        {
+          "name": ".xml",
+          "count": 8
+        },
+        {
+          "name": ".snap",
+          "count": 5
+        },
+        {
+          "name": ".html",
+          "count": 4
+        },
+        {
+          "name": ".cmd",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "id": "msfe7jxy-7bde73cdc6",
+      "name": "AI [ai_01]",
+      "createdAt": "2026-08-05T01:12:55.222Z",
+      "updatedAt": "2026-08-05T02:03:02.766Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project, internally named \"uiy_31\", is a Node.js web application designed as an AI research and interaction console. It provides a user interface for various AI functionalities, including chat, code generation, debate simulation, essay writing, and voice AI, integrating with multiple Large Language Model (LLM) providers and external services like web search and OCR.\n\n## Highlights\n*   **Multi-functional AI Console:** Offers distinct web interfaces for Chat, Code Generation, Debate, Essay Writing, Voice AI, and general Research.\n*   **Flexible LLM Integration:** Supports multiple LLM providers (OpenAI, OpenRouter, Ollama) with an auto-detection and explicit selection mechanism, including an \"offline mode\" for local LLM usage.\n*   **External Service Integration:** Incorporates web search capabilities via Serper and image-to-text (OCR) functionality using OCR.Space.\n*   **Local Data Persistence:** Manages user-generated notes or data locally through a `notesStore.js` module, saving to `data/notes.json`.\n*   **Node.js Backend & Frontend:** Built with an Express.js backend serving static HTML/CSS/JavaScript for the frontend, utilizing `undici` for HTTP requests and `cheerio` for web scraping.\n*   **Environment-driven Configuration:** Relies heavily on `.env` variables for API keys, provider selection, and runtime settings like `OFFLINE_MODE`.\n\n## Likely Tech Stack\n*   **Backend**: Node.js, Express.js\n*   **Frontend**: HTML, CSS, Vanilla JavaScript\n*   **AI/External APIs**: OpenAI API, OpenRouter API, Ollama (local LLM), Serper API (web search), OCR.Space API (OCR)\n*   **Data Storage**: Local JSON files (e.g., `data/notes.json`)\n*   **Core Libraries**: `dotenv`, `undici`,",
+      "acceptedAt": "2026-08-05T01:13:57.097Z",
+      "fileCount": 2495,
+      "totalBytes": 12256557,
+      "totalSizeLabel": "12 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 889
+        },
+        {
+          "name": "Other",
+          "count": 592
+        },
+        {
+          "name": "TypeScript",
+          "count": 454
+        },
+        {
+          "name": "Markdown",
+          "count": 285
+        },
+        {
+          "name": "JSON",
+          "count": 221
+        },
+        {
+          "name": "YAML",
+          "count": 36
+        },
+        {
+          "name": "HTML",
+          "count": 9
+        },
+        {
+          "name": "XML",
+          "count": 8
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 889
+        },
+        {
+          "name": ".ts",
+          "count": 454
+        },
+        {
+          "name": ".map",
+          "count": 354
+        },
+        {
+          "name": ".md",
+          "count": 285
+        },
+        {
+          "name": ".json",
+          "count": 221
+        },
+        {
+          "name": "[no extension]",
+          "count": 197
+        },
+        {
+          "name": ".yml",
+          "count": 36
+        },
+        {
+          "name": ".txt",
+          "count": 12
+        },
+        {
+          "name": ".html",
+          "count": 9
+        },
+        {
+          "name": ".xml",
+          "count": 8
+        },
+        {
+          "name": ".snap",
+          "count": 5
+        },
+        {
+          "name": ".cmd",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "id": "msfe6byj-32de497134",
+      "name": "TMDB Browser [opo_12]",
+      "createdAt": "2026-08-05T01:11:58.219Z",
+      "updatedAt": "2026-08-05T02:03:24.417Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project is a Node.js Express web application designed to function as a \"Media Updates Dashboard.\" It allows users to track and view updates for various media types, including movies, series, and anime, by integrating with external APIs like TMDB and potentially scraping other web sources. The application provides a client-side UI for browsing and filtering these updates.\n\n## Highlights\n- Full-stack web application with a Node.js/Express backend and a client-side JavaScript, HTML, and CSS frontend.\n- Integrates with the TMDB API for fetching media information and utilizes",
+      "acceptedAt": "2026-08-05T01:12:34.716Z",
+      "fileCount": 2139,
+      "totalBytes": 10380553,
+      "totalSizeLabel": "9.9 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 701
+        },
+        {
+          "name": "Other",
+          "count": 552
+        },
+        {
+          "name": "TypeScript",
+          "count": 413
+        },
+        {
+          "name": "Markdown",
+          "count": 230
+        },
+        {
+          "name": "JSON",
+          "count": 197
+        },
+        {
+          "name": "YAML",
+          "count": 28
+        },
+        {
+          "name": "XML",
+          "count": 13
+        },
+        {
+          "name": "HTML",
+          "count": 4
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 701
+        },
+        {
+          "name": ".ts",
+          "count": 413
+        },
+        {
+          "name": ".map",
+          "count": 352
+        },
+        {
+          "name": ".md",
+          "count": 230
+        },
+        {
+          "name": ".json",
+          "count": 197
+        },
+        {
+          "name": "[no extension]",
+          "count": 168
+        },
+        {
+          "name": ".yml",
+          "count": 28
+        },
+        {
+          "name": ".xml",
+          "count": 13
+        },
+        {
+          "name": ".txt",
+          "count": 10
+        },
+        {
+          "name": ".snap",
+          "count": 5
+        },
+        {
+          "name": ".html",
+          "count": 4
+        },
+        {
+          "name": ".cmd",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "id": "msfe1hjm-0ad8d5491b",
+      "name": "Information-webgather",
+      "createdAt": "2026-08-05T01:08:12.178Z",
+      "updatedAt": "2026-08-05T02:03:21.625Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project, \"Information-webgather,\" is a Python-based web application designed to aggregate and display information from various public web sources for a specified year. It allows users to input a year and then gathers data on anime, manga, movies, TV series, and news, presenting the results as a clean, filterable gallery on a web page.\n\n## Highlights\n*   **Web Application**: A Python Flask web application with a frontend built using HTML templates, CSS, and JavaScript.\n*   **Multi-Source Data Gathering**: Integrates with multiple external APIs, including AniList, TMDB, Wikipedia, HackerNews, Jikan, MusicBrainz, and VNDB, to fetch diverse content.\n*   **Modular API Integration**: The `gather` directory contains distinct Python modules for interacting with each data source.\n*   **Dependency Management**: Includes a Python virtual environment (`.venv`) and a `requirements.txt` file for managing project dependencies.\n*   **Clear Documentation**: The `README.md` provides a good overview of the project, its data sources, and notes on an optional TMDB API key.\n\n## Likely Tech Stack\n*   **Backend Language**: Python (likely 3.14, inferred from `.pyc` files)\n*   **Web Framework**: Flask\n*   **Frontend**: HTML (Jinja2 templating), CSS, JavaScript\n*   **HTTP Client**: `requests` (Python)\n*   **Dependency Management**:",
+      "acceptedAt": "2026-08-05T01:10:39.323Z",
+      "fileCount": 1760,
+      "totalBytes": 21613853,
+      "totalSizeLabel": "21 MB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 1104
+        },
+        {
+          "name": "Python",
+          "count": 633
+        },
+        {
+          "name": "JavaScript",
+          "count": 9
+        },
+        {
+          "name": "Markdown",
+          "count": 6
+        },
+        {
+          "name": "HTML",
+          "count": 5
+        },
+        {
+          "name": "CSS",
+          "count": 2
+        },
+        {
+          "name": "C",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".py",
+          "count": 633
+        },
+        {
+          "name": ".pyc",
+          "count": 632
+        },
+        {
+          "name": "[no extension]",
+          "count": 367
+        },
+        {
+          "name": ".txt",
+          "count": 28
+        },
+        {
+          "name": ".typed",
+          "count": 26
+        },
+        {
+          "name": ".exe",
+          "count": 14
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".js",
+          "count": 9
+        },
+        {
+          "name": ".md",
+          "count": 6
+        },
+        {
+          "name": ".html",
+          "count": 5
+        },
+        {
+          "name": ".pyd",
+          "count": 4
+        },
+        {
+          "name": ".png",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "msfdvkli-4ba0de406a",
+      "name": "Erotica Book Search [ebs_01]",
+      "createdAt": "2026-08-05T01:03:36.198Z",
+      "updatedAt": "2026-08-05T02:03:10.029Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project is a static web application designed to search for erotica books. It provides a user-friendly interface to discover books by scenario or theme, displaying results and offering detailed information for each book, likely leveraging an external API for its data.\n\n## Highlights\n- Static web application for searching books with a focus on erotica genres.\n- Interactive search form featuring multi-select options for scenarios/types.\n- Displays search results with a \"load more\" functionality for pagination.\n- Includes a modal window for detailed book information, such as cover, title, author, year, genres, and description.\n- Utilizes the Google Books API for fetching book data (requires an API key).\n- Developed with a clean, modern user interface, as suggested by the `style.css` and font choices.\n\n## Likely Tech Stack\n- **Languages**: JavaScript, HTML, CSS",
+      "acceptedAt": "2026-08-05T01:05:07.872Z",
+      "fileCount": 734,
+      "totalBytes": 3031154,
+      "totalSizeLabel": "2.9 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 360
+        },
+        {
+          "name": "Other",
+          "count": 119
+        },
+        {
+          "name": "JSON",
+          "count": 83
+        },
+        {
+          "name": "Markdown",
+          "count": 82
+        },
+        {
+          "name": "TypeScript",
+          "count": 56
+        },
+        {
+          "name": "YAML",
+          "count": 26
+        },
+        {
+          "name": "XML",
+          "count": 5
+        },
+        {
+          "name": "HTML",
+          "count": 2
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 360
+        },
+        {
+          "name": "[no extension]",
+          "count": 96
+        },
+        {
+          "name": ".json",
+          "count": 83
+        },
+        {
+          "name": ".md",
+          "count": 82
+        },
+        {
+          "name": ".ts",
+          "count": 56
+        },
+        {
+          "name": ".yml",
+          "count": 26
+        },
+        {
+          "name": ".txt",
+          "count": 5
+        },
+        {
+          "name": ".xml",
+          "count": 5
+        },
+        {
+          "name": ".cmd",
+          "count": 4
+        },
+        {
+          "name": ".ps1",
+          "count": 4
+        },
+        {
+          "name": ".mjs",
+          "count": 3
+        },
+        {
+          "name": ".html",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "msfdtrt5-efbe72d37d",
+      "name": "QR File Share [gam_10]",
+      "createdAt": "2026-08-05T01:02:12.233Z",
+      "updatedAt": "2026-08-05T02:03:35.320Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project, \"QR File Share,\" is a web application designed for sharing files between devices, primarily utilizing QR codes for local or offline transfers. It enables users to upload files from a PC, generate QR codes for download on a phone, or stream file chunks via QR codes for offline transfer between a phone and PC.\n\n## Highlights\n- **QR Code-based File Transfer**: Facilitates file sharing using QR codes, supporting both direct downloads and offline streaming of file chunks.\n- **Web-based Interface**: Provides a user-friendly web interface for uploading files, scanning QRs, and managing transfers.\n- **Node.js Backend**: Utilizes Express.js for handling file uploads, serving static assets, and managing file storage.\n- **Offline Capabilities**: Incorporates a Service Worker (`sw.js`) for caching essential assets, enabling offline usage for receiver/sender pages",
+      "acceptedAt": "2026-08-05T01:02:47.962Z",
+      "fileCount": 1412,
+      "totalBytes": 8089475,
+      "totalSizeLabel": "7.7 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 544
+        },
+        {
+          "name": "Other",
+          "count": 250
+        },
+        {
+          "name": "Markdown",
+          "count": 223
+        },
+        {
+          "name": "JSON",
+          "count": 208
+        },
+        {
+          "name": "TypeScript",
+          "count": 119
+        },
+        {
+          "name": "YAML",
+          "count": 37
+        },
+        {
+          "name": "HTML",
+          "count": 28
+        },
+        {
+          "name": "CSS",
+          "count": 3
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 544
+        },
+        {
+          "name": ".md",
+          "count": 223
+        },
+        {
+          "name": ".json",
+          "count": 208
+        },
+        {
+          "name": "[no extension]",
+          "count": 195
+        },
+        {
+          "name": ".ts",
+          "count": 119
+        },
+        {
+          "name": ".yml",
+          "count": 37
+        },
+        {
+          "name": ".html",
+          "count": 28
+        },
+        {
+          "name": ".txt",
+          "count": 14
+        },
+        {
+          "name": ".jpg",
+          "count": 13
+        },
+        {
+          "name": ".cmd",
+          "count": 6
+        },
+        {
+          "name": ".ps1",
+          "count": 6
+        },
+        {
+          "name": ".markdown",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "id": "msfdgphv-e699b2ef91",
+      "name": "NY Countdown [pat_year26]",
+      "createdAt": "2026-08-05T00:52:02.707Z",
+      "updatedAt": "2026-08-05T02:03:37.269Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project is a web application designed to display a flip-style countdown to the next New Year. It features a lightweight Express.js backend that provides a JSON API for real-time countdown data, complemented by a static frontend built with HTML, CSS, and vanilla JavaScript for a dynamic visual timer. The application is configured to count down to January 1st at midnight, specifically targeting Edmonton time.\n\n## Highlights\n- Web application featuring a visually appealing flip-style countdown timer.\n- Backend API built with Express.js delivers countdown data in a JSON format.\n- Frontend implemented with HTML, CSS, and vanilla JavaScript for a dynamic user interface.\n- Includes standard Node.js project files, dependencies, and configuration for easy setup.\n- Supports environment variable configuration for the server port via a",
+      "acceptedAt": "2026-08-05T00:52:24.308Z",
+      "fileCount": 906,
+      "totalBytes": 3247143,
+      "totalSizeLabel": "3.1 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 338
+        },
+        {
+          "name": "Other",
+          "count": 167
+        },
+        {
+          "name": "Markdown",
+          "count": 166
+        },
+        {
+          "name": "JSON",
+          "count": 132
+        },
+        {
+          "name": "TypeScript",
+          "count": 75
+        },
+        {
+          "name": "YAML",
+          "count": 26
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 338
+        },
+        {
+          "name": ".md",
+          "count": 166
+        },
+        {
+          "name": "[no extension]",
+          "count": 145
+        },
+        {
+          "name": ".json",
+          "count": 132
+        },
+        {
+          "name": ".ts",
+          "count": 75
+        },
+        {
+          "name": ".yml",
+          "count": 26
+        },
+        {
+          "name": ".txt",
+          "count": 8
+        },
+        {
+          "name": ".cmd",
+          "count": 4
+        },
+        {
+          "name": ".ps1",
+          "count": 4
+        },
+        {
+          "name": ".markdown",
+          "count": 2
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "msfcwosi-839b7258a0",
+      "name": "Manga Recs API [iil_21]",
+      "createdAt": "2026-08-05T00:36:28.675Z",
+      "updatedAt": "2026-08-05T02:03:45.656Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project is a Node.js/Express API and web application designed to provide manga and manhwa recommendations. It allows users to input genres and preferences, then fetches suggestions using either the Serper Google Search API or Google Gemini AI. The application features a",
+      "acceptedAt": "2026-08-05T00:36:49.927Z",
+      "fileCount": 1177,
+      "totalBytes": 4942610,
+      "totalSizeLabel": "4.7 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 444
+        },
+        {
+          "name": "Markdown",
+          "count": 205
+        },
+        {
+          "name": "TypeScript",
+          "count": 182
+        },
+        {
+          "name": "Other",
+          "count": 180
+        },
+        {
+          "name": "JSON",
+          "count": 138
+        },
+        {
+          "name": "YAML",
+          "count": 26
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 444
+        },
+        {
+          "name": ".md",
+          "count": 205
+        },
+        {
+          "name": ".ts",
+          "count": 182
+        },
+        {
+          "name": "[no extension]",
+          "count": 152
+        },
+        {
+          "name": ".json",
+          "count": 138
+        },
+        {
+          "name": ".yml",
+          "count": 26
+        },
+        {
+          "name": ".txt",
+          "count": 8
+        },
+        {
+          "name": ".map",
+          "count": 4
+        },
+        {
+          "name": ".cmd",
+          "count": 4
+        },
+        {
+          "name": ".ps1",
+          "count": 4
+        },
+        {
+          "name": ".mjs",
+          "count": 3
+        },
+        {
+          "name": ".markdown",
+          "count": 2
+        }
+      ]
+    }
+  ]
+}
