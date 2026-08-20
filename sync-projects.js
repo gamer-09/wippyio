@@ -2,46 +2,113 @@
 /**
  * sync-projects.js
  *
- * Reads projects.json from storage-packed, strips heavy fields (full file
- * manifests, search indexes, hashes), detects GitHub repo URLs from stored
- * project files, and writes a slim JSON file to data/projects.json.
+ * Reads projects.json from storage-packed, strips heavy fields, detects GitHub
+ * repos, and captures screenshots of web-based projects using system Chrome.
  *
  * Usage:
- *   node sync-projects.js                          (auto-detects sibling repo)
- *   node sync-projects.js /path/to/storage-packed   (explicit path)
+ *   node sync-projects.js                          (sync data only)
+ *   node sync-projects.js --screenshots             (sync + capture screenshots)
+ *   node sync-projects.js ../storage-packed         (explicit path)
+ *   node sync-projects.js ../storage-packed --screenshots
  */
 
 const fs = require('fs');
 const fsp = require('fs/promises');
 const path = require('path');
 
+
 // ---------------------------------------------------------------------------
-// Resolve the source projects.json
+// Parse arguments
 // ---------------------------------------------------------------------------
 
-const explicitPath = process.argv[2];
+const args = process.argv.slice(2);
+const captureScreenshots = args.includes('--screenshots');
+const explicitPath = args.find((a) => !a.startsWith('-'));
+
 let sourceDir;
-
 if (explicitPath) {
   sourceDir = path.resolve(explicitPath);
 } else {
-  // Default: assume storage-packed is a sibling directory of portfolio-hub
   sourceDir = path.resolve(__dirname, '..', 'storage-packed');
 }
 
 const sourceFile = path.join(sourceDir, 'data', 'projects.json');
 const projectsDir = path.join(sourceDir, 'data', 'projects');
 const outFile = path.join(__dirname, 'data', 'projects.json');
+const screenshotsDir = path.join(__dirname, 'data', 'screenshots');
 
 if (!fs.existsSync(sourceFile)) {
   console.error(`❌  Source file not found: ${sourceFile}`);
-  console.error('   Pass the path to storage-packed as the first argument:');
-  console.error('   node sync-projects.js /path/to/storage-packed');
+  console.error('   node sync-projects.js /path/to/storage-packed [--screenshots]');
   process.exit(1);
 }
 
 // ---------------------------------------------------------------------------
-// Read, detect GitHub, slim, write
+// Gradient fallbacks
+// ---------------------------------------------------------------------------
+
+const GRADIENT_PALETTES = [
+  ['#ff6b35', '#ff9f1c'],
+  ['#9b5de5', '#c084fc'],
+  ['#00bbf9', '#38bdf8'],
+  ['#00e5a0', '#34d399'],
+  ['#ff006e', '#f43f5e'],
+  ['#e05520', '#f97316'],
+  ['#06b6d4', '#22d3ee'],
+  ['#ffc857', '#fbbf24'],
+];
+
+const PROJECT_EMOJIS = {
+  'web': '🌐', 'api': '⚡', 'server': '🖥️', 'app': '📱',
+  'game': '🎮', 'bot': '🤖', 'chat': '💬', 'mail': '📧',
+  'security': '🔒', 'camera': '📷', 'music': '🎵', 'video': '🎬',
+  'photo': '📸', 'weather': '🌤️', 'timer': '⏱️', 'quiz': '❓',
+  'todo': '✅', 'note': '📝', 'search': '🔍', 'share': '🔗',
+  'qr': '📱', 'countdown': '🕐', 'calendar': '📅', 'recipe': '🍳',
+  'shop': '🛒', 'blog': '✍️', 'portfolio': '💼', 'manga': '📚',
+  'phone': '📱', 'organizer': '📂', 'dashboard': '📊', 'finance': '💰',
+  'health': '❤️', 'fitness': '💪', 'travel': '✈️', 'movie': '🎬',
+  'book': '📚', 'news': '📰', 'ai': '🧠', 'data': '📈', 'test': '🧪',
+};
+
+function getProjectEmoji(name, fileTypes) {
+  const lower = (name || '').toLowerCase();
+  for (const [kw, em] of Object.entries(PROJECT_EMOJIS)) {
+    if (lower.includes(kw)) return em;
+  }
+  if (fileTypes && fileTypes.some((f) => ['html', 'css', 'js'].includes((f.name || '').toLowerCase()))) return '🌐';
+  if (fileTypes && fileTypes.some((f) => ['py'].includes((f.name || '').toLowerCase()))) return '🐍';
+  return '📁';
+}
+
+function getGradientPalette(id) {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) hash = ((hash << 5) - hash + id.charCodeAt(i)) | 0;
+  return GRADIENT_PALETTES[Math.abs(hash) % GRADIENT_PALETTES.length];
+}
+
+// ---------------------------------------------------------------------------
+// Find system Chrome
+// ---------------------------------------------------------------------------
+
+function findChrome() {
+  const candidates = [
+    'C:/Program Files/Google/Chrome/Application/chrome.exe',
+    'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+    '/usr/bin/google-chrome',
+    '/usr/bin/google-chrome-stable',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser',
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) return c;
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------------------
+// Main
 // ---------------------------------------------------------------------------
 
 (async () => {
@@ -54,11 +121,58 @@ if (!fs.existsSync(sourceFile)) {
     process.exit(1);
   }
 
+  if (captureScreenshots) {
+    fs.mkdirSync(screenshotsDir, { recursive: true });
+  }
+
+  let browser = null;
+  if (captureScreenshots) {
+    const chromePath = findChrome();
+    if (!chromePath) {
+      console.error('⚠️  Chrome not found. Screenshot capture skipped.');
+    } else {
+      console.log(`📸  Using Chrome: ${chromePath}`);
+      try {
+        const puppeteer = require('puppeteer-core');
+        browser = await puppeteer.launch({
+          executablePath: chromePath,
+          headless: 'new',
+          args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--window-size=1280,800',
+          ],
+        });
+        console.log('📸  Browser launched');
+      } catch (err) {
+        console.error(`⚠️  Could not launch Chrome: ${err.message}`);
+      }
+    }
+  }
+
   const slimProjects = [];
+  let screenshotCount = 0;
+  let gradientCount = 0;
 
   for (const p of db.projects) {
     const completionStatus = normalizeCompletion(p.completionStatus);
     const githubUrl = await detectGitHubUrl(p);
+
+    let screenshotFile = '';
+    if (captureScreenshots && browser) {
+      const webEntry = findWebEntry(p.id);
+      if (webEntry) {
+        screenshotFile = await captureScreenshot(browser, p.id, webEntry);
+        if (screenshotFile) screenshotCount++;
+      }
+    }
+
+    if (captureScreenshots && !screenshotFile) {
+      screenshotFile = generateGradientCard(p.id, p.name, p.topFileTypes);
+      gradientCount++;
+    }
 
     slimProjects.push({
       id: p.id,
@@ -76,10 +190,10 @@ if (!fs.existsSync(sourceFile)) {
       topLanguages: (p.topLanguages || []).slice(0, 8),
       topFileTypes: (p.topFileTypes || []).slice(0, 12),
       githubUrl: githubUrl || '',
+      thumbnail: screenshotFile || '',
     });
   }
 
-  // Sort newest first
   slimProjects.sort((a, b) => {
     const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
     const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
@@ -87,42 +201,178 @@ if (!fs.existsSync(sourceFile)) {
   });
 
   const outDb = { projects: slimProjects };
-
   fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
   fs.writeFileSync(outFile, JSON.stringify(outDb, null, 2));
+
+  if (browser) await browser.close();
 
   const originalKB = Math.round(Buffer.byteLength(raw) / 1024);
   const slimKB = Math.round(Buffer.byteLength(JSON.stringify(outDb)) / 1024);
   const withRepo = slimProjects.filter((p) => p.githubUrl).length;
+  const withThumb = slimProjects.filter((p) => p.thumbnail).length;
 
   console.log(`✅  Wrote ${slimProjects.length} projects to ${outFile}`);
   console.log(`    ${originalKB} KB → ${slimKB} KB  (${Math.round((1 - slimKB / originalKB) * 100)}% smaller)`);
   console.log(`    ${withRepo} project(s) with GitHub repos detected`);
+  if (captureScreenshots) {
+    console.log(`    ${screenshotCount} screenshot(s) captured, ${gradientCount} gradient fallback(s)`);
+  }
+  console.log(`    ${withThumb} project(s) with thumbnails`);
 })();
 
 // ---------------------------------------------------------------------------
-// GitHub detection — reads .git/config, package.json, README from disk
+// Web entry detection
+// ---------------------------------------------------------------------------
+
+function findWebEntry(projectId) {
+  const projectRoot = path.join(projectsDir, projectId, 'files');
+  if (!fs.existsSync(projectRoot)) return null;
+
+  const entries = fs.readdirSync(projectRoot, { withFileTypes: true });
+  let projectDir = projectRoot;
+  if (entries.length === 1 && entries[0].isDirectory()) {
+    projectDir = path.join(projectRoot, entries[0].name);
+  }
+
+  const candidates = [
+    'public/index.html',
+    'index.html',
+    'public/index.htm',
+    'dist/index.html',
+    'build/index.html',
+    'src/index.html',
+    'static/index.html',
+  ];
+
+  for (const c of candidates) {
+    const full = path.join(projectDir, c);
+    if (fs.existsSync(full)) {
+      return { dir: projectDir, entry: full, prefix: path.dirname(c) };
+    }
+  }
+
+  // Vite/React projects — try building
+  const pkgPath = path.join(projectDir, 'package.json');
+  if (fs.existsSync(pkgPath)) {
+    try {
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+      if (pkg.scripts?.build) {
+        return { dir: projectDir, entry: null, needsBuild: true };
+      }
+    } catch {}
+  }
+
+  return null;
+}
+
+// ---------------------------------------------------------------------------
+// Screenshot capture
+// ---------------------------------------------------------------------------
+
+async function captureScreenshot(browser, projectId, webEntry) {
+  const outPath = path.join(screenshotsDir, `${projectId}.jpg`);
+  if (fs.existsSync(outPath)) return `screenshots/${projectId}.jpg`;
+
+  // Build if needed
+  if (webEntry.needsBuild) {
+    try {
+      const { execSync } = require('child_process');
+      console.log(`   🔨  Building ${projectId}...`);
+      execSync('npm run build', { cwd: webEntry.dir, timeout: 60000, stdio: 'pipe' });
+      const distPaths = ['dist/index.html', 'build/index.html'];
+      for (const dp of distPaths) {
+        const full = path.join(webEntry.dir, dp);
+        if (fs.existsSync(full)) {
+          webEntry = { dir: webEntry.dir, entry: full, prefix: path.dirname(dp) };
+          break;
+        }
+      }
+      if (!webEntry.entry) return '';
+    } catch {
+      return '';
+    }
+  }
+
+  if (!webEntry.entry) return '';
+
+  const page = await browser.newPage();
+  try {
+    await page.setViewport({ width: 1280, height: 800 });
+    const fileUrl = 'file:///' + webEntry.entry.replace(/\\/g, '/');
+    await page.goto(fileUrl, { waitUntil: 'domcontentloaded', timeout: 10000 });
+    await new Promise((r) => setTimeout(r, 600));
+    await page.screenshot({ path: outPath, type: 'jpeg', quality: 80 });
+    console.log(`   📸  Captured: ${projectId}`);
+    return `screenshots/${projectId}.jpg`;
+  } catch (err) {
+    console.log(`   ⚠️  Screenshot failed: ${projectId} — ${err.message.slice(0, 60)}`);
+    return '';
+  } finally {
+    await page.close().catch(() => {});
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Gradient card generation
+// ---------------------------------------------------------------------------
+
+function generateGradientCard(projectId, name, fileTypes) {
+  const palette = getGradientPalette(projectId);
+  const emoji = getProjectEmoji(name, fileTypes);
+  const initials = name.split(/[\s_-]+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('');
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${palette[0]}"/>
+      <stop offset="100%" stop-color="${palette[1]}"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="multiply" result="blend"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.08"/></feComponentTransfer>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+  <rect width="640" height="400" fill="url(#bg)"/>
+  <rect width="640" height="400" filter="url(#grain)" opacity="0.3"/>
+  <circle cx="520" cy="80" r="120" fill="white" opacity="0.06"/>
+  <circle cx="100" cy="340" r="80" fill="white" opacity="0.05"/>
+  <text x="320" y="180" text-anchor="middle" font-size="64" fill="white" opacity="0.9">${emoji}</text>
+  <text x="320" y="240" text-anchor="middle" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="white" opacity="0.95">${escSvg(name.length > 30 ? name.slice(0, 28) + '…' : name)}</text>
+  <text x="320" y="275" text-anchor="middle" font-family="monospace" font-size="16" fill="white" opacity="0.5">${escSvg(initials)}</text>
+</svg>`;
+
+  const outPath = path.join(screenshotsDir, `${projectId}.svg`);
+  fs.writeFileSync(outPath, svg);
+  return `screenshots/${projectId}.svg`;
+}
+
+function escSvg(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ---------------------------------------------------------------------------
+// GitHub detection
 // ---------------------------------------------------------------------------
 
 async function detectGitHubUrl(project) {
   const projectRoot = path.join(projectsDir, project.id, 'files');
   if (!fs.existsSync(projectRoot)) return '';
 
-  // 1. Try .git/config
   const gitConfigPath = findFile(projectRoot, /^\.git[/\\]config$/i);
   if (gitConfigPath) {
     const url = await extractGitConfigUrl(gitConfigPath);
     if (url) return url;
   }
 
-  // 2. Try package.json (skip node_modules)
   const pkgPath = findFile(projectRoot, /^package\.json$/i, /node_modules/);
   if (pkgPath) {
     const url = await extractPackageJsonUrl(pkgPath);
     if (url) return url;
   }
 
-  // 3. Try README / LICENSE / markdown files
   const mdFiles = findFiles(projectRoot, /\.(md|txt)$/i, /node_modules/).slice(0, 8);
   for (const mdFile of mdFiles) {
     const url = await extractGitHubUrlFromText(mdFile);
@@ -137,23 +387,18 @@ function findFile(root, pattern, exclude) {
     const entries = fs.readdirSync(root, { withFileTypes: true });
     for (const entry of entries) {
       const full = path.join(root, entry.name);
-      if (entry.isFile() && pattern.test(entry.name) && (!exclude || !exclude.test(full))) {
-        return full;
-      }
+      if (entry.isFile() && pattern.test(entry.name) && (!exclude || !exclude.test(full))) return full;
       if (entry.isDirectory() && entry.name !== 'node_modules' && entry.name !== '.git') {
         const found = findFile(full, pattern, exclude);
         if (found) return found;
       }
     }
-    // Also check .git subdirectory
     const gitDir = path.join(root, '.git');
     if (fs.existsSync(gitDir) && pattern.test('.git/config')) {
       const configPath = path.join(gitDir, 'config');
       if (fs.existsSync(configPath)) return configPath;
     }
-  } catch {
-    // Permission error or missing dir
-  }
+  } catch {}
   return '';
 }
 
@@ -163,32 +408,23 @@ function findFiles(root, pattern, exclude) {
     const entries = fs.readdirSync(root, { withFileTypes: true });
     for (const entry of entries) {
       const full = path.join(root, entry.name);
-      if (entry.isFile() && pattern.test(entry.name) && (!exclude || !exclude.test(full))) {
-        results.push(full);
-      }
+      if (entry.isFile() && pattern.test(entry.name) && (!exclude || !exclude.test(full))) results.push(full);
       if (entry.isDirectory() && entry.name !== 'node_modules' && entry.name !== '.git') {
         results.push(...findFiles(full, pattern, exclude));
       }
     }
-  } catch {
-    // Skip
-  }
+  } catch {}
   return results;
 }
 
 async function extractGitConfigUrl(filePath) {
   try {
     const text = await fsp.readFile(filePath, 'utf8');
-    // Look for [remote "origin"] block, then url = ...
     const originBlock = text.match(/\[remote\s+"origin"\]([\s\S]*?)(?:\n\[|$)/i);
     const block = originBlock ? originBlock[1] : text;
     const urlMatch = block.match(/url\s*=\s*(.+)/i);
-    if (urlMatch) {
-      return parseGitHubUrl(urlMatch[1].trim());
-    }
-  } catch {
-    // Skip
-  }
+    if (urlMatch) return parseGitHubUrl(urlMatch[1].trim());
+  } catch {}
   return '';
 }
 
@@ -196,13 +432,9 @@ async function extractPackageJsonUrl(filePath) {
   try {
     const text = await fsp.readFile(filePath, 'utf8');
     const pkg = JSON.parse(text);
-    const repo = typeof pkg.repository === 'string'
-      ? pkg.repository
-      : pkg.repository?.url;
+    const repo = typeof pkg.repository === 'string' ? pkg.repository : pkg.repository?.url;
     if (repo) return parseGitHubUrl(repo);
-  } catch {
-    // Skip
-  }
+  } catch {}
   return '';
 }
 
@@ -211,28 +443,19 @@ async function extractGitHubUrlFromText(filePath) {
     const text = await fsp.readFile(filePath, 'utf8');
     const match = text.match(/https?:\/\/github\.com\/[^/\\s)]+\/[^/\\s).#]+(?:\.git)?/i);
     if (match) return parseGitHubUrl(match[0]);
-  } catch {
-    // Skip
-  }
+  } catch {}
   return '';
 }
 
 function parseGitHubUrl(raw) {
   if (!raw) return '';
   const cleaned = raw.replace(/^git\+/, '').replace(/^url\s*=\s*/i, '').trim();
-
-  // HTTPS
   const https = cleaned.match(/^https?:\/\/(?:[^/@\\s]+@)?github\.com[:/]([^/\\s]+)\/([^/\\s#?]+?)(?:\.git)?(?:[/?#].*)?$/i);
   if (https) return `https://github.com/${https[1]}/${https[2]}`;
-
-  // SSH
   const ssh = cleaned.match(/^git@github\.com:([^/\\s]+)\/([^/\\s#?]+?)(?:\.git)?$/i);
   if (ssh) return `https://github.com/${ssh[1]}/${ssh[2]}`;
-
-  // Short form (owner/repo)
   const short = cleaned.match(/^([^/\\s]+)\/([^/\\s#?]+?)(?:\.git)?$/i);
   if (short && !cleaned.includes(' ')) return `https://github.com/${short[1]}/${short[2]}`;
-
   return '';
 }
 

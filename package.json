@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio site synced from storage-packed vault",
+  "scripts": {
+    "sync": "node sync-projects.js",
+    "sync:screenshots": "node sync-projects.js --screenshots",
+    "update": "node sync-projects.js --screenshots && git add -A && git commit -m 'Update project data' && git push"
+  },
+  "dependencies": {
+    "puppeteer": "^23.0.0",
+    "puppeteer-core": "^25.8.0"
+  }
+}

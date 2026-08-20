@@ -637,6 +637,49 @@ a:hover { color: var(--accent-2); }
 }
 .bento-card:hover .bento-card-name { color: var(--card-accent, var(--accent)); }
 
+/* Thumbnail */
+.bento-card-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  background: var(--bg-2);
+}
+.bento-card:hover .bento-card-thumb {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.bento-card.bento-large .bento-card-thumb {
+  aspect-ratio: 16 / 8;
+}
+.bento-card.bento-wide .bento-card-thumb {
+  aspect-ratio: 16 / 9;
+}
+/* No-thumb cards (text only) */
+.bento-card-no-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--card-accent-glow, var(--accent-glow)), transparent);
+  font-size: 3rem;
+}
+.bento-card.bento-large .bento-card-no-thumb {
+  aspect-ratio: 16 / 8;
+  font-size: 4rem;
+}
+.bento-card.bento-wide .bento-card-no-thumb {
+  aspect-ratio: 16 / 9;
+  font-size: 3.5rem;
+}
+
 /* Large card shows summary */
 .bento-card-summary {
   color: var(--text-2);
@@ -969,6 +1012,14 @@ a:hover { color: var(--accent-2); }
   transform: rotate(90deg);
 }
 .popup-body { padding: 2rem; }
+.popup-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.2rem;
+  border: 1px solid var(--border);
+}
 .popup-body h2 {
   font-size: 1.6rem;
   font-weight: 700;

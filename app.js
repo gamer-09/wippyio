@@ -167,6 +167,28 @@
     return LANG_COLORS[key] || { c: '#888', bg: 'rgba(136,136,136,0.1)', border: 'rgba(136,136,136,0.2)' };
   }
 
+  const EMOJI_MAP = {
+    'web': '🌐', 'api': '⚡', 'server': '🖥️', 'app': '📱',
+    'game': '🎮', 'bot': '🤖', 'chat': '💬', 'mail': '📧',
+    'security': '🔒', 'camera': '📷', 'music': '🎵', 'video': '🎬',
+    'photo': '📸', 'weather': '🌤️', 'timer': '⏱️', 'quiz': '❓',
+    'todo': '✅', 'note': '📝', 'search': '🔍', 'share': '🔗',
+    'qr': '📱', 'countdown': '🕐', 'calendar': '📅', 'recipe': '🍳',
+    'shop': '🛒', 'blog': '✍️', 'portfolio': '💼', 'manga': '📚',
+    'phone': '📱', 'organizer': '📂', 'dashboard': '📊', 'finance': '💰',
+    'health': '❤️', 'fitness': '💪', 'travel': '✈️', 'movie': '🎬',
+    'book': '📚', 'news': '📰', 'ai': '🧠', 'data': '📈', 'test': '🧪',
+  };
+  function getProjectEmoji(name, fileTypes) {
+    const lower = (name || '').toLowerCase();
+    for (const [kw, em] of Object.entries(EMOJI_MAP)) {
+      if (lower.includes(kw)) return em;
+    }
+    if (fileTypes && fileTypes.some((f) => ['html', 'css', 'js'].includes((f.name || '').toLowerCase()))) return '🌐';
+    if (fileTypes && fileTypes.some((f) => ['py'].includes((f.name || '').toLowerCase()))) return '🐍';
+    return '📁';
+  }
+
   // ---- Init ----
   loadProjects();
 
@@ -379,7 +401,13 @@
          </a>` : '';
     const sizeClass = getBentoSize(i, p);
 
+    // Thumbnail
+    const thumbHTML = p.thumbnail
+      ? `<img class="bento-card-thumb" src="${escA(p.thumbnail)}" alt="${escA(p.name)}" loading="lazy" />`
+      : `<div class="bento-card-no-thumb">${getProjectEmoji(p.name, p.topFileTypes)}</div>`;
+
     return `<article class="bento-card ${sizeClass}" data-id="${escA(p.id)}" style="--card-accent:${color.accent};--card-accent-glow:${color.glow}">
+      ${thumbHTML}
       <div class="bento-card-top">
         <span class="bento-card-num">#${String(i + 1).padStart(2, '0')}</span>
         <span class="bento-card-badge ${badge.cls}">${badge.label}</span>
@@ -505,7 +533,12 @@
       </a>`;
     }
 
+    const popupThumbHTML = p.thumbnail
+      ? `<img class="popup-thumb" src="${escA(p.thumbnail)}" alt="${escA(p.name)}" />`
+      : '';
+
     popupBody.innerHTML = `
+      ${popupThumbHTML}
       <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
         <span style="width:10px;height:10px;border-radius:50%;background:${color.accent};flex-shrink:0"></span>
         <span class="bento-card-badge ${badge.cls}">${badge.label}</span>
