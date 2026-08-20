@@ -1,108 +1,6 @@
 {
   "projects": [
     {
-      "id": "mt25pbmt-766836e8db",
-      "name": "Slang Translator [st_01]",
-      "createdAt": "2026-08-20T23:33:29.765Z",
-      "updatedAt": "2026-08-20T23:34:38.290Z",
-      "status": "stored",
-      "completionStatus": "not-completed",
-      "completionReason": "",
-      "summary": "## Description\nThis project, \"Slang Translator,\" is a web application designed to translate plain text into various \"secret\" language schemes and vice-versa. It features a Node.js/Express backend providing translation APIs and a simple HTML/CSS/JavaScript frontend for user interaction. The current implementation includes a \"Jungle Language\" scheme with defined encoding and decoding rules.\n\n## Highlights\n- Node.js/Express backend serving a web-based user interface.\n- Implements a \"Jungle Language\" translation scheme with distinct encoding and decoding logic.\n- Provides API endpoints for listing available translation schemes and performing text translations.\n- Frontend built with vanilla HTML, CSS, and JavaScript for a straightforward user experience.\n- Project is still in progress, indicating potential for further development or incomplete features.\n\n## Likely Tech Stack\n- **Backend:** Node.js, Express.js, `dotenv`, `cors`\n- **Frontend:** HTML, CSS, JavaScript (vanilla)\n- **Package Manager:** npm\n- **Development Tools:** `nodemon`\n- **Languages:** JavaScript, Markdown, JSON, TypeScript (primarily for type definitions in `node_modules`), YAML, HTML, CSS\n\n## Run / Restore Notes\nTo run this project:\n1. Ensure Node.js and npm are installed.\n2. Extract the archive.\n3. Navigate to the project root (`Slang Translator [st_01]/`).\n4. Copy `.env.example` to `.env` and configure the `PORT` if desired (default is 3000).\n5. Install dependencies: `npm install` (though `node_modules` is included, this ensures all are correctly linked).\n6. Start the server in development mode (with auto-reload): `npm run dev` or normally: `npm start`.\nThe project is marked as \"in progress,\" so expect potential unfinished features or areas needing refinement.\n\n## Tags\nslang, translator, nodejs, express, javascript, web app, encoding, decoding, in-progress, personal project, fullstack\nThe previous archive summary was already complete and included all requested sections. There is no further content to add.\n\n## Tags\nslang, translator, nodejs, express, javascript, web app, encoding, decoding, in-progress, personal project, fullstack",
-      "acceptedAt": "2026-08-20T23:34:38.290Z",
-      "fileCount": 954,
-      "totalBytes": 3417292,
-      "totalSizeLabel": "3.3 MB",
-      "topLanguages": [
-        {
-          "name": "JavaScript",
-          "count": 348
-        },
-        {
-          "name": "Markdown",
-          "count": 185
-        },
-        {
-          "name": "Other",
-          "count": 175
-        },
-        {
-          "name": "JSON",
-          "count": 143
-        },
-        {
-          "name": "TypeScript",
-          "count": 75
-        },
-        {
-          "name": "YAML",
-          "count": 26
-        },
-        {
-          "name": "HTML",
-          "count": 1
-        },
-        {
-          "name": "CSS",
-          "count": 1
-        }
-      ],
-      "topFileTypes": [
-        {
-          "name": ".js",
-          "count": 348
-        },
-        {
-          "name": ".md",
-          "count": 185
-        },
-        {
-          "name": "[no extension]",
-          "count": 153
-        },
-        {
-          "name": ".json",
-          "count": 143
-        },
-        {
-          "name": ".ts",
-          "count": 75
-        },
-        {
-          "name": ".yml",
-          "count": 26
-        },
-        {
-          "name": ".txt",
-          "count": 8
-        },
-        {
-          "name": ".cmd",
-          "count": 4
-        },
-        {
-          "name": ".ps1",
-          "count": 4
-        },
-        {
-          "name": ".markdown",
-          "count": 2
-        },
-        {
-          "name": ".env.example",
-          "count": 1
-        },
-        {
-          "name": ".exe",
-          "count": 1
-        }
-      ],
-      "githubUrl": "",
-      "repoVisibility": "",
-      "isUpdated": false,
-      "thumbnail": "data/screenshots/mt25pbmt-766836e8db.jpg"
-    },
-    {
       "id": "mt25gfv0-a46b51ea78",
       "name": "admin help bot",
       "createdAt": "2026-08-20T23:26:35.341Z",
@@ -170,7 +68,7 @@
       "githubUrl": "https://github.com/gamer-09/admin-help-bot",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/mt25gfv0-a46b51ea78.svg"
+      "thumbnail": ""
     },
     {
       "id": "mt1p9jq7-2469820d1e",
@@ -272,7 +170,7 @@
       "githubUrl": "https://github.com/gamer-09/Half-made-world-Reference",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/mt1p9jq7-2469820d1e.svg"
+      "thumbnail": ""
     },
     {
       "id": "mt1p69ft-21a4540c4b",
@@ -374,7 +272,7 @@
       "githubUrl": "https://github.com/gamer-09/mail-organizer",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/mt1p69ft-21a4540c4b.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msqbpdfw-c3ddc8e495",
@@ -468,7 +366,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msqbpdfw-c3ddc8e495.svg"
+      "thumbnail": ""
     },
     {
       "id": "msqbakdk-ab24c34b74",
@@ -570,7 +468,7 @@
       "githubUrl": "https://github.com/gamer-09/Note_vault",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msqbakdk-ab24c34b74.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msqb7a2k-f37177ac59",
@@ -672,7 +570,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msqb7a2k-f37177ac59.svg"
+      "thumbnail": ""
     },
     {
       "id": "msm2j97i-8171c9377e",
@@ -754,7 +652,7 @@
       "githubUrl": "https://github.com/rober42539/lao-dictionary",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msm2j97i-8171c9377e.svg"
+      "thumbnail": ""
     },
     {
       "id": "msjwhd9s-c88aa78351",
@@ -856,7 +754,7 @@
       "githubUrl": "https://github.com/gamer-09/CreepfoIO",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msjwhd9s-c88aa78351.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msjar4qg-e6181144fe",
@@ -958,7 +856,7 @@
       "githubUrl": "https://github.com/gamer-09/ircc-track",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msjar4qg-e6181144fe.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msj106vw-7f1f1bae1d",
@@ -1028,7 +926,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msj106vw-7f1f1bae1d.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msi2pk64-e7031f3fe2",
@@ -1090,7 +988,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msi2pk64-e7031f3fe2.svg"
+      "thumbnail": ""
     },
     {
       "id": "mshz5lln-cdaaf20883",
@@ -1192,7 +1090,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/mshz5lln-cdaaf20883.svg"
+      "thumbnail": ""
     },
     {
       "id": "mshz2q1i-1a148a153d",
@@ -1290,7 +1188,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/mshz2q1i-1a148a153d.svg"
+      "thumbnail": ""
     },
     {
       "id": "mshywuck-018f27db71",
@@ -1388,7 +1286,7 @@
       "githubUrl": "https://github.com/gamer-09/planner",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/mshywuck-018f27db71.jpg"
+      "thumbnail": ""
     },
     {
       "id": "mshysjrv-928916b0e3",
@@ -1478,7 +1376,7 @@
       "githubUrl": "https://github.com/gamer-09/replica",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/mshysjrv-928916b0e3.jpg"
+      "thumbnail": ""
     },
     {
       "id": "mshyl5zt-eb9c3fd01e",
@@ -1564,7 +1462,7 @@
       "githubUrl": "https://github.com/gamer-09/techevent",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/mshyl5zt-eb9c3fd01e.jpg"
+      "thumbnail": ""
     },
     {
       "id": "mshxzdhf-539024ab34",
@@ -1662,7 +1560,7 @@
       "githubUrl": "https://github.com/gamer-09/Kilo-lookup",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/mshxzdhf-539024ab34.jpg"
+      "thumbnail": ""
     },
     {
       "id": "mshxxgqm-1bbab0eb49",
@@ -1764,7 +1662,7 @@
       "githubUrl": "https://github.com/gamer-09/achievelom-",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/mshxxgqm-1bbab0eb49.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msgo3znd-d754b6110b",
@@ -1862,7 +1760,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msgo3znd-d754b6110b.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msgeu88t-a752fbf5f5",
@@ -1964,7 +1862,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msgeu88t-a752fbf5f5.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msgekd2p-92a5b7c7d6",
@@ -2066,7 +1964,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msgekd2p-92a5b7c7d6.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msg9zh3h-a01b453027",
@@ -2168,7 +2066,7 @@
       "githubUrl": "https://github.com/gamer-09/worldbuild",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msg9zh3h-a01b453027.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msg8ye3i-4554330fa7",
@@ -2270,7 +2168,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msg8ye3i-4554330fa7.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msg88gk0-1ec05b3fbb",
@@ -2340,7 +2238,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msg88gk0-1ec05b3fbb.svg"
+      "thumbnail": ""
     },
     {
       "id": "msg5vshc-869b3949a6",
@@ -2438,7 +2336,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msg5vshc-869b3949a6.svg"
+      "thumbnail": ""
     },
     {
       "id": "msfee7mg-ef835e2af6",
@@ -2536,7 +2434,7 @@
       "githubUrl": "https://github.com/Borewit/mu",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfee7mg-ef835e2af6.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msfed76i-5c59807429",
@@ -2630,7 +2528,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfed76i-5c59807429.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msfe9g1f-f1bca9fdc2",
@@ -2732,7 +2630,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msfe9g1f-f1bca9fdc2.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msfe7jxy-7bde73cdc6",
@@ -2834,7 +2732,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msfe7jxy-7bde73cdc6.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msfe6byj-32de497134",
@@ -2936,7 +2834,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msfe6byj-32de497134.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msfe1hjm-0ad8d5491b",
@@ -3034,7 +2932,7 @@
       "githubUrl": "https://github.com/gamer-09/Information-webgather",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfe1hjm-0ad8d5491b.svg"
+      "thumbnail": ""
     },
     {
       "id": "msfdvkli-4ba0de406a",
@@ -3136,7 +3034,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": false,
-      "thumbnail": "data/screenshots/msfdvkli-4ba0de406a.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msfdtrt5-efbe72d37d",
@@ -3238,7 +3136,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfdtrt5-efbe72d37d.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msfdgphv-e699b2ef91",
@@ -3340,7 +3238,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfdgphv-e699b2ef91.jpg"
+      "thumbnail": ""
     },
     {
       "id": "msfcwosi-839b7258a0",
@@ -3442,7 +3340,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfcwosi-839b7258a0.jpg"
+      "thumbnail": ""
     }
   ]
 }
