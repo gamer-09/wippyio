@@ -1,6 +1,108 @@
 {
   "projects": [
     {
+      "id": "mt25pbmt-766836e8db",
+      "name": "Slang Translator [st_01]",
+      "createdAt": "2026-08-20T23:33:29.765Z",
+      "updatedAt": "2026-08-20T23:34:38.290Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project, \"Slang Translator,\" is a web application designed to translate plain text into various \"secret\" language schemes and vice-versa. It features a Node.js/Express backend providing translation APIs and a simple HTML/CSS/JavaScript frontend for user interaction. The current implementation includes a \"Jungle Language\" scheme with defined encoding and decoding rules.\n\n## Highlights\n- Node.js/Express backend serving a web-based user interface.\n- Implements a \"Jungle Language\" translation scheme with distinct encoding and decoding logic.\n- Provides API endpoints for listing available translation schemes and performing text translations.\n- Frontend built with vanilla HTML, CSS, and JavaScript for a straightforward user experience.\n- Project is still in progress, indicating potential for further development or incomplete features.\n\n## Likely Tech Stack\n- **Backend:** Node.js, Express.js, `dotenv`, `cors`\n- **Frontend:** HTML, CSS, JavaScript (vanilla)\n- **Package Manager:** npm\n- **Development Tools:** `nodemon`\n- **Languages:** JavaScript, Markdown, JSON, TypeScript (primarily for type definitions in `node_modules`), YAML, HTML, CSS\n\n## Run / Restore Notes\nTo run this project:\n1. Ensure Node.js and npm are installed.\n2. Extract the archive.\n3. Navigate to the project root (`Slang Translator [st_01]/`).\n4. Copy `.env.example` to `.env` and configure the `PORT` if desired (default is 3000).\n5. Install dependencies: `npm install` (though `node_modules` is included, this ensures all are correctly linked).\n6. Start the server in development mode (with auto-reload): `npm run dev` or normally: `npm start`.\nThe project is marked as \"in progress,\" so expect potential unfinished features or areas needing refinement.\n\n## Tags\nslang, translator, nodejs, express, javascript, web app, encoding, decoding, in-progress, personal project, fullstack\nThe previous archive summary was already complete and included all requested sections. There is no further content to add.\n\n## Tags\nslang, translator, nodejs, express, javascript, web app, encoding, decoding, in-progress, personal project, fullstack",
+      "acceptedAt": "2026-08-20T23:34:38.290Z",
+      "fileCount": 954,
+      "totalBytes": 3417292,
+      "totalSizeLabel": "3.3 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 348
+        },
+        {
+          "name": "Markdown",
+          "count": 185
+        },
+        {
+          "name": "Other",
+          "count": 175
+        },
+        {
+          "name": "JSON",
+          "count": 143
+        },
+        {
+          "name": "TypeScript",
+          "count": 75
+        },
+        {
+          "name": "YAML",
+          "count": 26
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 348
+        },
+        {
+          "name": ".md",
+          "count": 185
+        },
+        {
+          "name": "[no extension]",
+          "count": 153
+        },
+        {
+          "name": ".json",
+          "count": 143
+        },
+        {
+          "name": ".ts",
+          "count": 75
+        },
+        {
+          "name": ".yml",
+          "count": 26
+        },
+        {
+          "name": ".txt",
+          "count": 8
+        },
+        {
+          "name": ".cmd",
+          "count": 4
+        },
+        {
+          "name": ".ps1",
+          "count": 4
+        },
+        {
+          "name": ".markdown",
+          "count": 2
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".exe",
+          "count": 1
+        }
+      ],
+      "githubUrl": "",
+      "repoVisibility": "",
+      "isUpdated": false,
+      "thumbnail": "data/screenshots/mt25pbmt-766836e8db.jpg"
+    },
+    {
       "id": "mt25gfv0-a46b51ea78",
       "name": "admin help bot",
       "createdAt": "2026-08-20T23:26:35.341Z",
