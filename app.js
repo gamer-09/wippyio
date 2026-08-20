@@ -18,6 +18,27 @@
   const popupOverlay = document.getElementById('popupOverlay');
   const popupBody = document.getElementById('popupBody');
   const popupClose = document.getElementById('popupClose');
+  const themeToggle = document.getElementById('themeToggle');
+
+  // ---- Theme ----
+  function getPreferredTheme() {
+    const saved = localStorage.getItem('portfolio-theme');
+    if (saved) return saved;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('portfolio-theme', theme);
+  }
+
+  // Apply immediately to avoid flash
+  applyTheme(getPreferredTheme());
+
+  themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
 
   // ---- Init ----
   loadProjects();
@@ -217,7 +238,7 @@
     // Italic
     html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
     // Inline code
-    html = html.replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.06);padding:0.15rem 0.4rem;border-radius:4px;font-size:0.88rem">$1</code>');
+    html = html.replace(/`([^`]+)`/g, '<code style="background:var(--code-bg);padding:0.15rem 0.4rem;border-radius:4px;font-size:0.88rem">$1</code>');
     // Bullet points
     html = html.replace(/^- (.+)$/gm, '<span style="display:block;padding-left:1rem">• $1</span>');
     // Newlines
