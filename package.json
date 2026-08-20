@@ -9,7 +9,7 @@
     "update": "node sync-projects.js --screenshots && git add -A && git commit -m 'Update project data' && git push"
   },
   "dependencies": {
-    "puppeteer": "^23.0.0",
+    "puppeteer": "^25.8.0",
     "puppeteer-core": "^25.8.0"
   },
   "main": "app.js",
