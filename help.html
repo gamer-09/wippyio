@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
     .help-page {
@@ -15,19 +15,20 @@
       z-index: 1;
       max-width: 780px;
       margin: 0 auto;
-      padding: 2.5rem 1.5rem 4rem;
+      padding: 6rem 2rem 4rem;
     }
     .help-page h1 {
-      font-size: 2rem;
-      font-weight: 800;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
       margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, var(--accent-bright), #c084fc);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--pink));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .help-page .subtitle {
-      color: var(--text-secondary);
+      color: var(--text-2);
       font-size: 1.05rem;
       margin-bottom: 2.5rem;
     }
@@ -35,31 +36,27 @@
       margin-bottom: 2.5rem;
     }
     .help-section h2 {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
       margin-bottom: 1rem;
-      color: var(--text-primary);
+      color: var(--text);
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    .help-section h2 .emoji { font-size: 1.4rem; }
+    .help-section h2 .emoji { font-size: 1.3rem; }
     .help-section p,
     .help-section li {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
+      color: var(--text-2);
+      font-size: 0.92rem;
       line-height: 1.7;
     }
     .help-section ul {
       padding-left: 1.5rem;
       margin: 0.5rem 0;
     }
-    .help-section li {
-      margin-bottom: 0.4rem;
-    }
-    .help-section li strong {
-      color: var(--text-primary);
-    }
+    .help-section li { margin-bottom: 0.4rem; }
+    .help-section li strong { color: var(--text); }
 
     /* Workflow steps */
     .workflow {
@@ -103,8 +100,6 @@
     }
     .step-content {
       background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       padding: 1.25rem;
@@ -112,24 +107,22 @@
       margin-bottom: 1rem;
       transition: border-color var(--transition);
     }
-    .step-content:hover {
-      border-color: var(--border-hover);
-    }
+    .step-content:hover { border-color: var(--border-hover); }
     .step-content h3 {
       font-size: 1rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--text);
       margin-bottom: 0.5rem;
     }
     .step-content p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
+      color: var(--text-2);
+      font-size: 0.88rem;
       line-height: 1.6;
     }
 
     /* Code blocks */
     .code-block {
-      background: var(--bg-secondary);
+      background: var(--bg-2);
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       padding: 1rem 1.25rem;
@@ -137,36 +130,28 @@
       overflow-x: auto;
     }
     .code-block code {
-      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-      font-size: 0.85rem;
-      color: var(--accent-bright);
-      line-height: 1.6;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--accent);
+      line-height: 1.7;
     }
-    .code-block .comment {
-      color: var(--text-muted);
-    }
+    .code-block .comment { color: var(--text-3); }
 
     /* Tip boxes */
     .tip {
-      background: var(--accent-dim);
-      border: 1px solid rgba(99,102,241,0.2);
+      background: var(--accent-glow);
+      border: 1px solid rgba(255,107,53,0.15);
       border-radius: var(--radius-sm);
       padding: 1rem 1.25rem;
       margin: 1rem 0;
     }
-    .tip strong {
-      color: var(--accent);
-    }
-    .tip p {
-      margin: 0;
-    }
+    .tip strong { color: var(--accent); }
+    .tip p { margin: 0.3rem 0; }
     .tip-warning {
-      background: var(--warning-dim);
-      border-color: rgba(251,191,36,0.2);
+      background: var(--amber-dim);
+      border-color: rgba(255,200,87,0.2);
     }
-    .tip-warning strong {
-      color: var(--warning);
-    }
+    .tip-warning strong { color: var(--amber); }
 
     /* Diagram */
     .diagram {
@@ -176,19 +161,14 @@
       padding: 1.5rem;
       margin: 1.5rem 0;
       text-align: center;
-      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-      font-size: 0.82rem;
-      color: var(--text-secondary);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text-2);
       line-height: 1.8;
       overflow-x: auto;
     }
-    .diagram .highlight {
-      color: var(--accent);
-      font-weight: 600;
-    }
-    .diagram .arrow {
-      color: var(--text-muted);
-    }
+    .diagram .highlight { color: var(--accent); font-weight: 600; }
+    .diagram .arrow { color: var(--text-3); }
 
     /* Back link */
     .back-link {
@@ -197,41 +177,49 @@
       gap: 0.4rem;
       color: var(--accent);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 500;
       margin-bottom: 1.5rem;
       transition: color var(--transition);
     }
-    .back-link:hover { color: var(--accent-bright); text-decoration: underline; }
+    .back-link:hover { color: var(--accent-2); text-decoration: underline; }
 
     @media (max-width: 600px) {
-      .help-page { padding: 1.5rem 1rem 3rem; }
+      .help-page { padding: 5rem 1rem 3rem; }
       .help-page h1 { font-size: 1.6rem; }
       .step-content { padding: 1rem; }
     }
   </style>
 </head>
 <body>
-  <div class="theme-transition" id="themeTransition"></div>
-  <div class="bg-effects">
-    <div class="bg-orb bg-orb-1"></div>
-    <div class="bg-orb bg-orb-2"></div>
-    <div class="bg-orb bg-orb-3"></div>
+  <!-- Noise overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Aurora background -->
+  <div class="aurora">
+    <div class="aurora-1"></div>
+    <div class="aurora-2"></div>
+    <div class="aurora-3"></div>
   </div>
 
-  <header>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <div class="header-inner">
-      <div class="logo-wrapper">
-        <span class="logo-icon">⚡</span>
-        <h1 class="logo">Help & Guide</h1>
-      </div>
-      <p class="tagline">How to use storage-packed and wippy together.</p>
+  <!-- Theme transition overlay -->
+  <div class="theme-transition" id="themeTransition"></div>
+
+  <!-- Navigation -->
+  <nav class="topnav">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-logo">⚡</span>
+      <span class="nav-title">wippy</span>
+    </a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-link">Portfolio</a>
+      <a href="https://github.com/gamer-09/storage-packed" target="_blank" class="nav-link">Vault ↗</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
-  </header>
+  </nav>
 
   <main>
     <div class="help-page">
@@ -239,11 +227,13 @@
 
       <!-- Overview -->
       <section class="help-section">
-        <h2><span class="emoji"> overview</span> How It All Works</h2>
-        <p>There are <strong>two repos</strong> that work together:</p>
+        <h1>Help & Guide</h1>
+        <p class="subtitle">How to use storage-packed and wippy together.</p>
+
+        <p>There are <strong style="color:var(--text)">two repos</strong> that work together:</p>
         <ul>
-          <li><strong>storage-packed</strong> — A local web app that stores your project archives in a browser vault. This runs on your machine only.</li>
-          <li><strong>wippyio</strong> — A static website hosted on GitHub Pages that displays all your projects as a public portfolio.</li>
+          <li><strong>storage-packed</strong> — A local web app that stores your project archives in a browser vault. Runs on your machine only.</li>
+          <li><strong>wippyio</strong> — A static website on GitHub Pages that displays all your projects as a public portfolio.</li>
         </ul>
 
         <div class="diagram">
@@ -257,7 +247,8 @@
           <span class="arrow">│</span><br/>
           <span class="arrow">│  Reads projects.json</span><br/>
           <span class="arrow">│  Strips heavy fields (99% smaller)</span><br/>
-          <span class="arrow">│  Detects GitHub repo URLs</span><br/>
+          <span class="arrow">│  Detects GitHub repos + visibility</span><br/>
+          <span class="arrow">│  Captures screenshots</span><br/>
           <span class="arrow">│</span><br/>
           <span class="arrow">▼</span><br/>
           <span class="highlight">wippyio</span> <span class="arrow">(GitHub Pages)</span><br/>
@@ -282,7 +273,7 @@
               <h3>Start storage-packed</h3>
               <p>Open a terminal and run the storage-packed server locally:</p>
               <div class="code-block"><code>cd storage-packed<br/>npm install  <span class="comment"># first time only</span><br/>npm start</code></div>
-              <p>It will print a local URL (usually <code>http://localhost:3000</code>). Open it in your browser.</p>
+              <p>It will print a local URL (usually <code style="background:var(--accent-glow);padding:0.1rem 0.3rem;border-radius:4px;font-family:var(--mono);font-size:0.85rem">http://localhost:3000</code>). Open it in your browser.</p>
             </div>
           </div>
 
@@ -295,13 +286,13 @@
               <h3>Upload your projects</h3>
               <p>In the storage-packed browser vault:</p>
               <ul>
-                <li><strong>Upload a folder</strong> — Click "Upload a project" and select a project folder. It stores all the files locally in <code>data/projects/</code>.</li>
-                <li><strong>Add a summary</strong> — Use the Gemini AI button (paste your API key) or create a local draft summary to describe the project.</li>
-                <li><strong>Mark completion</strong> — Toggle whether the project is completed or still in progress.</li>
-                <li><strong>Edit if needed</strong> — You can edit summaries, completion status, and other details from the card or popup.</li>
+                <li><strong>Upload a folder</strong> — Click "Upload a project" and select a project folder.</li>
+                <li><strong>Add a summary</strong> — Use the Gemini AI button or create a local draft summary.</li>
+                <li><strong>Mark completion</strong> — Toggle whether the project is completed or in progress.</li>
+                <li><strong>Edit if needed</strong> — Edit summaries, completion status, and other details.</li>
               </ul>
               <div class="tip">
-                <p><strong>💡 Tip:</strong> You don't need to push storage-packed to GitHub. The <code>data/</code> folder is gitignored — it only lives on your machine.</p>
+                <p><strong>💡 Tip:</strong> You don't need to push storage-packed to GitHub. The <code style="background:rgba(255,107,53,0.1);padding:0.1rem 0.3rem;border-radius:4px;font-family:var(--mono);font-size:0.85rem">data/</code> folder is gitignored — it only lives on your machine.</p>
               </div>
             </div>
           </div>
@@ -313,13 +304,11 @@
             </div>
             <div class="step-content">
               <h3>Sync to wippyio</h3>
-              <p>After adding or updating projects, run the sync from the wippyio directory:</p>
+              <p>After adding or updating projects, run the sync:</p>
               <div class="code-block"><code>cd wippyio<br/>node sync-projects.js</code></div>
-              <p>This reads <code>storage-packed/data/projects.json</code>, detects GitHub repos from stored files, and writes a slim version to <code>wippyio/data/projects.json</code>.</p>
-              <p>You'll see output like:</p>
-              <div class="code-block"><code>📖  Reading .../storage-packed/data/projects.json<br/>✅  Wrote 32 projects to data/projects.json<br/>    17950 KB → 78 KB  (100% smaller)<br/>    12 project(s) with GitHub repos detected</code></div>
+              <p>This reads <code style="background:var(--accent-glow);padding:0.1rem 0.3rem;border-radius:4px;font-family:var(--mono);font-size:0.85rem">storage-packed/data/projects.json</code>, detects GitHub repos, checks visibility, and writes a slim version.</p>
               <div class="tip">
-                <p><strong>💡 Tip:</strong> If the repos are in different folders, pass the path: <code>node sync-projects.js /full/path/to/storage-packed</code></p>
+                <p><strong>💡 Tip:</strong> Add <code style="background:rgba(255,107,53,0.1);padding:0.1rem 0.3rem;border-radius:4px;font-family:var(--mono);font-size:0.85rem">--screenshots</code> to capture project screenshots: <code style="background:rgba(255,107,53,0.1);padding:0.1rem 0.3rem;border-radius:4px;font-family:var(--mono);font-size:0.85rem">node sync-projects.js --screenshots</code></p>
               </div>
             </div>
           </div>
@@ -327,15 +316,14 @@
           <div class="workflow-step">
             <div class="step-line">
               <div class="step-num">4</div>
-              <div class="step-connector"></div>
             </div>
             <div class="step-content">
               <h3>Push to GitHub</h3>
-              <p>Commit and push the updated data to GitHub:</p>
-              <div class="code-block"><code>git add data/projects.json<br/>git commit -m "Update project portfolio data"<br/>git push</code></div>
+              <p>Commit and push the updated data:</p>
+              <div class="code-block"><code>git add -A<br/>git commit -m "Update project data"<br/>git push</code></div>
               <p>Or use the one-command script:</p>
               <div class="code-block"><code>./update.sh</code></div>
-              <p>GitHub Actions will automatically deploy the updated site to <strong>https://gamer-09.github.io/wippyio/</strong>.</p>
+              <p>GitHub Actions deploys automatically to <strong style="color:var(--accent)">https://gamer-09.github.io/wippyio/</strong></p>
             </div>
           </div>
         </div>
@@ -344,7 +332,7 @@
       <!-- Quick commands -->
       <section class="help-section">
         <h2><span class="emoji">⌨️</span> Quick Reference</h2>
-        <div class="code-block"><code><span class="comment"># Start the vault (to add/edit projects)</span><br/>cd storage-packed && npm start<br/><br/><span class="comment"># Sync projects to wippyio</span><br/>cd wippyio && node sync-projects.js<br/><br/><span class="comment"># One-command sync + push</span><br/>cd wippyio && ./update.sh<br/><br/><span class="comment"># Sync from a different path</span><br/>node sync-projects.js /other/path/to/storage-packed</code></div>
+        <div class="code-block"><code><span class="comment"># Start the vault</span><br/>cd storage-packed && npm start<br/><br/><span class="comment"># Sync projects</span><br/>cd wippyio && node sync-projects.js<br/><br/><span class="comment"># Sync with screenshots</span><br/>cd wippyio && node sync-projects.js --screenshots<br/><br/><span class="comment"># One-command sync + push</span><br/>cd wippyio && ./update.sh</code></div>
       </section>
 
       <!-- FAQ -->
@@ -352,37 +340,32 @@
         <h2><span class="emoji">❓</span> FAQ</h2>
 
         <div class="tip">
-          <p><strong>Q: Do I need to keep storage-packed running for the portfolio to work?</strong></p>
-          <p>No. The portfolio is a static site — once synced and pushed, it works on its own. storage-packed only needs to be running when you want to add or edit projects.</p>
+          <p><strong>Q: Do I need storage-packed running for the portfolio to work?</strong></p>
+          <p>No. The portfolio is a static site — once synced and pushed, it works on its own.</p>
         </div>
 
         <div class="tip">
           <p><strong>Q: How often should I sync?</strong></p>
-          <p>Whenever you add or update a project in storage-packed. There's no automatic sync — you run the script manually (or use <code>./update.sh</code> for a one-command sync + push).</p>
+          <p>Whenever you add or update a project. Run the script manually or use <code style="background:rgba(255,107,53,0.1);padding:0.1rem 0.3rem;border-radius:4px;font-family:var(--mono);font-size:0.85rem">./update.sh</code> for one-command sync + push.</p>
         </div>
 
         <div class="tip">
-          <p><strong>Q: What if I don't have Node.js?</strong></p>
-          <p>The sync script requires Node.js to run. Install it from <a href="https://nodejs.org" target="_blank" style="color:var(--accent)">nodejs.org</a>. You don't need Node.js for the portfolio site itself — that's just static HTML/CSS/JS.</p>
+          <p><strong>Q: How do screenshots work?</strong></p>
+          <p>The sync script uses your system Chrome (via puppeteer-core) to screenshot each project's web page. Projects without web content get gradient fallback cards with emojis.</p>
         </div>
 
         <div class="tip">
-          <p><strong>Q: Where does the project data come from?</strong></p>
-          <p>From <code>storage-packed/data/projects.json</code> — the same database that powers the storage-packed vault. The sync script reads it directly from your local disk.</p>
+          <p><strong>Q: What do the badges on cards mean?</strong></p>
+          <p><strong style="color:var(--green)">🌐 Public</strong> / <strong style="color:#ff4757">🔒 Private</strong> — repo visibility from GitHub API. <strong style="color:var(--purple)">✨ Updated</strong> — project was modified after creation.</p>
         </div>
 
         <div class="tip tip-warning">
-          <p><strong>⚠️ Important:</strong> The <code>data/</code> folder in storage-packed is <strong>gitignored</strong>. Do not try to push storage-packed to GitHub expecting the data to be there — it won't be. The sync reads from your local machine only.</p>
-        </div>
-
-        <div class="tip">
-          <p><strong>Q: Can I edit the slimmed data directly?</strong></p>
-          <p>You can, but it will be overwritten the next time you run the sync. Always make changes in storage-packed, then re-sync.</p>
+          <p><strong>⚠️ Important:</strong> The <code style="background:rgba(255,200,87,0.1);padding:0.1rem 0.3rem;border-radius:4px;font-family:var(--mono);font-size:0.85rem">data/</code> folder in storage-packed is <strong>gitignored</strong>. The sync reads from your local machine only.</p>
         </div>
 
         <div class="tip">
           <p><strong>Q: How does GitHub repo detection work?</strong></p>
-          <p>The sync script scans each stored project's files for <code>.git/config</code>, <code>package.json</code>, and README/markdown files to find GitHub URLs. If found, a link icon appears on the project card.</p>
+          <p>The sync scans each project's files for <code style="background:rgba(255,107,53,0.1);padding:0.1rem 0.3rem;border-radius:4px;font-family:var(--mono);font-size:0.85rem">.git/config</code>, <code style="background:rgba(255,107,53,0.1);padding:0.1rem 0.3rem;border-radius:4px;font-family:var(--mono);font-size:0.85rem">package.json</code>, and markdown files to find GitHub URLs.</p>
         </div>
       </section>
 
@@ -390,14 +373,17 @@
       <section class="help-section">
         <h2><span class="emoji">🎨</span> Site Features</h2>
         <ul>
-          <li><strong>3 views</strong> — Grid (cards), List (compact rows), and Timeline (vertical timeline by date)</li>
-          <li><strong>Search</strong> — Type in the search box to filter by project name, summary, languages, or GitHub URL</li>
-          <li><strong>Filters</strong> — Show All, Completed, or In Progress projects</li>
-          <li><strong>Sort</strong> — Newest, Oldest, Name A→Z, Name Z→A, Largest, Smallest</li>
-          <li><strong>Dark/Light theme</strong> — Click the sun/moon button in the top right. Your choice is remembered.</li>
-          <li><strong>Project details</strong> — Click any project card to see the full summary, languages, file types, and GitHub link</li>
-          <li><strong>GitHub links</strong> — Projects with detected repos show a GitHub icon linking directly to the repo</li>
-          <li><strong>Animated stats</strong> — The header shows animated counters for total, completed, in-progress, and languages</li>
+          <li><strong>Bento grid</strong> — Varied card sizes (large, wide, standard) for visual interest</li>
+          <li><strong>3 views</strong> — Grid, List, and Timeline</li>
+          <li><strong>Project screenshots</strong> — Real captures of web projects, gradient fallbacks for others</li>
+          <li><strong>Search</strong> — Filter by name, summary, languages, or GitHub URL</li>
+          <li><strong>Filters</strong> — All, Completed, In Progress</li>
+          <li><strong>Sort</strong> — Newest, Oldest, Name, Size</li>
+          <li><strong>Dark/Light theme</strong> — Animated transition, remembered across visits</li>
+          <li><strong>Repo badges</strong> — Public/Private visibility from GitHub API</li>
+          <li><strong>Updated badges</strong> — Shows when projects were modified</li>
+          <li><strong>Cursor trail</strong> — Colored particles follow your mouse</li>
+          <li><strong>Scroll reveals</strong> — Cards animate in as you scroll</li>
           <li><strong>Responsive</strong> — Works on mobile, tablet, and desktop</li>
         </ul>
       </section>
@@ -406,13 +392,12 @@
 
   <footer>
     <div class="footer-inner">
-      <p>Synced from <a href="https://github.com/gamer-09/storage-packed" target="_blank">storage-packed</a> vault</p>
+      <p><a href="index.html">Portfolio</a> · Synced from <a href="https://github.com/gamer-09/storage-packed" target="_blank">storage-packed</a> vault</p>
       <p class="footer-sub">Built with ❤️ and a lot of ☕</p>
     </div>
   </footer>
 
   <script>
-    // Theme toggle (same as main page)
     (function() {
       var toggle = document.getElementById('themeToggle');
       var trans = document.getElementById('themeTransition');
