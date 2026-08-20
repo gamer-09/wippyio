@@ -1058,6 +1058,84 @@ footer {
   .tl-card { margin-left: 0.5rem; }
 }
 
+/* ---- Loading Skeleton ---- */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+@keyframes skeletonFadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.97); }
+}
+.skeleton-grid {
+  animation: none;
+}
+.skeleton-grid.hiding {
+  animation: skeletonFadeOut 0.35s ease forwards;
+  pointer-events: none;
+}
+.skeleton-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.sk-line {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--border) 25%, rgba(99,102,241,0.08) 50%, var(--border) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+.sk-w20 { width: 20%; }
+.sk-w30 { width: 30%; }
+.sk-w40 { width: 40%; }
+.sk-w50 { width: 50%; }
+.sk-w55 { width: 55%; }
+.sk-w60 { width: 60%; }
+.sk-w65 { width: 65%; }
+.sk-w70 { width: 70%; }
+.sk-w80 { width: 80%; }
+.sk-w90 { width: 90%; }
+.sk-w100 { width: 100%; }
+.sk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sk-badge {
+  width: 60px;
+  height: 20px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--border) 25%, rgba(99,102,241,0.08) 50%, var(--border) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.sk-row {
+  display: flex;
+  gap: 0.5rem;
+}
+.sk-pill {
+  width: 64px;
+  height: 22px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--border) 25%, rgba(99,102,241,0.08) 50%, var(--border) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+.sk-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
 /* ---- Scrollbar ---- */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }

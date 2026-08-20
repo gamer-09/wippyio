@@ -15,6 +15,7 @@
   // ---- DOM ----
   const $ = (sel) => document.querySelector(sel);
   const $$ = (sel) => document.querySelectorAll(sel);
+  const skeletonGrid = $('#skeletonGrid');
   const grid = $('#projectGrid');
   const list = $('#projectList');
   const timeline = $('#projectTimeline');
@@ -107,6 +108,13 @@
       console.error('Failed to load projects:', err);
       allProjects = [];
     }
+    // Fade out skeleton, then render
+    skeletonGrid.classList.add('hiding');
+    skeletonGrid.addEventListener('animationend', () => {
+      skeletonGrid.style.display = 'none';
+    }, { once: true });
+    // Small delay so the fade-out is visible even on fast loads
+    await new Promise((r) => setTimeout(r, 150));
     render();
     animateCounters();
   }
