@@ -38,8 +38,18 @@
     localStorage.setItem('portfolio-theme', theme);
   }
   applyTheme(getPreferredTheme());
+
+  const themeTransition = $('#themeTransition');
   themeToggle.addEventListener('click', () => {
-    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    // Play sweep animation
+    themeTransition.classList.remove('sweep');
+    void themeTransition.offsetWidth; // force reflow
+    themeTransition.classList.add('sweep');
+    themeTransition.addEventListener('animationend', () => {
+      themeTransition.classList.remove('sweep');
+    }, { once: true });
+    applyTheme(next);
   });
 
   // ---- Init ----

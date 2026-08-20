@@ -114,6 +114,66 @@ body {
   75% { transform: translate(40px, 20px) scale(1.05); }
 }
 
+/* ---- Theme Transition ---- */
+.theme-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+}
+.theme-transition.sweep {
+  animation: themeSweep 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes themeSweep {
+  0% {
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(99,102,241,0.25) 0%, rgba(192,132,252,0.2) 50%, rgba(52,211,153,0.15) 100%);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+  40% {
+    opacity: 1;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  100% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+}
+
+/* Smooth transitions for theme switch */
+body,
+header,
+.card,
+.list-item,
+.tl-card,
+.popup,
+.search-box input,
+.sort-select,
+.filter-btn,
+.view-btn,
+.stat-card,
+.footer-inner,
+.bg-orb,
+.tl-date-label,
+.popup-overlay,
+.popup-close,
+.empty-state,
+.popup-gh-link,
+.card-gh,
+.tl-gh,
+.theme-toggle {
+  transition:
+    background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* ---- Theme Toggle ---- */
 .theme-toggle {
   position: absolute;
