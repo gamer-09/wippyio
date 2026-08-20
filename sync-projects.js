@@ -471,6 +471,48 @@ function parseGitHubUrl(raw) {
 }
 
 // ---------------------------------------------------------------------------
+// Repo visibility check (public/private)
+// ---------------------------------------------------------------------------
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
+const repoCache = new Map();
+
+async function checkRepoVisibility(githubUrl) {
+  // Extract owner/repo from URL
+  const match = githubUrl.match(/github\.com\/([^/]+)\/([^/]+)/i);
+  if (!match) return '';
+  const owner = match[1];
+  const repo = match[2].replace(/\.git$/, '');
+  const key = `${owner}/${repo}`;
+  if (repoCache.has(key)) return repoCache.get(key);
+
+  try {
+    const headers = { 'User-Agent': 'portfolio-hub-sync' };
+    if (GITHUB_TOKEN) headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, { headers, signal: AbortSignal.timeout(5000) });
+    if (!res.ok) { repoCache.set(key, ''); return ''; }
+    const data = await res.json();
+    const vis = data.private ? 'private' : 'public';
+    repoCache.set(key, vis);
+    return vis;
+  } catch {
+    return '';
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Update detection
+// ---------------------------------------------------------------------------
+
+function detectUpdate(project) {
+  if (!project.createdAt || !project.updatedAt) return false;
+  const created = new Date(project.createdAt).getTime();
+  const updated = new Date(project.updatedAt).getTime();
+  // Consider updated if changed by more than 1 hour
+  return updated - created > 3600000;
+}
+
+// ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 

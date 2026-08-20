@@ -304,7 +304,7 @@
       if (activeFilter === 'completed' && p.completionStatus !== 'completed') return false;
       if (activeFilter === 'not-completed' && p.completionStatus === 'completed') return false;
       if (searchQuery) {
-        const hay = [p.name, p.summary, p.completionStatus, p.completionReason, p.githubUrl,
+        const hay = [p.name, p.summary, p.completionStatus, p.completionReason, p.githubUrl, p.repoVisibility,
           ...(p.topLanguages || []).map((l) => l.name),
           ...(p.topFileTypes || []).map((f) => f.name)
         ].join(' ').toLowerCase();
@@ -406,11 +406,24 @@
       ? `<img class="bento-card-thumb" src="${escA(p.thumbnail)}" alt="${escA(p.name)}" loading="lazy" />`
       : `<div class="bento-card-no-thumb">${getProjectEmoji(p.name, p.topFileTypes)}</div>`;
 
+    // Repo visibility badge
+    const visBadge = p.repoVisibility === 'private'
+      ? `<span class="bento-card-badge badge-private">🔒 Private</span>`
+      : p.repoVisibility === 'public'
+        ? `<span class="bento-card-badge badge-public">🌐 Public</span>`
+        : '';
+    // Updated badge
+    const updatedBadge = p.isUpdated
+      ? `<span class="bento-card-badge badge-updated">✨ Updated</span>`
+      : '';
+
     return `<article class="bento-card ${sizeClass}" data-id="${escA(p.id)}" style="--card-accent:${color.accent};--card-accent-glow:${color.glow}">
       ${thumbHTML}
       <div class="bento-card-top">
         <span class="bento-card-num">#${String(i + 1).padStart(2, '0')}</span>
-        <span class="bento-card-badge ${badge.cls}">${badge.label}</span>
+        <div class="bento-card-badges">
+          ${updatedBadge}${visBadge}<span class="bento-card-badge ${badge.cls}">${badge.label}</span>
+        </div>
       </div>
       <h3 class="bento-card-name">${esc(p.name)}</h3>
       <p class="bento-card-summary">${summary}</p>
@@ -440,7 +453,7 @@
       <span class="list-item-num">${String(i + 1).padStart(2, '0')}</span>
       <span class="list-item-dot" style="background:${color.accent}"></span>
       <div class="list-item-info">
-        <div class="list-item-name">${esc(p.name)}</div>
+        <div class="list-item-name">${p.isUpdated ? '<span class="badge-updated-dot"></span>' : ''}${esc(p.name)}${p.repoVisibility ? `<span class="list-vis-icon">${p.repoVisibility === 'private' ? '🔒' : '🌐'}</span>` : ''}</div>
         <div class="list-item-meta">
           <span>${date}</span>
           <span>${p.fileCount || 0} files</span>
@@ -449,6 +462,8 @@
         </div>
       </div>
       <div class="list-item-right">
+        ${p.isUpdated ? '<span class="bento-card-badge badge-updated">✨ Updated</span>' : ''}
+        ${p.repoVisibility === 'private' ? '<span class="bento-card-badge badge-private">🔒 Private</span>' : ''}
         <span class="bento-card-badge ${badge.cls}">${badge.label}</span>
         ${ghLink}
       </div>
@@ -537,17 +552,23 @@
       ? `<img class="popup-thumb" src="${escA(p.thumbnail)}" alt="${escA(p.name)}" />`
       : '';
 
+    const popupVisBadge = p.repoVisibility === 'private' ? '<span class="bento-card-badge badge-private">🔒 Private Repo</span>' : p.repoVisibility === 'public' ? '<span class="bento-card-badge badge-public">🌐 Public Repo</span>' : '';
+    const popupUpdatedBadge = p.isUpdated ? '<span class="bento-card-badge badge-updated">✨ Updated</span>' : '';
+
     popupBody.innerHTML = `
       ${popupThumbHTML}
-      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
+      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;flex-wrap:wrap">
         <span style="width:10px;height:10px;border-radius:50%;background:${color.accent};flex-shrink:0"></span>
         <span class="bento-card-badge ${badge.cls}">${badge.label}</span>
+        ${popupVisBadge}
+        ${popupUpdatedBadge}
       </div>
       <h2>${esc(p.name)}</h2>
       <div class="popup-meta">
         <span class="meta-pill">📅 ${date}</span>
         <span class="meta-pill">📁 ${p.fileCount || 0} files</span>
         <span class="meta-pill">💾 ${esc(p.totalSizeLabel || 'Unknown')}</span>
+        ${p.updatedAt && p.isUpdated ? `<span class="meta-pill">🔄 Last updated: ${fmtDate(p.updatedAt)}</span>` : ''}
       </div>
       ${ghHTML}
       ${reasonHTML}
