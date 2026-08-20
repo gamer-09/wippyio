@@ -160,6 +160,15 @@ function findChrome() {
     const completionStatus = normalizeCompletion(p.completionStatus);
     const githubUrl = await detectGitHubUrl(p);
 
+    // Check repo visibility (public/private)
+    let repoVisibility = '';
+    if (githubUrl) {
+      repoVisibility = await checkRepoVisibility(githubUrl);
+    }
+
+    // Detect if project was updated after creation
+    const isUpdated = detectUpdate(p);
+
     let screenshotFile = '';
     if (captureScreenshots && browser) {
       const webEntry = findWebEntry(p.id);
@@ -190,6 +199,8 @@ function findChrome() {
       topLanguages: (p.topLanguages || []).slice(0, 8),
       topFileTypes: (p.topFileTypes || []).slice(0, 12),
       githubUrl: githubUrl || '',
+      repoVisibility,
+      isUpdated,
       thumbnail: screenshotFile || '',
     });
   }
