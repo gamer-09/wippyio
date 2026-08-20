@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px;
+      height: 630px;
+      background: #0a0a0f;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #f0f0f5;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Aurora blobs */
+    .aurora { position: absolute; inset: 0; overflow: hidden; }
+    .aurora > div {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+    .a1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,107,53,0.3) 0%, transparent 70%);
+      top: -20%; left: -5%;
+    }
+    .a2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(155,93,229,0.25) 0%, transparent 70%);
+      top: 20%; right: -5%;
+    }
+    .a3 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(0,187,249,0.2) 0%, transparent 70%);
+      bottom: -10%; left: 30%;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      padding: 60px;
+    }
+    .icon {
+      font-size: 72px;
+      margin-bottom: 24px;
+    }
+    .title {
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ff6b35, #ff9f1c, #ff006e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      font-size: 24px;
+      color: #a0a0b8;
+      font-weight: 400;
+      margin-bottom: 32px;
+    }
+    .stats {
+      display: flex;
+      gap: 40px;
+      font-family: 'Courier New', monospace;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .stat-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: #ff6b35;
+    }
+    .stat-lbl {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #606078;
+      margin-top: 4px;
+    }
+    .url {
+      position: absolute;
+      bottom: 40px;
+      font-size: 16px;
+      color: #606078;
+      font-family: monospace;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora">
+    <div class="a1"></div>
+    <div class="a2"></div>
+    <div class="a3"></div>
+  </div>
+  <div class="content">
+    <div class="icon">⚡</div>
+    <div class="title">wippy</div>
+    <div class="subtitle">Every project I've ever built.</div>
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">34</span>
+        <span class="stat-lbl">Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" style="color:#00e5a0">12</span>
+        <span class="stat-lbl">Completed</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" style="color:#9b5de5">8+</span>
+        <span class="stat-lbl">Languages</span>
+      </div>
+    </div>
+    <div class="url">gamer-09.github.io/wippyio</div>
+  </div>
+</body>
+</html>
