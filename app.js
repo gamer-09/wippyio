@@ -1,16 +1,50 @@
 /* ==========================================================================
-   Portfolio Hub — Modern Client Logic
+   Portfolio Hub — Bold Redesign v3
    ========================================================================== */
 
 (function () {
   'use strict';
+
+  // ---- Color Palette for Projects ----
+  const PROJECT_COLORS = [
+    { accent: '#ff6b35', glow: 'rgba(255,107,53,0.12)', tagBg: 'rgba(255,107,53,0.1)', tagBorder: 'rgba(255,107,53,0.18)' },
+    { accent: '#9b5de5', glow: 'rgba(155,93,229,0.12)', tagBg: 'rgba(155,93,229,0.1)', tagBorder: 'rgba(155,93,229,0.18)' },
+    { accent: '#00bbf9', glow: 'rgba(0,187,249,0.12)', tagBg: 'rgba(0,187,249,0.1)', tagBorder: 'rgba(0,187,249,0.18)' },
+    { accent: '#00e5a0', glow: 'rgba(0,229,160,0.12)', tagBg: 'rgba(0,229,160,0.1)', tagBorder: 'rgba(0,229,160,0.18)' },
+    { accent: '#ff006e', glow: 'rgba(255,0,110,0.12)', tagBg: 'rgba(255,0,110,0.1)', tagBorder: 'rgba(255,0,110,0.18)' },
+    { accent: '#ffc857', glow: 'rgba(255,200,87,0.12)', tagBg: 'rgba(255,200,87,0.1)', tagBorder: 'rgba(255,200,87,0.18)' },
+    { accent: '#e05520', glow: 'rgba(224,85,32,0.12)', tagBg: 'rgba(224,85,32,0.1)', tagBorder: 'rgba(224,85,32,0.18)' },
+    { accent: '#06b6d4', glow: 'rgba(6,182,212,0.12)', tagBg: 'rgba(6,182,212,0.1)', tagBorder: 'rgba(6,182,212,0.18)' },
+  ];
+
+  const LANG_COLORS = {
+    'javascript': { c: '#f0db4f', bg: 'rgba(240,219,79,0.1)', border: 'rgba(240,219,79,0.2)' },
+    'typescript': { c: '#3178c6', bg: 'rgba(49,120,198,0.1)', border: 'rgba(49,120,198,0.2)' },
+    'python': { c: '#3572A5', bg: 'rgba(53,114,165,0.1)', border: 'rgba(53,114,165,0.2)' },
+    'html': { c: '#e34c26', bg: 'rgba(227,76,38,0.1)', border: 'rgba(227,76,38,0.2)' },
+    'css': { c: '#563d7c', bg: 'rgba(86,61,124,0.1)', border: 'rgba(86,61,124,0.2)' },
+    'java': { c: '#b07219', bg: 'rgba(176,114,25,0.1)', border: 'rgba(176,114,25,0.2)' },
+    'c++': { c: '#f34b7d', bg: 'rgba(243,75,125,0.1)', border: 'rgba(243,75,125,0.2)' },
+    'c#': { c: '#178600', bg: 'rgba(23,134,0,0.1)', border: 'rgba(23,134,0,0.2)' },
+    'go': { c: '#00ADD8', bg: 'rgba(0,173,216,0.1)', border: 'rgba(0,173,216,0.2)' },
+    'rust': { c: '#dea584', bg: 'rgba(222,165,132,0.1)', border: 'rgba(222,165,132,0.2)' },
+    'ruby': { c: '#CC342D', bg: 'rgba(204,52,45,0.1)', border: 'rgba(204,52,45,0.2)' },
+    'php': { c: '#4F5D95', bg: 'rgba(79,93,149,0.1)', border: 'rgba(79,93,149,0.2)' },
+    'swift': { c: '#F05138', bg: 'rgba(240,81,56,0.1)', border: 'rgba(240,81,56,0.2)' },
+    'kotlin': { c: '#A97BFF', bg: 'rgba(169,123,255,0.1)', border: 'rgba(169,123,255,0.2)' },
+    'dart': { c: '#00B4AB', bg: 'rgba(0,180,171,0.1)', border: 'rgba(0,180,171,0.2)' },
+    'lua': { c: '#000080', bg: 'rgba(0,0,128,0.1)', border: 'rgba(0,0,128,0.2)' },
+    'shell': { c: '#89e051', bg: 'rgba(137,224,81,0.1)', border: 'rgba(137,224,81,0.2)' },
+    'json': { c: '#999', bg: 'rgba(153,153,153,0.1)', border: 'rgba(153,153,153,0.2)' },
+    'markdown': { c: '#083fa1', bg: 'rgba(8,63,161,0.1)', border: 'rgba(8,63,161,0.2)' },
+  };
 
   // ---- State ----
   let allProjects = [];
   let activeFilter = 'all';
   let searchQuery = '';
   let sortBy = 'newest';
-  let viewMode = 'grid'; // 'grid' | 'list'
+  let viewMode = 'grid';
 
   // ---- DOM ----
   const $ = (sel) => document.querySelector(sel);
@@ -43,15 +77,95 @@
   const themeTransition = $('#themeTransition');
   themeToggle.addEventListener('click', () => {
     const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    // Play sweep animation
     themeTransition.classList.remove('sweep');
-    void themeTransition.offsetWidth; // force reflow
+    void themeTransition.offsetWidth;
     themeTransition.classList.add('sweep');
-    themeTransition.addEventListener('animationend', () => {
-      themeTransition.classList.remove('sweep');
-    }, { once: true });
+    themeTransition.addEventListener('animationend', () => themeTransition.classList.remove('sweep'), { once: true });
     applyTheme(next);
   });
+
+  // ---- Cursor Trail ----
+  const trailCanvas = $('#cursorTrail');
+  const ctx = trailCanvas.getContext('2d');
+  let trailPoints = [];
+  let mouseX = -100, mouseY = -100;
+
+  function resizeCanvas() {
+    trailCanvas.width = window.innerWidth;
+    trailCanvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    trailPoints.push({ x: mouseX, y: mouseY, age: 0, color: PROJECT_COLORS[Math.floor(Math.random() * PROJECT_COLORS.length)].accent });
+    if (trailPoints.length > 30) trailPoints.shift();
+  });
+
+  function drawTrail() {
+    ctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+    for (let i = trailPoints.length - 1; i >= 0; i--) {
+      const p = trailPoints[i];
+      p.age++;
+      if (p.age > 25) { trailPoints.splice(i, 1); continue; }
+      const alpha = (1 - p.age / 25) * 0.3;
+      const size = (1 - p.age / 25) * 4 + 1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = alpha;
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawTrail);
+  }
+  drawTrail();
+
+  // ---- Scroll Reveal (IntersectionObserver) ----
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  function initReveals() {
+    $$('.reveal').forEach((el) => revealObserver.observe(el));
+  }
+  initReveals();
+
+  // ---- Card Scroll Reveal ----
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0) scale(1)';
+        cardObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+  // ---- Color Assignment ----
+  const projectColorMap = new Map();
+  let colorIndex = 0;
+  function getColorForProject(p) {
+    if (projectColorMap.has(p.id)) return projectColorMap.get(p.id);
+    // Deterministic based on project name
+    let hash = 0;
+    for (let i = 0; i < p.name.length; i++) hash = ((hash << 5) - hash + p.name.charCodeAt(i)) | 0;
+    const idx = Math.abs(hash) % PROJECT_COLORS.length;
+    const color = PROJECT_COLORS[idx];
+    projectColorMap.set(p.id, color);
+    return color;
+  }
+  function getLangColor(name) {
+    const key = name.toLowerCase().replace(/[^a-z+#]/g, '');
+    return LANG_COLORS[key] || { c: '#888', bg: 'rgba(136,136,136,0.1)', border: 'rgba(136,136,136,0.2)' };
+  }
 
   // ---- Init ----
   loadProjects();
@@ -108,12 +222,8 @@
       console.error('Failed to load projects:', err);
       allProjects = [];
     }
-    // Fade out skeleton, then render
     skeletonGrid.classList.add('hiding');
-    skeletonGrid.addEventListener('animationend', () => {
-      skeletonGrid.style.display = 'none';
-    }, { once: true });
-    // Small delay so the fade-out is visible even on fast loads
+    skeletonGrid.addEventListener('animationend', () => { skeletonGrid.style.display = 'none'; }, { once: true });
     await new Promise((r) => setTimeout(r, 150));
     render();
     animateCounters();
@@ -133,14 +243,12 @@
   }
 
   function animateNumber(el, target) {
-    const duration = 800;
+    const duration = 900;
     const start = performance.now();
-    const from = 0;
-    el.dataset.target = target;
     function tick(now) {
       const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-      el.textContent = Math.round(from + (target - from) * eased);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      el.textContent = Math.round(target * eased);
       if (progress < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -150,22 +258,23 @@
   function sortProjects(arr) {
     const sorted = [...arr];
     switch (sortBy) {
-      case 'newest':
-        sorted.sort((a, b) => dateVal(b) - dateVal(a)); break;
-      case 'oldest':
-        sorted.sort((a, b) => dateVal(a) - dateVal(b)); break;
-      case 'name':
-        sorted.sort((a, b) => a.name.localeCompare(b.name)); break;
-      case 'name-desc':
-        sorted.sort((a, b) => b.name.localeCompare(a.name)); break;
-      case 'size':
-        sorted.sort((a, b) => (b.totalBytes || 0) - (a.totalBytes || 0)); break;
-      case 'size-asc':
-        sorted.sort((a, b) => (a.totalBytes || 0) - (b.totalBytes || 0)); break;
+      case 'newest': sorted.sort((a, b) => dateVal(b) - dateVal(a)); break;
+      case 'oldest': sorted.sort((a, b) => dateVal(a) - dateVal(b)); break;
+      case 'name': sorted.sort((a, b) => a.name.localeCompare(b.name)); break;
+      case 'name-desc': sorted.sort((a, b) => b.name.localeCompare(a.name)); break;
+      case 'size': sorted.sort((a, b) => (b.totalBytes || 0) - (a.totalBytes || 0)); break;
+      case 'size-asc': sorted.sort((a, b) => (a.totalBytes || 0) - (b.totalBytes || 0)); break;
     }
     return sorted;
   }
   function dateVal(p) { return p.createdAt ? new Date(p.createdAt).getTime() : 0; }
+
+  // ---- Bento Size Logic ----
+  function getBentoSize(index, project) {
+    if (index === 0) return 'bento-large';
+    if (index === 1 || index === 2) return 'bento-wide';
+    return '';
+  }
 
   // ---- Rendering ----
   function render() {
@@ -184,12 +293,10 @@
 
     const sorted = sortProjects(filtered);
 
-    // Filter count
     filterCount.textContent = filtered.length === allProjects.length
       ? `${allProjects.length} projects`
-      : `${filtered.length} of ${allProjects.length}`;
+      : `${filtered.length} / ${allProjects.length}`;
 
-    // Empty
     if (sorted.length === 0) {
       grid.innerHTML = '';
       list.innerHTML = '';
@@ -200,15 +307,13 @@
     }
     emptyState.style.display = 'none';
 
-    // Hide all views first
     grid.style.display = 'none';
     list.style.display = 'none';
     timeline.style.display = 'none';
 
-    // Render view
     if (viewMode === 'grid') {
       grid.style.display = '';
-      grid.innerHTML = sorted.map((p, i) => cardHTML(p, i)).join('');
+      grid.innerHTML = sorted.map((p, i) => bentoCardHTML(p, i)).join('');
       attachCardEvents(grid);
     } else if (viewMode === 'list') {
       list.style.display = '';
@@ -222,9 +327,8 @@
   }
 
   function attachCardEvents(container) {
-    container.querySelectorAll('[data-id]').forEach((el) => {
+    container.querySelectorAll('[data-id]').forEach((el, i) => {
       el.addEventListener('click', (e) => {
-        // Don't open popup if clicking a link
         if (e.target.closest('a')) return;
         const id = el.dataset.id;
         const project = allProjects.find((p) => p.id === id);
@@ -250,34 +354,43 @@
         el.appendChild(ripple);
         ripple.addEventListener('animationend', () => ripple.remove());
       });
+
+      // Scroll reveal for cards
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px) scale(0.97)';
+      el.style.transition = `opacity 0.5s cubic-bezier(0.22,1,0.36,1) ${i * 40}ms, transform 0.5s cubic-bezier(0.22,1,0.36,1) ${i * 40}ms`;
+      cardObserver.observe(el);
     });
   }
 
-  // ---- Card HTML ----
-  function cardHTML(p, i) {
+  // ---- Bento Card HTML ----
+  function bentoCardHTML(p, i) {
+    const color = getColorForProject(p);
     const date = fmtDate(p.createdAt);
-    const badge = completionBadge(p.completionStatus);
-    const summary = esc(truncate(p.summary || 'No summary yet.', 180));
-    const langs = (p.topLanguages || []).slice(0, 3).map((l) =>
-      `<span class="meta-pill">${esc(l.name)} <span class="count">${l.count}</span></span>`
-    ).join('');
+    const badge = p.completionStatus === 'completed' ? { cls: 'badge-done', label: 'Done' } : { cls: 'badge-wip', label: 'WIP' };
+    const summary = esc(truncate(p.summary || 'No summary yet.', 220));
+    const langs = (p.topLanguages || []).slice(0, 4).map((l) => {
+      const lc = getLangColor(l.name);
+      return `<span class="lang-tag" style="--tag-bg:${lc.bg};--tag-color:${lc.c};--tag-border:${lc.border}">${esc(l.name)}</span>`;
+    }).join('');
     const ghLink = p.githubUrl
-      ? `<a class="card-gh" href="${escA(p.githubUrl)}" target="_blank" rel="noopener noreferrer" title="View on GitHub" onclick="event.stopPropagation()">
-           <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      ? `<a class="bento-card-gh" href="${escA(p.githubUrl)}" target="_blank" rel="noopener noreferrer" title="GitHub" onclick="event.stopPropagation()">
+           <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
          </a>` : '';
-    const delay = Math.min(i, 14) * 35;
+    const sizeClass = getBentoSize(i, p);
 
-    return `<article class="card" data-id="${escA(p.id)}" style="animation-delay:${delay}ms">
-      <div class="card-header">
-        <h3 class="card-title">${esc(p.name)}</h3>
-        <span class="card-badge ${badge.cls}">${badge.label}</span>
+    return `<article class="bento-card ${sizeClass}" data-id="${escA(p.id)}" style="--card-accent:${color.accent};--card-accent-glow:${color.glow}">
+      <div class="bento-card-top">
+        <span class="bento-card-num">#${String(i + 1).padStart(2, '0')}</span>
+        <span class="bento-card-badge ${badge.cls}">${badge.label}</span>
       </div>
-      <p class="card-summary">${summary}</p>
-      <div class="card-meta">${langs}</div>
-      <div class="card-footer">
-        <span class="date">📅 ${date}</span>
-        <div class="card-footer-right">
-          <span class="size">${esc(p.totalSizeLabel || '')}</span>
+      <h3 class="bento-card-name">${esc(p.name)}</h3>
+      <p class="bento-card-summary">${summary}</p>
+      <div class="bento-card-tags">${langs}</div>
+      <div class="bento-card-footer">
+        <span class="bento-card-date">📅 ${date}</span>
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <span class="bento-card-size">${esc(p.totalSizeLabel || '')}</span>
           ${ghLink}
         </div>
       </div>
@@ -286,16 +399,18 @@
 
   // ---- List HTML ----
   function listHTML(p, i) {
+    const color = getColorForProject(p);
     const date = fmtDate(p.createdAt);
-    const badge = completionBadge(p.completionStatus);
+    const badge = p.completionStatus === 'completed' ? { cls: 'badge-done', label: 'Done' } : { cls: 'badge-wip', label: 'WIP' };
     const langs = (p.topLanguages || []).slice(0, 3).map((l) => l.name).join(', ');
     const ghLink = p.githubUrl
-      ? `<a class="card-gh" href="${escA(p.githubUrl)}" target="_blank" rel="noopener noreferrer" title="GitHub" onclick="event.stopPropagation()">
-           <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      ? `<a class="bento-card-gh" href="${escA(p.githubUrl)}" target="_blank" rel="noopener noreferrer" title="GitHub" onclick="event.stopPropagation()">
+           <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
          </a>` : '';
-    const delay = Math.min(i, 14) * 30;
 
-    return `<article class="list-item" data-id="${escA(p.id)}" style="animation-delay:${delay}ms">
+    return `<article class="list-item" data-id="${escA(p.id)}">
+      <span class="list-item-num">${String(i + 1).padStart(2, '0')}</span>
+      <span class="list-item-dot" style="background:${color.accent}"></span>
       <div class="list-item-info">
         <div class="list-item-name">${esc(p.name)}</div>
         <div class="list-item-meta">
@@ -306,7 +421,7 @@
         </div>
       </div>
       <div class="list-item-right">
-        <span class="card-badge ${badge.cls}">${badge.label}</span>
+        <span class="bento-card-badge ${badge.cls}">${badge.label}</span>
         ${ghLink}
       </div>
     </article>`;
@@ -314,17 +429,13 @@
 
   // ---- Timeline HTML ----
   function timelineHTML(projects) {
-    // Group projects by month
     const groups = [];
     let lastKey = '';
     for (const p of projects) {
       const d = p.createdAt ? new Date(p.createdAt) : null;
       const key = d ? `${d.getFullYear()}-${String(d.getMonth()).padStart(2, '0')}` : 'unknown';
       const label = d ? d.toLocaleDateString('en-US', { year: 'numeric', month: 'long' }) : 'Unknown date';
-      if (key !== lastKey) {
-        groups.push({ key, label, items: [] });
-        lastKey = key;
-      }
+      if (key !== lastKey) { groups.push({ key, label, items: [] }); lastKey = key; }
       groups[groups.length - 1].items.push(p);
     }
 
@@ -332,34 +443,28 @@
     let globalIdx = 0;
 
     for (const group of groups) {
-      html += `<div class="tl-group">
-        <div class="tl-date-marker">
-          <span class="tl-date-dot"></span>
-          <span class="tl-date-label">${esc(group.label)}</span>
-        </div>`;
-
+      html += `<div class="tl-group"><div class="tl-date-marker"><span class="tl-date-dot"></span><span class="tl-date-label">${esc(group.label)}</span></div>`;
       for (const p of group.items) {
-        const badge = completionBadge(p.completionStatus);
+        const color = getColorForProject(p);
+        const badge = p.completionStatus === 'completed' ? { cls: 'badge-done', label: 'Done' } : { cls: 'badge-wip', label: 'WIP' };
         const date = fmtDateShort(p.createdAt);
         const langs = (p.topLanguages || []).slice(0, 2).map((l) => l.name).join(', ');
-        const side = globalIdx % 2 === 0 ? 'left' : 'right';
         const ghLink = p.githubUrl
           ? `<a class="tl-gh" href="${escA(p.githubUrl)}" target="_blank" rel="noopener noreferrer" title="GitHub" onclick="event.stopPropagation()">
                <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
              </a>` : '';
-        const delay = Math.min(globalIdx, 16) * 50;
 
-        html += `<div class="tl-item tl-${side}" data-id="${escA(p.id)}" style="animation-delay:${delay}ms">
+        html += `<div class="tl-item" data-id="${escA(p.id)}">
           <div class="tl-connector"><span class="tl-dot ${p.completionStatus === 'completed' ? 'tl-dot-done' : ''}"></span></div>
-          <div class="tl-card">
+          <div class="tl-card" style="border-left:3px solid ${color.accent}">
             <div class="tl-card-top">
               <span class="tl-card-date">${esc(date)}</span>
-              <span class="card-badge ${badge.cls}" style="font-size:0.65rem;padding:0.15rem 0.5rem">${badge.label}</span>
+              <span class="bento-card-badge ${badge.cls}" style="font-size:0.6rem;padding:0.12rem 0.45rem">${badge.label}</span>
             </div>
             <h4 class="tl-card-name">${esc(p.name)}</h4>
             <p class="tl-card-summary">${esc(truncate(p.summary || 'No summary yet.', 120))}</p>
             <div class="tl-card-bottom">
-              <span class="tl-card-meta">${esc(p.totalSizeLabel || '')} · ${p.fileCount || 0} files</span>
+              <span>${esc(p.totalSizeLabel || '')} · ${p.fileCount || 0} files</span>
               ${langs ? `<span class="tl-card-langs">${esc(langs)}</span>` : ''}
               ${ghLink}
             </div>
@@ -367,24 +472,24 @@
         </div>`;
         globalIdx++;
       }
-
       html += '</div>';
     }
-
     html += '</div>';
     return html;
   }
 
   // ---- Popup ----
   function openPopup(p) {
+    const color = getColorForProject(p);
     const date = fmtDate(p.createdAt);
-    const badge = completionBadge(p.completionStatus);
+    const badge = p.completionStatus === 'completed' ? { cls: 'badge-done', label: 'Completed' } : { cls: 'badge-wip', label: 'In Progress' };
     const summaryHTML = renderMarkdown(p.summary || 'No summary available.');
-    const langs = (p.topLanguages || []).map((l) =>
-      `<span class="meta-pill">${esc(l.name)} <span class="count">${l.count}</span></span>`
-    ).join('');
+    const langs = (p.topLanguages || []).map((l) => {
+      const lc = getLangColor(l.name);
+      return `<span class="lang-tag" style="--tag-bg:${lc.bg};--tag-color:${lc.c};--tag-border:${lc.border}">${esc(l.name)} <span style="opacity:0.6">${l.count}</span></span>`;
+    }).join('');
     const fts = (p.topFileTypes || []).map((f) =>
-      `<span class="meta-pill">${esc(f.name)} <span class="count">${f.count}</span></span>`
+      `<span class="lang-tag" style="--tag-bg:rgba(136,136,136,0.1);--tag-color:#888;--tag-border:rgba(136,136,136,0.2)">${esc(f.name)} <span style="opacity:0.6">${f.count}</span></span>`
     ).join('');
 
     let reasonHTML = '';
@@ -394,17 +499,18 @@
 
     let ghHTML = '';
     if (p.githubUrl) {
-      ghHTML = `<a class="popup-gh-link" href="${escA(p.githubUrl)}" target="_blank" rel="noopener noreferrer">
+      ghHTML = `<a class="popup-gh-link" href="${escA(p.githubUrl)}" target="_blank" rel="noopener noreferrer" style="background:${color.accent}">
         <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
         <span>View on GitHub</span>
       </a>`;
     }
 
     popupBody.innerHTML = `
-      <h2>${esc(p.name)}</h2>
       <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
-        <span class="card-badge ${badge.cls}" style="font-size:0.78rem;padding:0.25rem 0.7rem">${badge.label}</span>
+        <span style="width:10px;height:10px;border-radius:50%;background:${color.accent};flex-shrink:0"></span>
+        <span class="bento-card-badge ${badge.cls}">${badge.label}</span>
       </div>
+      <h2>${esc(p.name)}</h2>
       <div class="popup-meta">
         <span class="meta-pill">📅 ${date}</span>
         <span class="meta-pill">📁 ${p.fileCount || 0} files</span>
@@ -426,10 +532,6 @@
   }
 
   // ---- Helpers ----
-  function completionBadge(s) {
-    if (s === 'completed') return { cls: 'badge-completed', label: 'Completed' };
-    return { cls: 'badge-not-completed', label: 'In Progress' };
-  }
   function fmtDate(d) {
     if (!d) return 'Unknown';
     try { return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }); }
@@ -452,7 +554,7 @@
     h = h.replace(/^### (.+)$/gm, '<strong style="display:block;margin-top:0.75rem">$1</strong>');
     h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    h = h.replace(/`([^`]+)`/g, '<code style="background:var(--accent-dim);padding:0.15rem 0.4rem;border-radius:4px;font-size:0.88rem">$1</code>');
+    h = h.replace(/`([^`]+)`/g, '<code style="background:var(--accent-glow);padding:0.15rem 0.4rem;border-radius:4px;font-size:0.88rem;font-family:var(--mono)">$1</code>');
     h = h.replace(/^- (.+)$/gm, '<span style="display:block;padding-left:1rem">• $1</span>');
     h = h.replace(/\n/g, '<br>');
     return h;
