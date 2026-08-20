@@ -1,8 +1,8 @@
 {
-  "name": "portfolio-hub",
+  "name": "wippyio",
   "version": "1.0.0",
   "private": true,
-  "description": "Portfolio site synced from storage-packed vault",
+  "description": "wippy — project portfolio synced from storage-packed vault",
   "scripts": {
     "sync": "node sync-projects.js",
     "sync:screenshots": "node sync-projects.js --screenshots",

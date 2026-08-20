@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Help — Project Hub</title>
+  <title>Help — wippy</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -229,7 +229,7 @@
         <span class="logo-icon">⚡</span>
         <h1 class="logo">Help & Guide</h1>
       </div>
-      <p class="tagline">How to use storage-packed and portfolio-hub together.</p>
+      <p class="tagline">How to use storage-packed and wippy together.</p>
     </div>
   </header>
 
@@ -243,7 +243,7 @@
         <p>There are <strong>two repos</strong> that work together:</p>
         <ul>
           <li><strong>storage-packed</strong> — A local web app that stores your project archives in a browser vault. This runs on your machine only.</li>
-          <li><strong>portfolio-hub</strong> — A static website hosted on GitHub Pages that displays all your projects as a public portfolio.</li>
+          <li><strong>wippyio</strong> — A static website hosted on GitHub Pages that displays all your projects as a public portfolio.</li>
         </ul>
 
         <div class="diagram">
@@ -260,11 +260,11 @@
           <span class="arrow">│  Detects GitHub repo URLs</span><br/>
           <span class="arrow">│</span><br/>
           <span class="arrow">▼</span><br/>
-          <span class="highlight">portfolio-hub</span> <span class="arrow">(GitHub Pages)</span><br/>
+          <span class="highlight">wippyio</span> <span class="arrow">(GitHub Pages)</span><br/>
           <span class="arrow">│</span><br/>
           <span class="arrow">│  git push → GitHub Actions → live site</span><br/>
           <span class="arrow">▼</span><br/>
-          <span class="highlight">https://gamer-09.github.io/portfolio-hub/</span>
+          <span class="highlight">https://gamer-09.github.io/wippyio/</span>
         </div>
       </section>
 
@@ -312,10 +312,10 @@
               <div class="step-connector"></div>
             </div>
             <div class="step-content">
-              <h3>Sync to portfolio-hub</h3>
-              <p>After adding or updating projects, run the sync from the portfolio-hub directory:</p>
-              <div class="code-block"><code>cd portfolio-hub<br/>node sync-projects.js</code></div>
-              <p>This reads <code>storage-packed/data/projects.json</code>, detects GitHub repos from stored files, and writes a slim version to <code>portfolio-hub/data/projects.json</code>.</p>
+              <h3>Sync to wippyio</h3>
+              <p>After adding or updating projects, run the sync from the wippyio directory:</p>
+              <div class="code-block"><code>cd wippyio<br/>node sync-projects.js</code></div>
+              <p>This reads <code>storage-packed/data/projects.json</code>, detects GitHub repos from stored files, and writes a slim version to <code>wippyio/data/projects.json</code>.</p>
               <p>You'll see output like:</p>
               <div class="code-block"><code>📖  Reading .../storage-packed/data/projects.json<br/>✅  Wrote 32 projects to data/projects.json<br/>    17950 KB → 78 KB  (100% smaller)<br/>    12 project(s) with GitHub repos detected</code></div>
               <div class="tip">
@@ -335,7 +335,7 @@
               <div class="code-block"><code>git add data/projects.json<br/>git commit -m "Update project portfolio data"<br/>git push</code></div>
               <p>Or use the one-command script:</p>
               <div class="code-block"><code>./update.sh</code></div>
-              <p>GitHub Actions will automatically deploy the updated site to <strong>https://gamer-09.github.io/portfolio-hub/</strong>.</p>
+              <p>GitHub Actions will automatically deploy the updated site to <strong>https://gamer-09.github.io/wippyio/</strong>.</p>
             </div>
           </div>
         </div>
@@ -344,7 +344,7 @@
       <!-- Quick commands -->
       <section class="help-section">
         <h2><span class="emoji">⌨️</span> Quick Reference</h2>
-        <div class="code-block"><code><span class="comment"># Start the vault (to add/edit projects)</span><br/>cd storage-packed && npm start<br/><br/><span class="comment"># Sync projects to portfolio-hub</span><br/>cd portfolio-hub && node sync-projects.js<br/><br/><span class="comment"># One-command sync + push</span><br/>cd portfolio-hub && ./update.sh<br/><br/><span class="comment"># Sync from a different path</span><br/>node sync-projects.js /other/path/to/storage-packed</code></div>
+        <div class="code-block"><code><span class="comment"># Start the vault (to add/edit projects)</span><br/>cd storage-packed && npm start<br/><br/><span class="comment"># Sync projects to wippyio</span><br/>cd wippyio && node sync-projects.js<br/><br/><span class="comment"># One-command sync + push</span><br/>cd wippyio && ./update.sh<br/><br/><span class="comment"># Sync from a different path</span><br/>node sync-projects.js /other/path/to/storage-packed</code></div>
       </section>
 
       <!-- FAQ -->

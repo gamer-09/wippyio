@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Portfolio Hub — Bold Redesign v3
+   wippy — styles
    ========================================================================== */
 
 /* ---- Tokens ---- */
@@ -625,6 +625,47 @@ a:hover { color: var(--accent-2); }
   background: var(--amber-dim);
   color: var(--amber);
   border: 1px solid rgba(255,200,87,0.2);
+}
+.badge-private {
+  background: rgba(255,71,87,0.1);
+  color: #ff4757;
+  border: 1px solid rgba(255,71,87,0.2);
+}
+.badge-public {
+  background: rgba(0,229,160,0.1);
+  color: var(--green);
+  border: 1px solid rgba(0,229,160,0.2);
+}
+.badge-updated {
+  background: rgba(155,93,229,0.1);
+  color: var(--purple);
+  border: 1px solid rgba(155,93,229,0.2);
+}
+.badge-updated-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--purple);
+  margin-right: 0.35rem;
+  animation: pulse 2s ease-in-out infinite;
+  vertical-align: middle;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+.bento-card-badges {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.list-vis-icon {
+  font-size: 0.75rem;
+  margin-left: 0.3rem;
+  opacity: 0.7;
 }
 
 .bento-card-name {

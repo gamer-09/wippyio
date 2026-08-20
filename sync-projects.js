@@ -147,7 +147,12 @@ function findChrome() {
         });
         console.log('📸  Browser launched');
       } catch (err) {
-        console.error(`⚠️  Could not launch Chrome: ${err.message}`);
+        if (err.code === 'MODULE_NOT_FOUND') {
+          console.error('⚠️  puppeteer-core not installed. Run: npm install puppeteer-core');
+          console.error('   Using gradient fallbacks for all projects.');
+        } else {
+          console.error(`⚠️  Could not launch Chrome: ${err.message}`);
+        }
       }
     }
   }
@@ -487,7 +492,7 @@ async function checkRepoVisibility(githubUrl) {
   if (repoCache.has(key)) return repoCache.get(key);
 
   try {
-    const headers = { 'User-Agent': 'portfolio-hub-sync' };
+    const headers = { 'User-Agent': 'wippyio-sync' };
     if (GITHUB_TOKEN) headers['Authorization'] = `token ${GITHUB_TOKEN}`;
     const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, { headers, signal: AbortSignal.timeout(5000) });
     if (!res.ok) { repoCache.set(key, ''); return ''; }
