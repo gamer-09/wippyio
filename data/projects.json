@@ -1,6 +1,76 @@
 {
   "projects": [
     {
+      "id": "mt25gfv0-a46b51ea78",
+      "name": "admin help bot",
+      "createdAt": "2026-08-20T23:26:35.341Z",
+      "updatedAt": "2026-08-20T23:27:06.941Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project is an \"admin help bot\" designed for Discord server management. It provides a comprehensive suite of moderation tools, including auto-welcome messages, a progressive discipline system with warnings and timeouts, and various administrative commands. The bot aims to automate and streamline common moderation tasks within a Discord community.\n\n## Highlights\n- Implements a progressive discipline system with auto-escalating actions (warn, timeout, ban).\n- Features a configurable auto-moderation system for spam and bad word filtering.\n- Utilizes Discord.js for robust interaction with the Discord API, including slash commands and embeds.\n- Stores user infraction records and configuration overrides locally in a JSON database file.\n- Includes deployment configuration for Render, suggesting cloud hosting readiness.\n- Developed using TypeScript, indicating a focus on type safety and maintainability.\n\n## Likely Tech Stack\n- **Languages**: TypeScript, JavaScript (runtime), JSON, Markdown, YAML\n- **Frameworks/Libraries**: Discord.js, @discordjs/rest, Express\n- **Runtime**: Node.js (version >=20)\n- **Build Tools**: TypeScript Compiler (tsc)\n- **Deployment**: Render, GitHub (for CI/CD integration)\n- **Data Storage**: Local JSON file (`bot-data.json`)\n\n## Run / Restore Notes\nThis project appears to be a standard Node.js/TypeScript application. To run it:\n1.  Ensure Node.js (>=20) is installed.\n2.  Install dependencies using `npm install`.\n3.  Compile the TypeScript code to JavaScript with `npm run build` or `tsc`.\n4.  Create a `.env` file based on `.env.example`, providing `DISCORD_BOT_TOKEN` and `DISCORD_GUILD_ID`.\n5.  Start the bot using `npm start` (runs compiled `dist/index.js`) or `npm run dev` (runs `src/index.ts` directly with `ts-node`).\nThe presence of a `.git` directory indicates this was a Git repository, but the archive itself is a snapshot. Data persistence relies on `bot-data.json`, which will be created in the current working directory or `/data` if `DATA_DIR` is set.\n\n## Tags\ndiscord bot, moderation, admin tools, typescript, nodejs, server management, automod, render, progressive discipline\nThe previous archive summary was completed in its entirety, including the final \"Tags\" section. There is no further content to generate.\nThe previous archive summary was completed in its entirety, including the final \"Tags\" section. There is no further content to generate.",
+      "acceptedAt": "2026-08-20T23:27:01.605Z",
+      "fileCount": 361,
+      "totalBytes": 480859,
+      "totalSizeLabel": "470 KB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 349
+        },
+        {
+          "name": "TypeScript",
+          "count": 7
+        },
+        {
+          "name": "JSON",
+          "count": 3
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        },
+        {
+          "name": "YAML",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 334
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".ts",
+          "count": 7
+        },
+        {
+          "name": ".json",
+          "count": 3
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        },
+        {
+          "name": ".yaml",
+          "count": 1
+        }
+      ],
+      "githubUrl": "https://github.com/gamer-09/admin-help-bot",
+      "repoVisibility": "",
+      "isUpdated": false,
+      "thumbnail": "data/screenshots/mt25gfv0-a46b51ea78.svg"
+    },
+    {
       "id": "mt1p9jq7-2469820d1e",
       "name": "Half-made-world-Reference",
       "createdAt": "2026-08-20T15:53:19.904Z",
@@ -200,7 +270,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/mail-organizer",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt1p69ft-21a4540c4b.jpg"
     },
@@ -396,7 +466,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Note_vault",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/msqbakdk-ab24c34b74.jpg"
     },
@@ -580,7 +650,7 @@
         }
       ],
       "githubUrl": "https://github.com/rober42539/lao-dictionary",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/msm2j97i-8171c9377e.svg"
     },
@@ -784,7 +854,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/ircc-track",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msjar4qg-e6181144fe.jpg"
     },
@@ -1304,7 +1374,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/replica",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mshysjrv-928916b0e3.jpg"
     },
@@ -1488,7 +1558,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Kilo-lookup",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mshxzdhf-539024ab34.jpg"
     },
@@ -1994,7 +2064,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/worldbuild",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/msg9zh3h-a01b453027.jpg"
     },
