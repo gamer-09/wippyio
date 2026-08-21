@@ -174,8 +174,13 @@ function findChrome() {
     // Detect if project was updated after creation
     const isUpdated = detectUpdate(p);
 
+    // Check for existing screenshot first — never overwrite a real .jpg with a gradient SVG
     let screenshotFile = '';
-    if (captureScreenshots && browser) {
+    const existingJpg = path.join(screenshotsDir, `${p.id}.jpg`);
+    const existingSvg = path.join(screenshotsDir, `${p.id}.svg`);
+    if (fs.existsSync(existingJpg)) {
+      screenshotFile = `data/screenshots/${p.id}.jpg`;
+    } else if (captureScreenshots && browser) {
       const webEntry = findWebEntry(p.id);
       if (webEntry) {
         screenshotFile = await captureScreenshot(browser, p.id, webEntry);
@@ -183,9 +188,14 @@ function findChrome() {
       }
     }
 
-    if (captureScreenshots && !screenshotFile) {
-      screenshotFile = generateGradientCard(p.id, p.name, p.topFileTypes);
-      gradientCount++;
+    // Only generate a gradient fallback if no real screenshot exists
+    if (!screenshotFile) {
+      if (fs.existsSync(existingSvg)) {
+        screenshotFile = `data/screenshots/${p.id}.svg`;
+      } else if (captureScreenshots) {
+        screenshotFile = generateGradientCard(p.id, p.name, p.topFileTypes);
+        gradientCount++;
+      }
     }
 
     slimProjects.push({
@@ -250,6 +260,7 @@ function findWebEntry(projectId) {
     projectDir = path.join(projectRoot, entries[0].name);
   }
 
+  // --- Pass 1: standard candidates in the project root ---
   const candidates = [
     'public/index.html',
     'index.html',
@@ -267,7 +278,7 @@ function findWebEntry(projectId) {
     }
   }
 
-  // Vite/React projects — try building
+  // --- Pass 2: Vite/React projects — try building ---
   const pkgPath = path.join(projectDir, 'package.json');
   if (fs.existsSync(pkgPath)) {
     try {
@@ -278,7 +289,77 @@ function findWebEntry(projectId) {
     } catch {}
   }
 
+  // --- Pass 3: search for index.html in common sub-directories (max 2 levels deep) ---
+  const deepCandidates = [];
+  findIndexHtml(projectDir, deepCandidates, 0, 2);
+  if (deepCandidates.length > 0) {
+    // Prefer files that look like main entry points
+    const best = deepCandidates.sort((a, b) => {
+      const score = (p) => {
+        let s = 0;
+        if (/dist[\\/]index/i.test(p)) s += 10;
+        if (/build[\\/]index/i.test(p)) s += 9;
+        if (/public[\\/]index/i.test(p)) s += 8;
+        if (/client[\\/].*index/i.test(p)) s += 7;
+        if (/src[\\/]index/i.test(p)) s += 6;
+        if (/templates[\\/]index/i.test(p)) s += 5;
+        if (/index\.html$/i.test(p)) s += 4;
+        // Penalize popup/options (browser extension entry points)
+        if (/popup\.html$/i.test(p)) s += 3;
+        if (/options\.html$/i.test(p)) s += 2;
+        return s;
+      };
+      return score(b) - score(a);
+    })[0];
+    const prefix = path.dirname(path.relative(projectDir, best));
+    return {
+      dir: path.dirname(best),
+      entry: best,
+      prefix: prefix === '.' ? '' : prefix,
+    };
+  }
+
+  // --- Pass 4: any HTML file at all ---
+  const anyHtml = [];
+  findAnyHtml(projectDir, anyHtml, 0, 3);
+  if (anyHtml.length > 0) {
+    const prefix = path.dirname(path.relative(projectDir, anyHtml[0]));
+    return {
+      dir: path.dirname(anyHtml[0]),
+      entry: anyHtml[0],
+      prefix: prefix === '.' ? '' : prefix,
+    };
+  }
+
   return null;
+}
+
+function findIndexHtml(dir, results, depth, maxDepth) {
+  if (depth > maxDepth) return;
+  try {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, e.name);
+      if (e.isFile() && /^index\.html?$/i.test(e.name)) {
+        results.push(full);
+      } else if (e.isDirectory() && !['node_modules', '.git', 'vendor', '.venv', 'dist', 'build'].includes(e.name)) {
+        findIndexHtml(full, results, depth + 1, maxDepth);
+      }
+    }
+  } catch {}
+}
+
+function findAnyHtml(dir, results, depth, maxDepth) {
+  if (depth > maxDepth) return;
+  try {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, e.name);
+      if (e.isFile() && /\.html?$/i.test(e.name)) {
+        results.push(full);
+      } else if (e.isDirectory() && !['node_modules', '.git', 'vendor', '.venv'].includes(e.name)) {
+        findAnyHtml(full, results, depth + 1, maxDepth);
+      }
+    }
+  } catch {}
 }
 
 // ---------------------------------------------------------------------------

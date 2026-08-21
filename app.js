@@ -403,7 +403,7 @@
 
     // Thumbnail
     const thumbHTML = p.thumbnail
-      ? `<img class="bento-card-thumb" src="${escA(p.thumbnail)}" alt="${escA(p.name)}" loading="lazy" />`
+      ? `<img class="bento-card-thumb" src="${escA(p.thumbnail)}" alt="${escA(p.name)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div class="bento-card-no-thumb" style="display:none">${getProjectEmoji(p.name, p.topFileTypes)}</div>`
       : `<div class="bento-card-no-thumb">${getProjectEmoji(p.name, p.topFileTypes)}</div>`;
 
     // Repo visibility badge
@@ -549,7 +549,7 @@
     }
 
     const popupThumbHTML = p.thumbnail
-      ? `<img class="popup-thumb" src="${escA(p.thumbnail)}" alt="${escA(p.name)}" />`
+      ? `<img class="popup-thumb" src="${escA(p.thumbnail)}" alt="${escA(p.name)}" onerror="this.style.display='none'" />`
       : '';
 
     const popupVisBadge = p.repoVisibility === 'private' ? '<span class="bento-card-badge badge-private">🔒 Private Repo</span>' : p.repoVisibility === 'public' ? '<span class="bento-card-badge badge-public">🌐 Public Repo</span>' : '';
