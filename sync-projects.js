@@ -461,10 +461,20 @@ async function captureScreenshot(browser, projectId, webEntry) {
   }
 
   // ---- Step 7: Screenshot ----
+  // Build the URL: if serving statically, point to the specific HTML file
+  let screenshotUrl = `http://127.0.0.1:${port}`;
+  if (!serverProcess && serveDir) {
+    // Static serving — navigate to the specific HTML file relative to serveDir
+    const htmlRel = path.relative(serveDir, webEntry.entry).replace(/\\/g, '/');
+    if (htmlRel && !htmlRel.startsWith('..')) {
+      screenshotUrl = `http://127.0.0.1:${port}/${htmlRel}`;
+    }
+  }
+
   const page = await browser.newPage();
   try {
     await page.setViewport({ width: 1280, height: 800 });
-    await page.goto(`http://127.0.0.1:${port}`, { waitUntil: 'networkidle0', timeout: 15000 });
+    await page.goto(screenshotUrl, { waitUntil: 'networkidle0', timeout: 15000 });
     await new Promise((r) => setTimeout(r, 2000));
     await page.screenshot({ path: outPath, type: 'jpeg', quality: 80 });
     console.log(`   📸  Captured: ${projectId}`);
@@ -545,6 +555,18 @@ async function startProjectServer(webEntry, serverInfo) {
 
   const cwd = serverInfo.cwd || dir;
   if (serverInfo.type === 'python') {
+    // Install Flask/dependencies if requirements.txt exists and no venv
+    const reqFile = path.join(cwd, 'requirements.txt');
+    if (fs.existsSync(reqFile) && !fs.existsSync(path.join(cwd, '.venv'))) {
+      try {
+        console.log(`   📦  Installing Python deps for ${path.basename(cwd)}...`);
+        const { execSync } = require('child_process');
+        execSync('pip install -r requirements.txt -q', { cwd, timeout: 60000, stdio: 'pipe' });
+      } catch {}
+    }
+    // Set PORT env for Flask
+    env.PORT = String(port);
+    env.FLASK_RUN_PORT = String(port);
     proc = spawn('python', [serverInfo.file], {
       cwd, env, stdio: 'pipe', shell: true,
     });
