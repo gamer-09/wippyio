@@ -66,7 +66,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/admin-help-bot",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt25gfv0-a46b51ea78.svg"
     },
@@ -270,7 +270,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/mail-organizer",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt1p69ft-21a4540c4b.jpg"
     },
@@ -466,7 +466,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Note_vault",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/msqbakdk-ab24c34b74.jpg"
     },
@@ -854,7 +854,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/ircc-track",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msjar4qg-e6181144fe.jpg"
     },
@@ -1374,7 +1374,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/replica",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mshysjrv-928916b0e3.jpg"
     },
@@ -2064,7 +2064,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/worldbuild",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/msg9zh3h-a01b453027.jpg"
     },
