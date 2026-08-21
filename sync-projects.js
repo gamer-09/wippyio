@@ -395,9 +395,28 @@ async function captureScreenshot(browser, projectId, webEntry) {
   // ---- Step 1: Determine what kind of project this is ----
   // Walk up from the HTML dir to find the nearest package.json
   const serverRoot = findServerRoot(path.dirname(webEntry.entry), webEntry.dir);
-  const hasPackageJson = fs.existsSync(path.join(serverRoot, 'package.json'));
-  const hasAppPy = fs.existsSync(path.join(serverRoot, 'app.py'));
-  const hasNodeModules = fs.existsSync(path.join(serverRoot, 'node_modules'));
+  let hasPackageJson = fs.existsSync(path.join(serverRoot, 'package.json'));
+  let hasAppPy = fs.existsSync(path.join(serverRoot, 'app.py'));
+  let hasNodeModules = fs.existsSync(path.join(serverRoot, 'node_modules'));
+  let actualServerRoot = serverRoot;
+
+  // If package.json found but no node_modules, check subdirectories
+  if (hasPackageJson && !hasNodeModules) {
+    try {
+      for (const e of fs.readdirSync(serverRoot, { withFileTypes: true })) {
+        if (e.isDirectory() && !['node_modules', '.git', 'vendor', '.venv'].includes(e.name)) {
+          const subPkg = path.join(serverRoot, e.name, 'package.json');
+          const subNm = path.join(serverRoot, e.name, 'node_modules');
+          if (fs.existsSync(subPkg) && fs.existsSync(subNm)) {
+            actualServerRoot = path.join(serverRoot, e.name);
+            hasNodeModules = true;
+            break;
+          }
+        }
+      }
+    } catch {}
+  }
+
   const isAlreadyBuilt = /[/\\](dist|build)[/\\]/.test(webEntry.entry);
 
   let serveDir = null;
@@ -412,20 +431,18 @@ async function captureScreenshot(browser, projectId, webEntry) {
   // ---- Step 3: If Vite/React with node_modules, build then serve dist/ ----
   if (!serveDir && hasPackageJson && hasNodeModules && !isAlreadyBuilt) {
     try {
-      const pkg = JSON.parse(fs.readFileSync(path.join(serverRoot, 'package.json'), 'utf8'));
+      const pkg = JSON.parse(fs.readFileSync(path.join(actualServerRoot, 'package.json'), 'utf8'));
       if (pkg.scripts?.build) {
         console.log(`   🔨  Building ${projectId}...`);
-        // Install deps if needed in nested dirs
-        const nmDir = path.join(serverRoot, 'node_modules');
         try {
-          execSync('npm run build', { cwd: serverRoot, timeout: 120000, stdio: 'pipe' });
+          execSync('npm run build', { cwd: actualServerRoot, timeout: 120000, stdio: 'pipe' });
         } catch (e) {
           console.log(`   ⚠️  Build failed: ${e.message?.slice(0, 60)}`);
         }
         // Look for dist/index.html or build/index.html
         for (const dp of ['dist/index.html', 'build/index.html']) {
-          if (fs.existsSync(path.join(serverRoot, dp))) {
-            serveDir = path.join(serverRoot, path.dirname(dp));
+          if (fs.existsSync(path.join(actualServerRoot, dp))) {
+            serveDir = path.join(actualServerRoot, path.dirname(dp));
             break;
           }
         }
@@ -438,9 +455,9 @@ async function captureScreenshot(browser, projectId, webEntry) {
 
   // ---- Step 5: Try running Express/Flask server ----
   if (!serveDir && (hasAppPy || (hasPackageJson && hasNodeModules))) {
-    const needsServer = await detectNeedsServer({ dir: serverRoot, entry: webEntry.entry });
+    const needsServer = await detectNeedsServer({ dir: actualServerRoot, entry: webEntry.entry });
     if (needsServer) {
-      const result = await startProjectServer({ dir: serverRoot, entry: webEntry.entry }, needsServer);
+      const result = await startProjectServer({ dir: actualServerRoot, entry: webEntry.entry }, needsServer);
       if (result) {
         serverProcess = result.proc;
         port = result.port;
