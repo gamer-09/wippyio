@@ -389,50 +389,78 @@ async function captureScreenshot(browser, projectId, webEntry) {
   const outPath = path.join(screenshotsDir, `${projectId}.jpg`);
   if (fs.existsSync(outPath)) return `data/screenshots/${projectId}.jpg`;
 
-  // Build if needed
-  if (webEntry.needsBuild) {
-    try {
-      const { execSync } = require('child_process');
-      console.log(`   🔨  Building ${projectId}...`);
-      execSync('npm run build', { cwd: webEntry.dir, timeout: 60000, stdio: 'pipe' });
-      const distPaths = ['dist/index.html', 'build/index.html'];
-      for (const dp of distPaths) {
-        const full = path.join(webEntry.dir, dp);
-        if (fs.existsSync(full)) {
-          webEntry = { dir: webEntry.dir, entry: full, prefix: path.dirname(dp) };
-          break;
-        }
-      }
-      if (!webEntry.entry) return '';
-    } catch {
-      return '';
-    }
-  }
-
   if (!webEntry.entry) return '';
+  const { execSync } = require('child_process');
 
-  // Try to detect if the project needs a running server (Express, Vite, Flask, etc.)
-  const needsServer = await detectNeedsServer(webEntry);
+  // ---- Step 1: Determine what kind of project this is ----
+  // Walk up from the HTML dir to find the nearest package.json
+  const serverRoot = findServerRoot(path.dirname(webEntry.entry), webEntry.dir);
+  const hasPackageJson = fs.existsSync(path.join(serverRoot, 'package.json'));
+  const hasAppPy = fs.existsSync(path.join(serverRoot, 'app.py'));
+  const hasNodeModules = fs.existsSync(path.join(serverRoot, 'node_modules'));
+  const isAlreadyBuilt = /[/\\](dist|build)[/\\]/.test(webEntry.entry);
+
+  let serveDir = null;
   let serverProcess = null;
-  let staticServer = null;
   let port;
 
-  if (needsServer) {
-    // Start the project's dev/start server
-    const result = await startProjectServer(webEntry, needsServer);
-    if (result) {
-      serverProcess = result.proc;
-      port = result.port;
+  // ---- Step 2: If already in dist/build, just serve statically ----
+  if (isAlreadyBuilt) {
+    serveDir = path.dirname(webEntry.entry);
+  }
+
+  // ---- Step 3: If Vite/React with node_modules, build then serve dist/ ----
+  if (!serveDir && hasPackageJson && hasNodeModules && !isAlreadyBuilt) {
+    try {
+      const pkg = JSON.parse(fs.readFileSync(path.join(serverRoot, 'package.json'), 'utf8'));
+      if (pkg.scripts?.build) {
+        console.log(`   🔨  Building ${projectId}...`);
+        // Install deps if needed in nested dirs
+        const nmDir = path.join(serverRoot, 'node_modules');
+        try {
+          execSync('npm run build', { cwd: serverRoot, timeout: 120000, stdio: 'pipe' });
+        } catch (e) {
+          console.log(`   ⚠️  Build failed: ${e.message?.slice(0, 60)}`);
+        }
+        // Look for dist/index.html or build/index.html
+        for (const dp of ['dist/index.html', 'build/index.html']) {
+          if (fs.existsSync(path.join(serverRoot, dp))) {
+            serveDir = path.join(serverRoot, path.dirname(dp));
+            break;
+          }
+        }
+      }
+    } catch {}
+  }
+
+  // ---- Step 4: If has package.json with dev/start but no node_modules, skip server ----
+  // (Can't run without deps — fall through to static serving of the HTML dir)
+
+  // ---- Step 5: Try running Express/Flask server ----
+  if (!serveDir && (hasAppPy || (hasPackageJson && hasNodeModules))) {
+    const needsServer = await detectNeedsServer({ dir: serverRoot, entry: webEntry.entry });
+    if (needsServer) {
+      const result = await startProjectServer({ dir: serverRoot, entry: webEntry.entry }, needsServer);
+      if (result) {
+        serverProcess = result.proc;
+        port = result.port;
+      }
     }
   }
 
+  // ---- Step 6: Fallback — static serve the HTML directory ----
   if (!port) {
-    // Fallback: serve static files
-    const serveDir = webEntry.prefix ? path.join(webEntry.dir, webEntry.prefix) : webEntry.dir;
-    staticServer = await startSafeServer(serveDir);
+    if (!serveDir) {
+      serveDir = path.dirname(webEntry.entry);
+    }
+    const staticServer = await startSafeServer(serveDir);
     port = staticServer.address().port;
+    // Store for cleanup
+    if (!serverProcess) serverProcess = null;
+    webEntry._staticServer = staticServer;
   }
 
+  // ---- Step 7: Screenshot ----
   const page = await browser.newPage();
   try {
     await page.setViewport({ width: 1280, height: 800 });
@@ -446,10 +474,9 @@ async function captureScreenshot(browser, projectId, webEntry) {
     return '';
   } finally {
     await page.close().catch(() => {});
-    if (staticServer) staticServer.close();
+    if (webEntry._staticServer) webEntry._staticServer.close();
     if (serverProcess) {
       try { serverProcess.kill('SIGTERM'); } catch {}
-      // Give it a moment to clean up
       await new Promise((r) => setTimeout(r, 500));
     }
   }
