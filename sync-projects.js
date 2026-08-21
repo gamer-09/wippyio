@@ -289,49 +289,68 @@ function findWebEntry(projectId) {
     } catch {}
   }
 
-  // --- Pass 3: search for index.html in common sub-directories (max 2 levels deep) ---
-  const deepCandidates = [];
-  findIndexHtml(projectDir, deepCandidates, 0, 2);
-  if (deepCandidates.length > 0) {
-    // Prefer files that look like main entry points
-    const best = deepCandidates.sort((a, b) => {
-      const score = (p) => {
-        let s = 0;
-        if (/dist[\\/]index/i.test(p)) s += 10;
-        if (/build[\\/]index/i.test(p)) s += 9;
-        if (/public[\\/]index/i.test(p)) s += 8;
-        if (/client[\\/].*index/i.test(p)) s += 7;
-        if (/src[\\/]index/i.test(p)) s += 6;
-        if (/templates[\\/]index/i.test(p)) s += 5;
-        if (/index\.html$/i.test(p)) s += 4;
-        // Penalize popup/options (browser extension entry points)
-        if (/popup\.html$/i.test(p)) s += 3;
-        if (/options\.html$/i.test(p)) s += 2;
-        return s;
-      };
-      return score(b) - score(a);
-    })[0];
-    const prefix = path.dirname(path.relative(projectDir, best));
+  // --- Pass 3: search recursively for HTML files ---
+  // Find ALL html files, then pick the best one
+  const allHtml = [];
+  findAnyHtml(projectDir, allHtml, 0, 4);
+  if (allHtml.length > 0) {
+    // Score each candidate based on how likely it is the main app entry
+    const scored = allHtml.map((p) => {
+      const rel = path.relative(projectDir, p).toLowerCase();
+      let s = 0;
+      // Prefer index.html in app-like directories
+      if (/^dist[/\\]index/i.test(rel)) s += 20;
+      if (/^build[/\\]index/i.test(rel)) s += 18;
+      if (/^public[/\\]index/i.test(rel)) s += 16;
+      if (/^client[/\\].*index/i.test(rel)) s += 15;
+      if (/^src[/\\]index/i.test(rel)) s += 14;
+      if (/^templates[/\\]index/i.test(rel)) s += 13;
+      if (/index\.html$/i.test(rel)) s += 10;
+      // Penalize extension and non-app files
+      if (/extension|plugin|addon/i.test(rel)) s -= 20;
+      if (/popup\.html$/i.test(rel)) s -= 15;
+      if (/options\.html$/i.test(rel)) s -= 15;
+      if (/test|spec|demo/i.test(rel)) s -= 10;
+      // Bonus: dir has package.json (likely a runnable app)
+      const dirOf = path.dirname(p);
+      if (fs.existsSync(path.join(dirOf, 'package.json'))) s += 5;
+      if (fs.existsSync(path.join(dirOf, 'app.py'))) s += 5;
+      if (fs.existsSync(path.join(dirOf, 'server.js'))) s += 5;
+      return { file: p, score: s };
+    });
+    scored.sort((a, b) => b.score - a.score);
+    const best = scored[0];
+    const htmlDir = path.dirname(best.file);
+    // Walk up from the HTML dir to find the nearest package.json with dev/start or app.py
+    const serverRoot = findServerRoot(htmlDir, projectDir);
+    const prefix = path.relative(serverRoot, htmlDir);
     return {
-      dir: path.dirname(best),
-      entry: best,
-      prefix: prefix === '.' ? '' : prefix,
-    };
-  }
-
-  // --- Pass 4: any HTML file at all ---
-  const anyHtml = [];
-  findAnyHtml(projectDir, anyHtml, 0, 3);
-  if (anyHtml.length > 0) {
-    const prefix = path.dirname(path.relative(projectDir, anyHtml[0]));
-    return {
-      dir: path.dirname(anyHtml[0]),
-      entry: anyHtml[0],
-      prefix: prefix === '.' ? '' : prefix,
+      dir: serverRoot,
+      entry: best.file,
+      prefix: prefix === '.' ? '' : prefix.replace(/\\/g, '/'),
     };
   }
 
   return null;
+}
+
+// Walk up from a directory to find the nearest dir with a server (package.json dev/start, app.py, server.js)
+function findServerRoot(fromDir, stopAt) {
+  let dir = fromDir;
+  while (dir && dir !== stopAt && dir !== path.dirname(dir)) {
+    if (fs.existsSync(path.join(dir, 'package.json'))) {
+      try {
+        const pkg = JSON.parse(fs.readFileSync(path.join(dir, 'package.json'), 'utf8'));
+        if (pkg.scripts?.dev || pkg.scripts?.start) return dir;
+      } catch {}
+    }
+    if (fs.existsSync(path.join(dir, 'app.py')) || fs.existsSync(path.join(dir, 'server.py'))) {
+      return dir;
+    }
+    dir = path.dirname(dir);
+  }
+  // Fallback: use the HTML dir itself
+  return fromDir;
 }
 
 function findIndexHtml(dir, results, depth, maxDepth) {
