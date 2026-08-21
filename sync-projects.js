@@ -341,7 +341,7 @@ function findIndexHtml(dir, results, depth, maxDepth) {
       const full = path.join(dir, e.name);
       if (e.isFile() && /^index\.html?$/i.test(e.name)) {
         results.push(full);
-      } else if (e.isDirectory() && !['node_modules', '.git', 'vendor', '.venv', 'dist', 'build'].includes(e.name)) {
+      } else if (e.isDirectory() && !['node_modules', '.git', 'vendor', '.venv'].includes(e.name)) {
         findIndexHtml(full, results, depth + 1, maxDepth);
       }
     }
@@ -392,16 +392,33 @@ async function captureScreenshot(browser, projectId, webEntry) {
 
   if (!webEntry.entry) return '';
 
-  // Serve the project's web directory via HTTP so external resources load
-  const serveDir = webEntry.prefix ? path.join(webEntry.dir, webEntry.prefix) : webEntry.dir;
-  const server = await startSafeServer(serveDir);
-  const port = server.address().port;
+  // Try to detect if the project needs a running server (Express, Vite, Flask, etc.)
+  const needsServer = await detectNeedsServer(webEntry);
+  let serverProcess = null;
+  let staticServer = null;
+  let port;
+
+  if (needsServer) {
+    // Start the project's dev/start server
+    const result = await startProjectServer(webEntry, needsServer);
+    if (result) {
+      serverProcess = result.proc;
+      port = result.port;
+    }
+  }
+
+  if (!port) {
+    // Fallback: serve static files
+    const serveDir = webEntry.prefix ? path.join(webEntry.dir, webEntry.prefix) : webEntry.dir;
+    staticServer = await startSafeServer(serveDir);
+    port = staticServer.address().port;
+  }
 
   const page = await browser.newPage();
   try {
     await page.setViewport({ width: 1280, height: 800 });
-    await page.goto(`http://127.0.0.1:${port}`, { waitUntil: 'domcontentloaded', timeout: 10000 });
-    await new Promise((r) => setTimeout(r, 1200));
+    await page.goto(`http://127.0.0.1:${port}`, { waitUntil: 'networkidle0', timeout: 15000 });
+    await new Promise((r) => setTimeout(r, 2000));
     await page.screenshot({ path: outPath, type: 'jpeg', quality: 80 });
     console.log(`   📸  Captured: ${projectId}`);
     return `data/screenshots/${projectId}.jpg`;
@@ -410,8 +427,126 @@ async function captureScreenshot(browser, projectId, webEntry) {
     return '';
   } finally {
     await page.close().catch(() => {});
-    server.close();
+    if (staticServer) staticServer.close();
+    if (serverProcess) {
+      try { serverProcess.kill('SIGTERM'); } catch {}
+      // Give it a moment to clean up
+      await new Promise((r) => setTimeout(r, 500));
+    }
   }
+}
+
+// ---------------------------------------------------------------------------
+// Project server detection & startup
+// ---------------------------------------------------------------------------
+
+async function detectNeedsServer(webEntry) {
+  // Check dir and parent directories for server files
+  const checkDirs = [webEntry.dir];
+  // Also check 1-2 levels up (e.g. if HTML is in templates/ or client/dist/)
+  let up = webEntry.dir;
+  for (let i = 0; i < 3; i++) {
+    up = path.dirname(up);
+    if (up && up !== path.dirname(up)) checkDirs.push(up);
+  }
+
+  for (const dir of checkDirs) {
+    // Python Flask/FastAPI apps
+    const pyFiles = ['app.py', 'server.py', 'main.py'];
+    for (const f of pyFiles) {
+      if (fs.existsSync(path.join(dir, f))) {
+        const content = fs.readFileSync(path.join(dir, f), 'utf8');
+        if (/flask|Flask|from flask/i.test(content) || /uvicorn|fastapi|FastAPI/i.test(content)) {
+          return { type: 'python', file: f, cwd: dir };
+        }
+      }
+    }
+
+    // Node.js projects with package.json
+    const pkgPath = path.join(dir, 'package.json');
+    if (fs.existsSync(pkgPath)) {
+      try {
+        const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+        const scripts = pkg.scripts || {};
+        // Skip HTTPS servers (self-signed certs cause browser warnings and hangs)
+        const serverFile = path.join(dir, 'server.js');
+        if (fs.existsSync(serverFile)) {
+          const serverCode = fs.readFileSync(serverFile, 'utf8');
+          if (/https|selfsigned|certificate|createServer.*https/i.test(serverCode)) {
+            return null; // Skip — use static serving instead
+          }
+        }
+        // Prefer dev server (Vite, etc.) over start
+        if (scripts.dev) return { type: 'node', cmd: 'npm run dev', cwd: dir };
+        if (scripts.start) return { type: 'node', cmd: 'npm start', cwd: dir };
+      } catch {}
+    }
+  }
+
+  return null;
+}
+
+async function startProjectServer(webEntry, serverInfo) {
+  const { spawn } = require('child_process');
+  const net = require('net');
+  const dir = webEntry.dir;
+
+  // Find an available port
+  const port = await findFreePort();
+
+  let proc;
+  const env = { ...process.env, PORT: String(port), FORCE_COLOR: '0' };
+
+  const cwd = serverInfo.cwd || dir;
+  if (serverInfo.type === 'python') {
+    proc = spawn('python', [serverInfo.file], {
+      cwd, env, stdio: 'pipe', shell: true,
+    });
+  } else if (serverInfo.type === 'node') {
+    const cmd = serverInfo.cmd;
+    const isNpm = cmd.startsWith('npm');
+    // For Vite, pass --port flag so it uses our port
+    const isVite = /vite/i.test(cmd);
+    const args = isNpm ? ['run', ...cmd.replace('npm run ', '').split(' ')] : cmd.split(' ');
+    if (isVite) args.push('--port', String(port));
+    proc = spawn(isNpm ? 'npm' : 'node', args, {
+      cwd, env, stdio: 'pipe', shell: true,
+    });
+  } else {
+    return null;
+  }
+
+  // Wait for the server to be ready (up to 12s)
+  const ready = await waitForPort(port, 12000);
+  if (!ready) {
+    try { proc.kill('SIGTERM'); } catch {}
+    return null;
+  }
+
+  return { proc, port };
+}
+
+function findFreePort() {
+  return new Promise((resolve) => {
+    const srv = require('net').createServer();
+    srv.listen(0, '127.0.0.1', () => {
+      const port = srv.address().port;
+      srv.close(() => resolve(port));
+    });
+  });
+}
+
+function waitForPort(port, timeoutMs) {
+  const deadline = Date.now() + timeoutMs;
+  return new Promise((resolve) => {
+    function tryConnect() {
+      if (Date.now() > deadline) return resolve(false);
+      const sock = require('net').createConnection({ port, host: '127.0.0.1' });
+      sock.on('connect', () => { sock.destroy(); resolve(true); });
+      sock.on('error', () => { sock.destroy(); setTimeout(tryConnect, 500); });
+    }
+    tryConnect();
+  });
 }
 
 // Safe HTTP server — filters out node_modules and .git, auto-closes after 30s
