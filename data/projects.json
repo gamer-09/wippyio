@@ -66,7 +66,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/admin-help-bot",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt25gfv0-a46b51ea78.svg"
     },
@@ -270,7 +270,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/mail-organizer",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt1p69ft-21a4540c4b.jpg"
     },
@@ -466,7 +466,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Note_vault",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/msqbakdk-ab24c34b74.jpg"
     },
@@ -854,7 +854,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/ircc-track",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msjar4qg-e6181144fe.jpg"
     },
@@ -1374,7 +1374,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/replica",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mshysjrv-928916b0e3.jpg"
     },
@@ -1558,7 +1558,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Kilo-lookup",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mshxzdhf-539024ab34.jpg"
     },
@@ -2933,108 +2933,6 @@
       "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msfe1hjm-0ad8d5491b.svg"
-    },
-    {
-      "id": "msfdvkli-4ba0de406a",
-      "name": "Erotica Book Search [ebs_01]",
-      "createdAt": "2026-08-05T01:03:36.198Z",
-      "updatedAt": "2026-08-05T02:03:10.029Z",
-      "status": "stored",
-      "completionStatus": "completed",
-      "completionReason": "",
-      "summary": "## Description\nThis project is a static web application designed to search for erotica books. It provides a user-friendly interface to discover books by scenario or theme, displaying results and offering detailed information for each book, likely leveraging an external API for its data.\n\n## Highlights\n- Static web application for searching books with a focus on erotica genres.\n- Interactive search form featuring multi-select options for scenarios/types.\n- Displays search results with a \"load more\" functionality for pagination.\n- Includes a modal window for detailed book information, such as cover, title, author, year, genres, and description.\n- Utilizes the Google Books API for fetching book data (requires an API key).\n- Developed with a clean, modern user interface, as suggested by the `style.css` and font choices.\n\n## Likely Tech Stack\n- **Languages**: JavaScript, HTML, CSS",
-      "acceptedAt": "2026-08-05T01:05:07.872Z",
-      "fileCount": 734,
-      "totalBytes": 3031154,
-      "totalSizeLabel": "2.9 MB",
-      "topLanguages": [
-        {
-          "name": "JavaScript",
-          "count": 360
-        },
-        {
-          "name": "Other",
-          "count": 119
-        },
-        {
-          "name": "JSON",
-          "count": 83
-        },
-        {
-          "name": "Markdown",
-          "count": 82
-        },
-        {
-          "name": "TypeScript",
-          "count": 56
-        },
-        {
-          "name": "YAML",
-          "count": 26
-        },
-        {
-          "name": "XML",
-          "count": 5
-        },
-        {
-          "name": "HTML",
-          "count": 2
-        }
-      ],
-      "topFileTypes": [
-        {
-          "name": ".js",
-          "count": 360
-        },
-        {
-          "name": "[no extension]",
-          "count": 96
-        },
-        {
-          "name": ".json",
-          "count": 83
-        },
-        {
-          "name": ".md",
-          "count": 82
-        },
-        {
-          "name": ".ts",
-          "count": 56
-        },
-        {
-          "name": ".yml",
-          "count": 26
-        },
-        {
-          "name": ".txt",
-          "count": 5
-        },
-        {
-          "name": ".xml",
-          "count": 5
-        },
-        {
-          "name": ".cmd",
-          "count": 4
-        },
-        {
-          "name": ".ps1",
-          "count": 4
-        },
-        {
-          "name": ".mjs",
-          "count": 3
-        },
-        {
-          "name": ".html",
-          "count": 2
-        }
-      ],
-      "githubUrl": "",
-      "repoVisibility": "",
-      "isUpdated": false,
-      "thumbnail": "data/screenshots/msfdvkli-4ba0de406a.jpg"
     },
     {
       "id": "msfdtrt5-efbe72d37d",
