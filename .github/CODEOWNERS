@@ -1,0 +1,27 @@
+# CODEOWNERS - GitHub branch protection review assignments
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default: all files require review from the repo owner
+*                       @gamer-09
+
+# Deployment & CI
+.github/                @gamer-09
+.github/workflows/      @gamer-09
+
+# Frontend
+index.html              @gamer-09
+styles.css              @gamer-09
+app.js                  @gamer-09
+help.html               @gamer-09
+og-image.html           @gamer-09
+
+# Data & Scripts
+data/                   @gamer-09
+sync-projects.js        @gamer-09
+capture-og.js           @gamer-09
+update.sh               @gamer-09
+
+# Config
+package.json            @gamer-09
+.gitignore              @gamer-09
+README.md               @gamer-09
