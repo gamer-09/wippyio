@@ -590,7 +590,10 @@ a:hover { color: var(--accent-2); }
 }
 
 /* Ripple */
-.bento-card .ripple {
+.bento-card .ripple,
+.list-item .ripple,
+.tl-item .ripple,
+.tl-card .ripple {
   position: absolute;
   border-radius: 50%;
   background: var(--card-accent-glow, rgba(255,107,53,0.12));
@@ -900,7 +903,7 @@ a:hover { color: var(--accent-2); }
 .tl-item {
   position: relative;
   width: 100%;
-  padding: 0.35rem 0 0.35rem 0.75rem;
+  padding: 0.35rem 0;
   animation: tlIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 @keyframes tlIn {
@@ -932,14 +935,12 @@ a:hover { color: var(--accent-2); }
 .tl-dot-done { background: var(--green); }
 
 .tl-card {
-  width: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 0.9rem 1.1rem;
   cursor: pointer;
   transition: all var(--transition);
-  box-sizing: border-box;
 }
 .tl-card:hover {
   border-color: var(--border-hover);
