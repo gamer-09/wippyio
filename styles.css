@@ -873,7 +873,7 @@ a:hover { color: var(--accent-2); }
   width: 2px;
   background: linear-gradient(180deg, var(--accent) 0%, var(--border) 20%, var(--border) 80%, transparent 100%);
 }
-.tl-group { margin-bottom: 0.5rem; }
+.tl-group { margin-bottom: 0.5rem; width: 100%; }
 .tl-date-marker {
   display: flex;
   align-items: center;
@@ -901,6 +901,7 @@ a:hover { color: var(--accent-2); }
   position: relative;
   display: flex;
   align-items: flex-start;
+  width: 100%;
   padding: 0.35rem 0;
   animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -929,6 +930,7 @@ a:hover { color: var(--accent-2); }
 
 .tl-card {
   flex: 1;
+  min-width: 0;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
