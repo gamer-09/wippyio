@@ -899,11 +899,8 @@ a:hover { color: var(--accent-2); }
 
 .tl-item {
   position: relative;
-  display: flex;
-  align-items: flex-start;
   width: 100%;
-  padding: 0.35rem 0;
-  overflow: hidden;
+  padding: 0.35rem 0 0.35rem 0.75rem;
   animation: tlIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 @keyframes tlIn {
@@ -917,6 +914,7 @@ a:hover { color: var(--accent-2); }
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  pointer-events: none;
 }
 .tl-dot {
   width: 8px; height: 8px;
@@ -934,17 +932,14 @@ a:hover { color: var(--accent-2); }
 .tl-dot-done { background: var(--green); }
 
 .tl-card {
-  flex: 1 1 0%;
-  min-width: 0;
-  max-width: 100%;
+  width: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 0.9rem 1.1rem;
   cursor: pointer;
   transition: all var(--transition);
-  margin-left: 0.75rem;
-  overflow: hidden;
+  box-sizing: border-box;
 }
 .tl-card:hover {
   border-color: var(--border-hover);
@@ -1474,7 +1469,6 @@ footer {
   }
   .tl-card {
     padding: 0.7rem 0.8rem;
-    margin-left: 0.4rem;
   }
   .tl-card-name { font-size: 0.82rem; }
   .tl-card-summary {
