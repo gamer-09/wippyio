@@ -864,7 +864,7 @@ a:hover { color: var(--accent-2); }
 }
 .tl-track {
   position: relative;
-  padding-left: 32px;
+  padding-left: 36px;
 }
 .tl-track::before {
   content: '';
@@ -903,12 +903,11 @@ a:hover { color: var(--accent-2); }
   align-items: flex-start;
   width: 100%;
   padding: 0.35rem 0;
-  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .tl-connector {
   position: absolute;
-  left: -32px; top: 0.9rem;
-  width: 32px;
+  left: -36px; top: 0.9rem;
+  width: 36px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -1455,10 +1454,10 @@ footer {
     padding: 1.5rem 0.8rem 3rem;
   }
   .tl-track {
-    padding-left: 20px;
+    padding-left: 24px;
   }
   .tl-track::before { left: 9px; }
-  .tl-connector { left: -20px; width: 20px; }
+  .tl-connector { left: -24px; width: 24px; }
   .tl-date-dot {
     width: 10px; height: 10px;
   }
