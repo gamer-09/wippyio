@@ -400,8 +400,8 @@
         ripple.addEventListener('animationend', () => ripple.remove());
       });
 
-      // Scroll reveal for cards (skip for timeline items — they use CSS)
-      if (!el.closest('.timeline-view')) {
+      // Scroll reveal for cards (skip for timeline & list — they use CSS animation)
+      if (!el.closest('.timeline-view') && !el.closest('.list-view')) {
         el.style.opacity = '0';
         el.style.transform = 'translateY(24px) scale(0.97)';
         el.style.transition = `opacity 0.5s cubic-bezier(0.22,1,0.36,1) ${i * 40}ms, transform 0.5s cubic-bezier(0.22,1,0.36,1) ${i * 40}ms`;
