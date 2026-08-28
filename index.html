@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-873GT9WGCR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-873GT9WGCR');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>wippy — Every project I've ever built</title>
@@ -192,13 +184,16 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-counter">
-        <img src="https://visitor-counter-badge.vercel.app/api/gamer-09/wippyio?label=Visitors&color=ff6b35&labelColor=1a1a2e&style=for-the-badge" alt="Visitor Counter" loading="lazy" />
+        <span class="counter-label">👁️</span>
+        <span class="counter-value" id="visitorCount">0</span>
+        <span class="counter-suffix">views</span>
       </div>
       <p><a href="help.html">📖 Help & Guide</a> · Synced from <a href="https://github.com/gamer-09/storage-packed" target="_blank">storage-packed</a> vault</p>
       <p class="footer-sub">Built with ❤️ and a lot of ☕</p>
     </div>
   </footer>
 
+  <script src="tracker.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
