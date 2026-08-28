@@ -903,6 +903,7 @@ a:hover { color: var(--accent-2); }
   align-items: flex-start;
   width: 100%;
   padding: 0.35rem 0;
+  overflow: hidden;
   animation: tlIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 @keyframes tlIn {
@@ -933,8 +934,9 @@ a:hover { color: var(--accent-2); }
 .tl-dot-done { background: var(--green); }
 
 .tl-card {
-  flex: 1;
+  flex: 1 1 0%;
   min-width: 0;
+  max-width: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -942,6 +944,7 @@ a:hover { color: var(--accent-2); }
   cursor: pointer;
   transition: all var(--transition);
   margin-left: 0.75rem;
+  overflow: hidden;
 }
 .tl-card:hover {
   border-color: var(--border-hover);
