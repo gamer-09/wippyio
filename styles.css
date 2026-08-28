@@ -1,6 +1,15 @@
+/*
+ * © 2026 gamer-09. All rights reserved.
+ * This code is proprietary. Unauthorized copying, modification,
+ * distribution, or use of this software is strictly prohibited.
+ * Repository: https://github.com/gamer-09/wippyio
+ */
 /* ==========================================================================
    wippy — styles
    ========================================================================== */
+
+/* Anti-copy protection */
+::selection { background: var(--accent); color: #fff; }
 
 /* ---- Tokens ---- */
 :root {

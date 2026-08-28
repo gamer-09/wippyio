@@ -1,3 +1,10 @@
+/*
+ * © 2026 gamer-09. All rights reserved.
+ * This code is proprietary. Unauthorized copying, modification,
+ * distribution, or use of this software is strictly prohibited.
+ * Licensed under CC BY-NC-ND 40 — see LICENSE for details.
+ * Repository: https://github.com/gamer-09/wippyio
+ */
 /* ==========================================================================
    wippy — client logic
    ========================================================================== */
