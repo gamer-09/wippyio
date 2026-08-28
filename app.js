@@ -197,6 +197,16 @@
     searchQuery = searchInput.value.trim().toLowerCase();
     searchClear.classList.toggle('visible', searchInput.value.length > 0);
     render();
+    // GA: track search query (debounced, only fires after typing stops)
+    if (typeof gtag === 'function' && searchQuery.length > 0) {
+      gtag('event', 'search', {
+        search_term: searchQuery,
+        results_count: allProjects.filter((p) => {
+          const hay = [p.name, p.summary, ...(p.topLanguages || []).map((l) => l.name)].join(' ').toLowerCase();
+          return hay.includes(searchQuery);
+        }).length,
+      });
+    }
   }, 180));
   searchClear.addEventListener('click', () => {
     searchInput.value = '';
@@ -212,6 +222,12 @@
       btn.classList.add('active');
       activeFilter = btn.dataset.filter;
       render();
+      // GA: track filter usage
+      if (typeof gtag === 'function') {
+        gtag('event', 'filter_projects', {
+          filter_type: activeFilter,
+        });
+      }
     });
   });
 
@@ -355,6 +371,14 @@
         const id = el.dataset.id;
         const project = allProjects.find((p) => p.id === id);
         if (project) openPopup(project);
+        // GA: track project card click
+        if (typeof gtag === 'function' && project) {
+          gtag('event', 'project_click', {
+            project_name: project.name,
+            project_id: project.id,
+            completion_status: project.completionStatus || 'unknown',
+          });
+        }
       });
 
       // Mouse glow follow
