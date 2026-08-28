@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wippy — Admin Dashboard</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%23ff6b35'/><stop offset='100%25' stop-color='%23ff006e'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/><text x='50' y='68' text-anchor='middle' font-size='52' fill='white' font-family='system-ui'>⚡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+    .admin-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .admin-header h1 {
+      font-size: 1.8rem; font-weight: 700; letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .admin-header .secret-badge {
+      background: var(--accent-glow); border: 1px solid rgba(255,107,53,0.2);
+      padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.75rem;
+      color: var(--accent); font-weight: 600; letter-spacing: 0.5px;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 1.5rem; text-align: center;
+    }
+    .stat-card .stat-value {
+      font-size: 2.5rem; font-weight: 700; font-family: var(--mono);
+      color: var(--text); line-height: 1;
+    }
+    .stat-card .stat-label {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--text-3); font-weight: 600; margin-top: 0.5rem;
+    }
+    .stat-card.accent .stat-value { color: var(--accent); }
+    .stat-card.green .stat-value { color: var(--green); }
+    .stat-card.purple .stat-value { color: var(--purple); }
+    .stat-card.cyan .stat-value { color: var(--cyan); }
+
+    .section { margin-bottom: 2rem; }
+    .section h2 {
+      font-size: 1.1rem; font-weight: 700; color: var(--text);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    th, td {
+      padding: 0.75rem 1rem; text-align: left; font-size: 0.85rem;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: var(--bg-2); color: var(--text-3); font-weight: 600;
+      text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px;
+    }
+    td { color: var(--text-2); }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .bar-chart { display: flex; flex-direction: column; gap: 0.5rem; }
+    .bar-row { display: flex; align-items: center; gap: 0.75rem; }
+    .bar-label {
+      width: 120px; font-size: 0.82rem; color: var(--text-2);
+      text-align: right; flex-shrink: 0; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap;
+    }
+    .bar-track {
+      flex: 1; height: 24px; background: var(--bg-2);
+      border-radius: 6px; overflow: hidden; position: relative;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      min-width: 2px;
+    }
+    .bar-value {
+      font-size: 0.78rem; font-family: var(--mono); color: var(--text-3);
+      width: 50px; text-align: right; flex-shrink: 0;
+    }
+
+    .timeline-list { display: flex; flex-direction: column; gap: 0.4rem; max-height: 400px; overflow-y: auto; }
+    .timeline-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.5rem 0.75rem; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: var(--radius-xs);
+      font-size: 0.82rem;
+    }
+    .timeline-item .tl-time {
+      font-family: var(--mono); color: var(--text-3); font-size: 0.75rem;
+      width: 130px; flex-shrink: 0;
+    }
+    .timeline-item .tl-type {
+      padding: 0.15rem 0.5rem; border-radius: 100px; font-size: 0.7rem;
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+    .tl-type.search { background: rgba(0,187,249,0.15); color: var(--cyan); }
+    .tl-type.click { background: rgba(255,107,53,0.15); color: var(--accent); }
+    .tl-type.filter { background: rgba(155,93,229,0.15); color: var(--purple); }
+    .timeline-item .tl-detail { color: var(--text-2); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .btn {
+      padding: 0.5rem 1rem; border-radius: var(--radius-xs); border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-2); font-family: var(--font);
+      font-size: 0.82rem; cursor: pointer; transition: all 0.2s;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-danger { border-color: rgba(255,71,87,0.3); color: var(--danger); }
+    .btn-danger:hover { background: rgba(255,71,87,0.1); border-color: var(--danger); }
+
+    .empty-msg { color: var(--text-3); font-size: 0.85rem; padding: 2rem; text-align: center; }
+
+    .topnav { position: relative; z-index: 100; margin: -2rem -2rem 2rem; }
+    .noise-overlay, .cursor-trail, .aurora { display: none; }
+
+    @media (max-width: 600px) {
+      body { padding: 1rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-card .stat-value { font-size: 1.8rem; }
+      .bar-label { width: 80px; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-logo">⚡</span>
+      <span class="nav-title">wippy</span>
+    </a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-link">Portfolio</a>
+    </div>
+  </nav>
+
+  <div class="admin-header">
+    <h1>📊 Admin Dashboard</h1>
+    <span class="secret-badge">🔒 SECRET</span>
+  </div>
+
+  <!-- Overview Cards -->
+  <div class="stats-grid">
+    <div class="stat-card accent">
+      <div class="stat-value" id="totalViews">0</div>
+      <div class="stat-label">Total Page Views</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-value" id="uniqueVisitors">0</div>
+      <div class="stat-label">Unique Visitors</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-value" id="totalSearches">0</div>
+      <div class="stat-label">Searches</div>
+    </div>
+    <div class="stat-card cyan">
+      <div class="stat-value" id="totalClicks">0</div>
+      <div class="stat-label">Project Clicks</div>
+    </div>
+  </div>
+
+  <!-- Page Views -->
+  <div class="section">
+    <h2>📄 Page Views</h2>
+    <div class="bar-chart" id="pageViewsChart"></div>
+  </div>
+
+  <!-- Top Searches -->
+  <div class="section">
+    <h2>🔍 Top Searches</h2>
+    <div id="topSearches"></div>
+  </div>
+
+  <!-- Top Clicked Projects -->
+  <div class="section">
+    <h2>🖱️ Most Clicked Projects</h2>
+    <div id="topClicks"></div>
+  </div>
+
+  <!-- Filter Usage -->
+  <div class="section">
+    <h2>🎛️ Filter Usage</h2>
+    <div id="filterStats"></div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="section">
+    <h2>📜 Recent Activity</h2>
+    <div class="timeline-list" id="recentActivity"></div>
+  </div>
+
+  <!-- Info -->
+  <div class="section">
+    <h2>ℹ️ Info</h2>
+    <table>
+      <tr><td>First visit</td><td id="firstVisit">—</td></tr>
+      <tr><td>Last visit</td><td id="lastVisit">—</td></tr>
+      <tr><td>Data storage</td><td>Browser localStorage (this device only)</td></tr>
+      <tr><td>Access</td><td>Bookmark this page — it's not linked anywhere</td></tr>
+    </table>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn" onclick="exportData()">📥 Export JSON</button>
+    <button class="btn btn-danger" onclick="resetData()">🗑️ Reset All Data</button>
+  </div>
+
+  <script>
+    (function () {
+      var stats;
+      try {
+        stats = JSON.parse(localStorage.getItem('wippy_stats'));
+      } catch (e) { stats = null; }
+
+      if (!stats) {
+        document.body.innerHTML = '<div style="text-align:center;padding:4rem;color:var(--text-2)"><h2>No data yet</h2><p>Visit the <a href="index.html">portfolio</a> to start collecting stats.</p></div>';
+        return;
+      }
+
+      // Overview
+      document.getElementById('totalViews').textContent = stats.totalViews || 0;
+      document.getElementById('uniqueVisitors').textContent = (stats.uniqueVisitors || []).length;
+      document.getElementById('totalSearches').textContent = (stats.searches || []).length;
+      document.getElementById('totalClicks').textContent = (stats.clicks || []).length;
+
+      // Page Views chart
+      var pv = stats.pageViews || {};
+      var pvEntries = Object.entries(pv).sort(function (a, b) { return b[1] - a[1]; });
+      var pvMax = pvEntries.length ? pvEntries[0][1] : 1;
+      var pvHtml = '';
+      pvEntries.forEach(function (e) {
+        var pct = (e[1] / pvMax * 100).toFixed(0);
+        pvHtml += '<div class="bar-row"><span class="bar-label">' + esc(e[0]) + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span class="bar-value">' + e[1] + '</span></div>';
+      });
+      document.getElementById('pageViewsChart').innerHTML = pvHtml || '<div class="empty-msg">No page view data yet</div>';
+
+      // Top Searches
+      var searchCounts = {};
+      (stats.searches || []).forEach(function (s) {
+        var q = (s.query || '').toLowerCase().trim();
+        if (q) searchCounts[q] = (searchCounts[q] || 0) + 1;
+      });
+      var searchEntries = Object.entries(searchCounts).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 10);
+      var sMax = searchEntries.length ? searchEntries[0][1] : 1;
+      var sHtml = '';
+      searchEntries.forEach(function (e) {
+        var pct = (e[1] / sMax * 100).toFixed(0);
+        sHtml += '<div class="bar-row"><span class="bar-label">' + esc(e[0]) + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span class="bar-value">' + e[1] + '</span></div>';
+      });
+      document.getElementById('topSearches').innerHTML = sHtml || '<div class="empty-msg">No searches yet</div>';
+
+      // Top Clicks
+      var clickCounts = {};
+      (stats.clicks || []).forEach(function (c) {
+        var name = c.project || 'Unknown';
+        clickCounts[name] = (clickCounts[name] || 0) + 1;
+      });
+      var clickEntries = Object.entries(clickCounts).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 10);
+      var cMax = clickEntries.length ? clickEntries[0][1] : 1;
+      var cHtml = '';
+      clickEntries.forEach(function (e) {
+        var pct = (e[1] / cMax * 100).toFixed(0);
+        cHtml += '<div class="bar-row"><span class="bar-label">' + esc(e[0]) + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span class="bar-value">' + e[1] + '</span></div>';
+      });
+      document.getElementById('topClicks').innerHTML = cHtml || '<div class="empty-msg">No project clicks yet</div>';
+
+      // Filter Usage
+      var filterCounts = {};
+      (stats.filters || []).forEach(function (f) {
+        var t = f.type || 'unknown';
+        filterCounts[t] = (filterCounts[t] || 0) + 1;
+      });
+      var filterEntries = Object.entries(filterCounts).sort(function (a, b) { return b[1] - a[1]; });
+      var fMax = filterEntries.length ? filterEntries[0][1] : 1;
+      var fHtml = '';
+      filterEntries.forEach(function (e) {
+        var pct = (e[1] / fMax * 100).toFixed(0);
+        var label = e[0] === 'all' ? 'All' : e[0] === 'completed' ? 'Completed' : e[0] === 'not-completed' ? 'In Progress' : e[0];
+        fHtml += '<div class="bar-row"><span class="bar-label">' + esc(label) + '</span><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><span class="bar-value">' + e[1] + '</span></div>';
+      });
+      document.getElementById('filterStats').innerHTML = fHtml || '<div class="empty-msg">No filter usage yet</div>';
+
+      // Recent Activity (last 30 events)
+      var allEvents = [];
+      (stats.searches || []).forEach(function (e) { allEvents.push({ type: 'search', time: e.time, detail: '"' + (e.query || '') + '" (' + (e.results || 0) + ' results)' }); });
+      (stats.clicks || []).forEach(function (e) { allEvents.push({ type: 'click', time: e.time, detail: e.project || 'Unknown' }); });
+      (stats.filters || []).forEach(function (e) {
+        var label = e.type === 'all' ? 'All' : e.type === 'completed' ? 'Completed' : e.type === 'not-completed' ? 'In Progress' : e.type;
+        allEvents.push({ type: 'filter', time: e.time, detail: label });
+      });
+      allEvents.sort(function (a, b) { return (b.time || '').localeCompare(a.time || ''); });
+      var recent = allEvents.slice(0, 30);
+      var rHtml = '';
+      recent.forEach(function (e) {
+        var t = e.time ? new Date(e.time).toLocaleString() : '—';
+        rHtml += '<div class="timeline-item"><span class="tl-time">' + esc(t) + '</span><span class="tl-type ' + e.type + '">' + e.type + '</span><span class="tl-detail">' + esc(e.detail) + '</span></div>';
+      });
+      document.getElementById('recentActivity').innerHTML = rHtml || '<div class="empty-msg">No activity yet</div>';
+
+      // Info
+      document.getElementById('firstVisit').textContent = stats.firstVisit ? new Date(stats.firstVisit).toLocaleString() : '—';
+      document.getElementById('lastVisit').textContent = stats.lastVisit ? new Date(stats.lastVisit).toLocaleString() : '—';
+
+      function esc(s) {
+        if (!s) return '';
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      // Export
+      window.exportData = function () {
+        var blob = new Blob([JSON.stringify(stats, null, 2)], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url; a.download = 'wippy-stats-' + new Date().toISOString().slice(0, 10) + '.json';
+        a.click(); URL.revokeObjectURL(url);
+      };
+
+      // Reset
+      window.resetData = function () {
+        if (confirm('Are you sure you want to delete ALL tracking data? This cannot be undone.')) {
+          localStorage.removeItem('wippy_stats');
+          location.reload();
+        }
+      };
+    })();
+  </script>
+</body>
+</html>

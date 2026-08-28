@@ -1158,10 +1158,29 @@ footer {
 }
 .footer-counter {
   margin-bottom: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.4rem 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-.footer-counter img {
-  height: 28px;
-  border-radius: 4px;
+.counter-label {
+  font-size: 0.9rem;
+}
+.counter-value {
+  font-family: var(--mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.counter-suffix {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  font-weight: 500;
 }
 
 /* ---- Loading Skeleton ---- */
