@@ -1156,6 +1156,13 @@ footer {
   margin-top: 0.3rem;
   opacity: 0.5;
 }
+.footer-counter {
+  margin-bottom: 0.8rem;
+}
+.footer-counter img {
+  height: 28px;
+  border-radius: 4px;
+}
 
 /* ---- Loading Skeleton ---- */
 @keyframes shimmer {
