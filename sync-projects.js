@@ -160,6 +160,7 @@ function findChrome() {
   const slimProjects = [];
   let screenshotCount = 0;
   let gradientCount = 0;
+  let sanitizedCount = 0;
 
   for (const p of db.projects) {
     const completionStatus = normalizeCompletion(p.completionStatus);
@@ -173,6 +174,11 @@ function findChrome() {
 
     // Detect if project was updated after creation
     const isUpdated = detectUpdate(p);
+
+    // Strip LLM chatter from summaries (e.g. "The previous response was complete...")
+    const rawSummary = p.summary || '';
+    const summary = sanitizeSummary(rawSummary);
+    if (summary !== rawSummary) sanitizedCount++;
 
     // Check for existing screenshot first — never overwrite a real .jpg with a gradient SVG
     let screenshotFile = '';
@@ -206,7 +212,7 @@ function findChrome() {
       status: p.status,
       completionStatus,
       completionReason: p.completionReason || '',
-      summary: p.summary || '',
+      summary,
       acceptedAt: p.acceptedAt || null,
       fileCount: p.fileCount || 0,
       totalBytes: p.totalBytes || 0,
@@ -244,6 +250,9 @@ function findChrome() {
     console.log(`    ${screenshotCount} screenshot(s) captured, ${gradientCount} gradient fallback(s)`);
   }
   console.log(`    ${withThumb} project(s) with thumbnails`);
+  if (sanitizedCount > 0) {
+    console.log(`    🧹  ${sanitizedCount} summary(ies) sanitized (LLM chatter removed)`);
+  }
 })();
 
 // ---------------------------------------------------------------------------
@@ -858,6 +867,31 @@ function detectUpdate(project) {
   const updated = new Date(project.updatedAt).getTime();
   // Consider updated if changed by more than 1 hour
   return updated - created > 3600000;
+}
+
+// ---------------------------------------------------------------------------
+// Summary sanitization (strip LLM chatter that leaks into vault metadata)
+// ---------------------------------------------------------------------------
+
+const LLM_CHATTER_PATTERNS = [
+  /the previous response was complete[^.\n]*\.?/gi,
+  /there is nothing further to continue\.?/gi,
+  /nothing further to continue\.?/gi,
+  /this response (?:is|was) complete[^.\n]*\.?/gi,
+  /i hope this (?:response |answer )?helps?[^.\n]*\.?/gi,
+  /as an? ai(?: language)? model[^.\n]*\.?/gi,
+  /would you like me to[^?\n]*\?/gi,
+  /let me know if you[^.\n]*\.?/gi,
+  /^(?:sure|certainly|of course)[!,.]?\s*here(?:'s| is)[^\n]*\n?/gim,
+];
+
+function sanitizeSummary(text) {
+  let s = String(text || '');
+  for (const pattern of LLM_CHATTER_PATTERNS) {
+    s = s.replace(pattern, '');
+  }
+  // Tidy whitespace left behind by removals
+  return s.replace(/[ \t]+$/gm, '').replace(/\n{3,}/g, '\n\n').trim();
 }
 
 // ---------------------------------------------------------------------------
