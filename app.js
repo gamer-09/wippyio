@@ -204,14 +204,6 @@
     searchQuery = searchInput.value.trim().toLowerCase();
     searchClear.classList.toggle('visible', searchInput.value.length > 0);
     render();
-    // Track search
-    if (typeof WippyTrack !== 'undefined' && searchQuery.length > 0) {
-      const count = allProjects.filter((p) => {
-        const hay = [p.name, p.summary, ...(p.topLanguages || []).map((l) => l.name)].join(' ').toLowerCase();
-        return hay.includes(searchQuery);
-      }).length;
-      WippyTrack.search(searchQuery, count);
-    }
   }, 180));
   searchClear.addEventListener('click', () => {
     searchInput.value = '';
@@ -227,10 +219,6 @@
       btn.classList.add('active');
       activeFilter = btn.dataset.filter;
       render();
-      // Track filter
-      if (typeof WippyTrack !== 'undefined') {
-        WippyTrack.filter(activeFilter);
-      }
         });
   });
 
@@ -374,10 +362,6 @@
         const id = el.dataset.id;
         const project = allProjects.find((p) => p.id === id);
         if (project) openPopup(project);
-        // Track project click
-        if (typeof WippyTrack !== 'undefined' && project) {
-          WippyTrack.click(project.name, project.id);
-        }
       });
 
       // Mouse glow follow
