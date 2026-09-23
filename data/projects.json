@@ -66,7 +66,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/admin-help-bot",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt25gfv0-a46b51ea78.svg"
     },
@@ -168,7 +168,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Half-made-world-Reference",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt1p9jq7-2469820d1e.jpg"
     },
@@ -270,7 +270,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/mail-organizer",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt1p69ft-21a4540c4b.jpg"
     },
@@ -650,7 +650,7 @@
         }
       ],
       "githubUrl": "https://github.com/rober42539/lao-dictionary",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/msm2j97i-8171c9377e.svg"
     },
@@ -854,7 +854,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/ircc-track",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msjar4qg-e6181144fe.jpg"
     },
@@ -1374,7 +1374,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/replica",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mshysjrv-928916b0e3.jpg"
     },
@@ -1382,27 +1382,27 @@
       "id": "mshyl5zt-eb9c3fd01e",
       "name": "techevent",
       "createdAt": "2026-08-06T20:18:55.001Z",
-      "updatedAt": "2026-08-06T20:24:22.374Z",
+      "updatedAt": "2026-09-23T16:14:13.888Z",
       "status": "stored",
       "completionStatus": "completed",
       "completionReason": "",
       "summary": "## Description\nThis project, \"techevent,\" is a zero-dependency Node.js server designed to track and display tech events in Fredericton, New Brunswick, Canada. It presents event information through a clean, futuristic web interface, offering dates, locations, and navigation links. The project is currently marked as complete.\n\n## Highlights\n- A zero-dependency Node.js server, emphasizing minimal setup and runtime requirements.\n- Features a \"clean futuristic\" frontend design, including a live WebGL particle field.\n- Provides a RESTful API for accessing event data, health status, and metadata.\n- Event data is managed locally within a `data/events.json` file.\n- Includes a comprehensive `README.md` with clear setup and usage instructions.\n\n## Likely Tech Stack\n- **Languages**: JavaScript, HTML, CSS, JSON, Markdown\n- **Runtime**: Node.js (v14+)\n- **Frontend**: Vanilla JavaScript, WebGL (for particle effects)\n- **Backend**: Node.js (custom server implementation)\n- **Data Storage**: Local JSON files\n- **Version Control**: Git\n\n## Run / Restore Notes\n- Requires Node.js version 14 or higher to run.\n- No `npm install` is necessary as the project is explicitly designed with zero dependencies.\n- To start the server, navigate to the project root directory and execute `node server.js`.\n- The application will then be accessible in a web browser, typically at `http://localhost:3000`.\n- The project is marked as \"not completed / still in progress,\" suggesting that further development or missing features may be present.\n\n## Tags\nfredericton, tech-events, new-brunswick, events, node.js, javascript, server, webgl, zero-dependency, frontend, backend, json-data, in-progress",
       "acceptedAt": "2026-08-06T20:24:17.916Z",
-      "fileCount": 124,
-      "totalBytes": 353670,
-      "totalSizeLabel": "345 KB",
+      "fileCount": 149,
+      "totalBytes": 483325,
+      "totalSizeLabel": "472 KB",
       "topLanguages": [
         {
           "name": "Other",
-          "count": 116
+          "count": 139
         },
         {
           "name": "JavaScript",
-          "count": 3
+          "count": 4
         },
         {
           "name": "JSON",
-          "count": 2
+          "count": 3
         },
         {
           "name": "CSS",
@@ -1420,7 +1420,7 @@
       "topFileTypes": [
         {
           "name": "[no extension]",
-          "count": 99
+          "count": 121
         },
         {
           "name": ".sample",
@@ -1428,11 +1428,11 @@
         },
         {
           "name": ".js",
-          "count": 3
+          "count": 4
         },
         {
           "name": ".json",
-          "count": 2
+          "count": 3
         },
         {
           "name": ".idx",
@@ -1457,11 +1457,15 @@
         {
           "name": ".md",
           "count": 1
+        },
+        {
+          "name": ".log",
+          "count": 1
         }
       ],
       "githubUrl": "https://github.com/gamer-09/techevent",
       "repoVisibility": "",
-      "isUpdated": false,
+      "isUpdated": true,
       "thumbnail": "data/screenshots/mshyl5zt-eb9c3fd01e.jpg"
     },
     {
@@ -1558,7 +1562,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Kilo-lookup",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mshxzdhf-539024ab34.jpg"
     },
@@ -1660,7 +1664,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/achievelom-",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mshxxgqm-1bbab0eb49.jpg"
     },
@@ -2064,7 +2068,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/worldbuild",
-      "repoVisibility": "",
+      "repoVisibility": "public",
       "isUpdated": false,
       "thumbnail": "data/screenshots/msg9zh3h-a01b453027.jpg"
     },
