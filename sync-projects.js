@@ -180,11 +180,15 @@ function findChrome() {
     const summary = sanitizeSummary(rawSummary);
     if (summary !== rawSummary) sanitizedCount++;
 
-    // Check for existing screenshot first — never overwrite a real .jpg with a gradient SVG
+    // Check for existing screenshot first
     let screenshotFile = '';
     const existingJpg = path.join(screenshotsDir, `${p.id}.jpg`);
     const existingSvg = path.join(screenshotsDir, `${p.id}.svg`);
-    if (fs.existsSync(existingJpg)) {
+    
+    // If the project has been updated on disk, we force a new screenshot to capture theme/code changes
+    const forceRefresh = isUpdated && fs.existsSync(existingJpg);
+
+    if (fs.existsSync(existingJpg) && !forceRefresh) {
       screenshotFile = `data/screenshots/${p.id}.jpg`;
     } else if (captureScreenshots && browser) {
       const webEntry = findWebEntry(p.id);
@@ -862,11 +866,25 @@ async function checkRepoVisibility(githubUrl) {
 // ---------------------------------------------------------------------------
 
 function detectUpdate(project) {
-  if (!project.createdAt || !project.updatedAt) return false;
-  const created = new Date(project.createdAt).getTime();
-  const updated = new Date(project.updatedAt).getTime();
-  // Consider updated if changed by more than 1 hour
-  return updated - created > 3600000;
+  if (!project.id) return false;
+  const projectRoot = path.join(projectsDir, project.id, 'files');
+  if (!fs.existsSync(projectRoot)) return false;
+
+  try {
+    const entries = fs.readdirSync(projectRoot, { recursive: true });
+    let newest = 0;
+    for (const e of entries) {
+      const full = path.join(projectRoot, e);
+      if (fs.existsSync(full)) {
+        const stats = fs.statSync(full);
+        if (stats.mtimeMs > newest) newest = stats.mtimeMs;
+      }
+    }
+    if (!project.createdAt) return true;
+    return newest > new Date(project.createdAt).getTime();
+  } catch {
+    return false;
+  }
 }
 
 // ---------------------------------------------------------------------------
