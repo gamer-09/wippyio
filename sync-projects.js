@@ -303,28 +303,23 @@ function findWebEntry(projectId) {
   }
 
   // --- Pass 3: search recursively for HTML files ---
-  // Find ALL html files, then pick the best one
   const allHtml = [];
-  findAnyHtml(projectDir, allHtml, 0, 4);
+  findAnyHtml(projectDir, allHtml, 0, 2); // Reduced depth from 4 to 2 to prevent hangs
   if (allHtml.length > 0) {
-    // Score each candidate based on how likely it is the main app entry
     const scored = allHtml.map((p) => {
       const rel = path.relative(projectDir, p).toLowerCase();
       let s = 0;
-      // Prefer index.html in app-like directories
-      if (/^dist[/\\]index/i.test(rel)) s += 20;
-      if (/^build[/\\]index/i.test(rel)) s += 18;
-      if (/^public[/\\]index/i.test(rel)) s += 16;
-      if (/^client[/\\].*index/i.test(rel)) s += 15;
-      if (/^src[/\\]index/i.test(rel)) s += 14;
-      if (/^templates[/\\]index/i.test(rel)) s += 13;
-      if (/index\.html$/i.test(rel)) s += 10;
-      // Penalize extension and non-app files
+      if (/^dist[/\\\\]index/i.test(rel)) s += 20;
+      if (/^build[/\\\\]index/i.test(rel)) s += 18;
+      if (/^public[/\\\\]index/i.test(rel)) s += 16;
+      if (/^client[/\\\\].*index/i.test(rel)) s += 15;
+      if (/^src[/\\\\]index/i.test(rel)) s += 14;
+      if (/^templates[/\\\\]index/i.test(rel)) s += 13;
+      if (/index\\.html$/i.test(rel)) s += 10;
       if (/extension|plugin|addon/i.test(rel)) s -= 20;
-      if (/popup\.html$/i.test(rel)) s -= 15;
-      if (/options\.html$/i.test(rel)) s -= 15;
+      if (/popup\\.html$/i.test(rel)) s -= 15;
+      if (/options\\.html$/i.test(rel)) s -= 15;
       if (/test|spec|demo/i.test(rel)) s -= 10;
-      // Bonus: dir has package.json (likely a runnable app)
       const dirOf = path.dirname(p);
       if (fs.existsSync(path.join(dirOf, 'package.json'))) s += 5;
       if (fs.existsSync(path.join(dirOf, 'app.py'))) s += 5;
@@ -334,13 +329,12 @@ function findWebEntry(projectId) {
     scored.sort((a, b) => b.score - a.score);
     const best = scored[0];
     const htmlDir = path.dirname(best.file);
-    // Walk up from the HTML dir to find the nearest package.json with dev/start or app.py
     const serverRoot = findServerRoot(htmlDir, projectDir);
     const prefix = path.relative(serverRoot, htmlDir);
     return {
       dir: serverRoot,
       entry: best.file,
-      prefix: prefix === '.' ? '' : prefix.replace(/\\/g, '/'),
+      prefix: prefix === '.' ? '' : prefix.replace(/\\\\/g, '/'),
     };
   }
 
@@ -733,27 +727,27 @@ async function detectGitHubUrl(project) {
   const projectRoot = path.join(projectsDir, project.id, 'files');
   if (!fs.existsSync(projectRoot)) return '';
 
-  // --- Pass 1: Check source JSON first (High Priority) ---
-  if (project.githubUrl && typeof project.githubUrl === 'string' && project.githubUrl.startsWith('http')) {
-    return project.githubUrl;
+  // --- Pass 1: Check source JSON first (Highest Priority) ---
+  if (project.githubUrl && typeof project.githubUrl === 'string' && project.githubUrl.trim().startsWith('http')) {
+    return project.githubUrl.trim();
   }
 
   // --- Pass 2: Deep .git config search ---
-  const gitConfigPath = findFile(projectRoot, /^\\.git[/\\\\]config$/i);
+  const gitConfigPath = findFile(projectRoot, /\.git[\\/]config$/i);
   if (gitConfigPath) {
     const url = await extractGitConfigUrl(gitConfigPath);
     if (url) return url;
   }
 
   // --- Pass 3: package.json ---
-  const pkgPath = findFile(projectRoot, /^package\\.json$/i, /node_modules/);
+  const pkgPath = findFile(projectRoot, /package\.json$/i, /node_modules/);
   if (pkgPath) {
     const url = await extractPackageJsonUrl(pkgPath);
     if (url) return url;
   }
 
   // --- Pass 4: Broad text search ---
-  const mdFiles = findFiles(projectRoot, /\\.(md|txt)$/i, /node_modules/).slice(0, 15);
+  const mdFiles = findFiles(projectRoot, /\.(md|txt)$/i, /node_modules/).slice(0, 15);
   for (const mdFile of mdFiles) {
     const url = await extractGitHubUrlFromText(mdFile);
     if (url) return url;
