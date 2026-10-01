@@ -1,6 +1,374 @@
 {
   "projects": [
     {
+      "id": "muptvne3-3cffbf827d",
+      "name": "site-inspect-chrome",
+      "createdAt": "2026-10-01T17:48:40.107Z",
+      "updatedAt": "2026-10-01T17:49:04.736Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nsite-inspect-chrome is a saved project archive in this vault. README evidence: Site Inspector A Chrome extension (Manifest V3) for quickly inspecting any webpage. Open the popup on any site to see its links, images, resources, performance details, security status, and SEO meta tags — no DevTools required. Features **Links** — Lists every link on the page with its text/label, count, and clickable outbound links.\n\n## Highlights\n- Stored on this server with 60 files totaling 442 KB.\n- Completion state: not completed / still in progress.\n- Most common languages/file groups: Other (50), HTML (4), JavaScript (3), JSON (1), Markdown (1), CSS (1).\n- Top file extensions: [no extension] (28), .sample (14), .png (4), .html (4), .js (3), .idx (1), .pack (1), .rev (1).\n- Recognizable project files: site-inspect-chrome/README.md.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- HTML\n- JavaScript\n- JSON\n- Markdown\n- CSS\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\nsite-inspect-chrome, html, javascript, json, markdown, css, other, archive, local-summary",
+      "acceptedAt": "2026-10-01T17:49:00.272Z",
+      "fileCount": 60,
+      "totalBytes": 452742,
+      "totalSizeLabel": "442 KB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 50
+        },
+        {
+          "name": "HTML",
+          "count": 4
+        },
+        {
+          "name": "JavaScript",
+          "count": 3
+        },
+        {
+          "name": "JSON",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 28
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".png",
+          "count": 4
+        },
+        {
+          "name": ".html",
+          "count": 4
+        },
+        {
+          "name": ".js",
+          "count": 3
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        },
+        {
+          "name": ".json",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        },
+        {
+          "name": ".css",
+          "count": 1
+        },
+        {
+          "name": ".backup",
+          "count": 1
+        }
+      ],
+      "githubUrl": "",
+      "repoVisibility": "",
+      "isUpdated": true,
+      "thumbnail": "data/screenshots/muptvne3-3cffbf827d.jpg"
+    },
+    {
+      "id": "muptup8z-0fc1f8b408",
+      "name": "server-monitor-tool",
+      "createdAt": "2026-10-01T17:47:55.859Z",
+      "updatedAt": "2026-10-01T17:48:24.636Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nserver-monitor-tool is a saved project archive in this vault. README evidence: server-monitor-tool (koi_12) A lightweight Node.js + Express server monitor with a built-in web UI. It lists every process listening on a TCP/UDP port of the host machine, applies simple heuristics to flag suspicious listeners (clean / suspicious / virus), and lets you kill them by PID\n\n## Highlights\n- Stored on this server with 54 files totaling 134 KB.\n- Completion state: completed.\n- Most common languages/file groups: Other (47), JSON (2), JavaScript (2), HTML (1), CSS (1), Markdown (1).\n- Top file extensions: [no extension] (29), .sample (14), .json (2), .js (2), .env.example (1), .idx (1), .pack (1), .rev (1).\n- Recognizable project files: server-monitor-tool/package.json, server-monitor-tool/README.md.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- JSON\n- JavaScript\n- HTML\n- CSS\n- Markdown\n- Node.js / npm\n- Express\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\nserver-monitor-tool, json, javascript, html, css, markdown, node.js-npm, express, other, archive",
+      "acceptedAt": "2026-10-01T17:48:24.636Z",
+      "fileCount": 54,
+      "totalBytes": 136996,
+      "totalSizeLabel": "134 KB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 47
+        },
+        {
+          "name": "JSON",
+          "count": 2
+        },
+        {
+          "name": "JavaScript",
+          "count": 2
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 29
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".json",
+          "count": 2
+        },
+        {
+          "name": ".js",
+          "count": 2
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".css",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        }
+      ],
+      "githubUrl": "",
+      "repoVisibility": "",
+      "isUpdated": true,
+      "thumbnail": "data/screenshots/muptup8z-0fc1f8b408.jpg"
+    },
+    {
+      "id": "muptr7q8-37f4837cd5",
+      "name": "researchai-assistant-school",
+      "createdAt": "2026-10-01T17:45:13.184Z",
+      "updatedAt": "2026-10-01T17:47:23.998Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nresearchai-assistant-school is a saved project archive in this vault. README evidence: researchai-assistant-school **aas_41 – School Project Helper** is a Node.js web app that turns a topic into a complete, student-friendly school project writeup or assignment handout — with real sources, citations, and images.\n\n## Highlights\n- Stored on this server with 65 files totaling 185 KB.\n- Completion state: completed.\n- Most common languages/file groups: Other (53), JavaScript (7), JSON (2), HTML (1), CSS (1), Markdown (1).\n- Top file extensions: [no extension] (35), .sample (14), .js (7), .json (2), .env.example (1), .idx (1), .pack (1), .rev (1).\n- Recognizable project files: researchai-assistant-school/package.json, researchai-assistant-school/README.md.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- JavaScript\n- JSON\n- HTML\n- CSS\n- Markdown\n- Node.js / npm\n- Express\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\nresearchai-assistant-school, javascript, json, html, css, markdown, node.js-npm, express, other, archive",
+      "acceptedAt": "2026-10-01T17:47:23.998Z",
+      "fileCount": 65,
+      "totalBytes": 189273,
+      "totalSizeLabel": "185 KB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 53
+        },
+        {
+          "name": "JavaScript",
+          "count": 7
+        },
+        {
+          "name": "JSON",
+          "count": 2
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 35
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".js",
+          "count": 7
+        },
+        {
+          "name": ".json",
+          "count": 2
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".css",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        }
+      ],
+      "githubUrl": "",
+      "repoVisibility": "",
+      "isUpdated": true,
+      "thumbnail": "data/screenshots/muptr7q8-37f4837cd5.jpg"
+    },
+    {
+      "id": "muptnzmr-854339dffe",
+      "name": "reseacrchai-assistant-v2",
+      "createdAt": "2026-10-01T17:42:42.723Z",
+      "updatedAt": "2026-10-01T17:47:02.950Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nreseacrchai-assistant-v2 is a saved project archive in this vault. README evidence: reseacrchai-assistant-v2 A lightweight, self-hosted **AI chat assistant** — an Express.js server with a clean browser chat UI that talks to the LLM provider of your choice. Works with cloud APIs (Gemini, OpenAI, OpenRouter) or fully offline via a local **Ollama** instance, with automatic provider fallback and built-in retry logic. Features 💬 **Chat UI** — minimal web interface (vanilla JS, no framework) with Enter-t\n\n## Highlights\n- Stored on this server with 66 files totaling 162 KB.\n- Completion state: not completed / still in progress.\n- Most common languages/file groups: Other (55), JavaScript (6), JSON (2), HTML (1), CSS (1), Markdown (1).\n- Top file extensions: [no extension] (36), .sample (14), .js (6), .json (2), .env.example (1), .idx (1), .pack (1), .rev (1).\n- Recognizable project files: reseacrchai-assistant-v2/package.json, reseacrchai-assistant-v2/README.md.\n- This summary was generated locally without using Gemini, so review and edit it before accepting.\n\n## Likely Tech Stack\n- JavaScript\n- JSON\n- HTML\n- CSS\n- Markdown\n- Node.js / npm\n- Express\n\n## Run / Restore Notes\n- Download the project zip from the vault to restore the files.\n- Check README, package manager files, Docker files, or framework config files for exact setup commands.\n- If this project needs an AI-written description later, switch to a Gemini key/model with available generateContent quota and regenerate.\n\n## Tags\nreseacrchai-assistant-v2, javascript, json, html, css, markdown, node.js-npm, express, other, archive",
+      "acceptedAt": "2026-10-01T17:45:02.361Z",
+      "fileCount": 66,
+      "totalBytes": 165478,
+      "totalSizeLabel": "162 KB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 55
+        },
+        {
+          "name": "JavaScript",
+          "count": 6
+        },
+        {
+          "name": "JSON",
+          "count": 2
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 36
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".js",
+          "count": 6
+        },
+        {
+          "name": ".json",
+          "count": 2
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".css",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        },
+        {
+          "name": ".log",
+          "count": 1
+        }
+      ],
+      "githubUrl": "",
+      "repoVisibility": "",
+      "isUpdated": true,
+      "thumbnail": "data/screenshots/muptnzmr-854339dffe.jpg"
+    },
+    {
       "id": "muppd0qo-26b9fdcf04",
       "name": "reseacrchai-assistant",
       "createdAt": "2026-10-01T15:42:12.480Z",
@@ -92,7 +460,7 @@
       "githubUrl": "https://github.com/gamer-09/re",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/muppd0qo-26b9fdcf04.jpg"
     },
     {
       "id": "muouul9i-6d47b790bc",
@@ -346,7 +714,7 @@
       "githubUrl": "https://github.com/gamer-09/Half-made-world-Reference",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/mt1p9jq7-2469820d1e.jpg"
     },
     {
       "id": "mt1p69ft-21a4540c4b",
@@ -448,7 +816,7 @@
       "githubUrl": "https://github.com/gamer-09/mail-organizer",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/mt1p69ft-21a4540c4b.jpg"
     },
     {
       "id": "msqbpdfw-c3ddc8e495",
@@ -542,7 +910,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msqbpdfw-c3ddc8e495.jpg"
     },
     {
       "id": "msqbakdk-ab24c34b74",
@@ -644,7 +1012,7 @@
       "githubUrl": "https://github.com/gamer-09/Note_vault",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msqbakdk-ab24c34b74.jpg"
     },
     {
       "id": "msqb7a2k-f37177ac59",
@@ -746,7 +1114,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msqb7a2k-f37177ac59.jpg"
     },
     {
       "id": "msjwhd9s-c88aa78351",
@@ -848,7 +1216,7 @@
       "githubUrl": "https://github.com/gamer-09/CreepfoIO",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msjwhd9s-c88aa78351.jpg"
     },
     {
       "id": "msjar4qg-e6181144fe",
@@ -948,9 +1316,9 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/ircc-track",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msjar4qg-e6181144fe.jpg"
     },
     {
       "id": "msj106vw-7f1f1bae1d",
@@ -1020,7 +1388,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msj106vw-7f1f1bae1d.jpg"
     },
     {
       "id": "msi2pk64-e7031f3fe2",
@@ -1082,7 +1450,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msi2pk64-e7031f3fe2.jpg"
     },
     {
       "id": "mshz5lln-cdaaf20883",
@@ -1184,7 +1552,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/mshz5lln-cdaaf20883.jpg"
     },
     {
       "id": "mshz2q1i-1a148a153d",
@@ -1282,7 +1650,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/mshz2q1i-1a148a153d.jpg"
     },
     {
       "id": "mshywuck-018f27db71",
@@ -1380,7 +1748,7 @@
       "githubUrl": "https://github.com/gamer-09/planner",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/mshywuck-018f27db71.jpg"
     },
     {
       "id": "mshysjrv-928916b0e3",
@@ -1468,9 +1836,9 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/replica",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/mshysjrv-928916b0e3.jpg"
     },
     {
       "id": "mshyl5zt-eb9c3fd01e",
@@ -1558,9 +1926,9 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/techevent",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/mshyl5zt-eb9c3fd01e.jpg"
     },
     {
       "id": "mshxzdhf-539024ab34",
@@ -1656,9 +2024,9 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Kilo-lookup",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/mshxzdhf-539024ab34.jpg"
     },
     {
       "id": "mshxxgqm-1bbab0eb49",
@@ -1758,9 +2126,9 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/achievelom-",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/mshxxgqm-1bbab0eb49.svg"
+      "thumbnail": "data/screenshots/mshxxgqm-1bbab0eb49.jpg"
     },
     {
       "id": "msgo3znd-d754b6110b",
@@ -1858,7 +2226,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msgo3znd-d754b6110b.jpg"
     },
     {
       "id": "msgeu88t-a752fbf5f5",
@@ -1960,7 +2328,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msgeu88t-a752fbf5f5.jpg"
     },
     {
       "id": "msgekd2p-92a5b7c7d6",
@@ -2062,7 +2430,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msgekd2p-92a5b7c7d6.jpg"
     },
     {
       "id": "msg9zh3h-a01b453027",
@@ -2162,9 +2530,9 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/worldbuild",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msg9zh3h-a01b453027.jpg"
     },
     {
       "id": "msg8ye3i-4554330fa7",
@@ -2266,7 +2634,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": ""
+      "thumbnail": "data/screenshots/msg8ye3i-4554330fa7.jpg"
     },
     {
       "id": "msg88gk0-1ec05b3fbb",
@@ -2532,7 +2900,7 @@
       "githubUrl": "https://github.com/Borewit/mu",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfee7mg-ef835e2af6.svg"
+      "thumbnail": "data/screenshots/msfee7mg-ef835e2af6.jpg"
     },
     {
       "id": "msfed76i-5c59807429",
@@ -2626,7 +2994,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfed76i-5c59807429.svg"
+      "thumbnail": "data/screenshots/msfed76i-5c59807429.jpg"
     },
     {
       "id": "msfe9g1f-f1bca9fdc2",
@@ -2728,7 +3096,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfe9g1f-f1bca9fdc2.svg"
+      "thumbnail": "data/screenshots/msfe9g1f-f1bca9fdc2.jpg"
     },
     {
       "id": "msfe7jxy-7bde73cdc6",
@@ -2830,7 +3198,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfe7jxy-7bde73cdc6.svg"
+      "thumbnail": "data/screenshots/msfe7jxy-7bde73cdc6.jpg"
     },
     {
       "id": "msfe6byj-32de497134",
@@ -2932,7 +3300,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfe6byj-32de497134.svg"
+      "thumbnail": "data/screenshots/msfe6byj-32de497134.jpg"
     },
     {
       "id": "msfe1hjm-0ad8d5491b",
@@ -3030,7 +3398,7 @@
       "githubUrl": "https://github.com/gamer-09/Information-webgather",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfe1hjm-0ad8d5491b.svg"
+      "thumbnail": "data/screenshots/msfe1hjm-0ad8d5491b.jpg"
     },
     {
       "id": "msfdtrt5-efbe72d37d",
@@ -3132,7 +3500,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfdtrt5-efbe72d37d.svg"
+      "thumbnail": "data/screenshots/msfdtrt5-efbe72d37d.jpg"
     },
     {
       "id": "msfdgphv-e699b2ef91",
@@ -3234,7 +3602,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfdgphv-e699b2ef91.svg"
+      "thumbnail": "data/screenshots/msfdgphv-e699b2ef91.jpg"
     },
     {
       "id": "msfcwosi-839b7258a0",
@@ -3336,7 +3704,7 @@
       "githubUrl": "",
       "repoVisibility": "",
       "isUpdated": true,
-      "thumbnail": "data/screenshots/msfcwosi-839b7258a0.svg"
+      "thumbnail": "data/screenshots/msfcwosi-839b7258a0.jpg"
     }
   ]
 }
