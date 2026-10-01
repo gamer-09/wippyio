@@ -733,19 +733,27 @@ async function detectGitHubUrl(project) {
   const projectRoot = path.join(projectsDir, project.id, 'files');
   if (!fs.existsSync(projectRoot)) return '';
 
-  const gitConfigPath = findFile(projectRoot, /^\.git[/\\]config$/i);
+  // --- Pass 1: The "Cheat" - check if the source JSON already has it ---
+  if (project.githubUrl && project.githubUrl.startsWith('http')) {
+    return project.githubUrl;
+  }
+
+  // --- Pass 2: Deep .git config search ---
+  const gitConfigPath = findFile(projectRoot, /^\\.git[/\\\\]config$/i);
   if (gitConfigPath) {
     const url = await extractGitConfigUrl(gitConfigPath);
     if (url) return url;
   }
 
-  const pkgPath = findFile(projectRoot, /^package\.json$/i, /node_modules/);
+  // --- Pass 3: package.json ---
+  const pkgPath = findFile(projectRoot, /^package\\.json$/i, /node_modules/);
   if (pkgPath) {
     const url = await extractPackageJsonUrl(pkgPath);
     if (url) return url;
   }
 
-  const mdFiles = findFiles(projectRoot, /\.(md|txt)$/i, /node_modules/).slice(0, 8);
+  // --- Pass 4: Broad text search (MD, TXT, etc.) ---
+  const mdFiles = findFiles(projectRoot, /\\.(md|txt)$/i, /node_modules/).slice(0, 15);
   for (const mdFile of mdFiles) {
     const url = await extractGitHubUrlFromText(mdFile);
     if (url) return url;
