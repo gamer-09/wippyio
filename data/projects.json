@@ -1,6 +1,88 @@
 {
   "projects": [
     {
+      "id": "muouul9i-6d47b790bc",
+      "name": "USB_Phone_Control-scrcpy_01-",
+      "createdAt": "2026-10-01T01:28:04.134Z",
+      "updatedAt": "2026-10-01T01:29:39.448Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project appears to be a personal utility for controlling an Android phone from a Windows PC using `scrcpy`. It features a Python-based graphical user interface (GUI) and a collection of PowerShell scripts to manage both USB and wireless debugging connections, enabling screen mirroring, keyboard/mouse input, and audio forwarding. The archive includes all necessary `scrcpy` and Android `platform-tools` binaries, making it a self-contained solution.\n\n## Highlights\n- **Interactive GUI:** A Python Tkinter-based GUI (`phone_control_ui.py`) simplifies phone control and connection management.\n- **Dual Connectivity:** Supports both USB and Wi-Fi (wireless debugging) connections for Android devices.\n- **Integrated Tools:** Includes pre-packaged `scrcpy` binaries and Android `platform-tools` (ADB, Fastboot) for out-of-the-box functionality.\n- **PowerShell Scripting:** A suite of PowerShell scripts (`.ps1` files) handles device checks, wireless pairing, connection, and disconnection.\n- **Comprehensive Documentation:** A `README.md` file provides detailed instructions and feature overview.\n- **Git History:** Contains a `.git` directory, indicating it was managed with Git, preserving version control metadata.\n\n## Likely Tech Stack\n- **Languages:** Python, PowerShell, Markdown\n- **Libraries/Frameworks:** Tkinter (Python GUI), `scrcpy` (Android mirroring), ADB (Android Debug Bridge)\n- **Operating System:** Primarily Windows (due to `.ps1` scripts, `.exe`, `.dll` files, and `scrcpy-win64` distribution)\n\n## Run / Restore Notes\nTo run this project, start by reviewing the `README.md` for setup instructions. The main GUI application is `phone_control_ui.py`, which can likely be launched via `start-ui.ps1`. PowerShell scripts in the `scripts/` directory provide direct control over device connections. Necessary `scrcpy` and `platform-tools` binaries are included within the `tools/` directory, so external installations might not be required, though system PATH configuration might be needed for direct command-line use. Python 3 and PowerShell are prerequisites.\n\n## Tags\nandroid, scrcpy, phone control, usb, wireless debugging, adb, python, powershell, gui, windows, mirroring, remote control",
+      "acceptedAt": "2026-10-01T01:29:39.448Z",
+      "fileCount": 94,
+      "totalBytes": 52473944,
+      "totalSizeLabel": "50 MB",
+      "topLanguages": [
+        {
+          "name": "Other",
+          "count": 92
+        },
+        {
+          "name": "Python",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": "[no extension]",
+          "count": 32
+        },
+        {
+          "name": ".sample",
+          "count": 14
+        },
+        {
+          "name": ".ps1",
+          "count": 11
+        },
+        {
+          "name": ".dll",
+          "count": 11
+        },
+        {
+          "name": ".exe",
+          "count": 10
+        },
+        {
+          "name": ".zip",
+          "count": 2
+        },
+        {
+          "name": ".txt",
+          "count": 2
+        },
+        {
+          "name": ".png",
+          "count": 2
+        },
+        {
+          "name": ".idx",
+          "count": 1
+        },
+        {
+          "name": ".pack",
+          "count": 1
+        },
+        {
+          "name": ".rev",
+          "count": 1
+        },
+        {
+          "name": ".py",
+          "count": 1
+        }
+      ],
+      "githubUrl": "https://github.com/rober42539/lao-dictionary",
+      "repoVisibility": "",
+      "isUpdated": false,
+      "thumbnail": "data/screenshots/muouul9i-6d47b790bc.svg"
+    },
+    {
       "id": "mt25gfv0-a46b51ea78",
       "name": "admin help bot",
       "createdAt": "2026-08-20T23:26:35.341Z",
@@ -66,7 +148,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/admin-help-bot",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt25gfv0-a46b51ea78.svg"
     },
@@ -168,7 +250,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Half-made-world-Reference",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt1p9jq7-2469820d1e.jpg"
     },
@@ -270,7 +352,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/mail-organizer",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mt1p69ft-21a4540c4b.jpg"
     },
@@ -466,7 +548,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Note_vault",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/msqbakdk-ab24c34b74.jpg"
     },
@@ -571,88 +653,6 @@
       "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msqb7a2k-f37177ac59.jpg"
-    },
-    {
-      "id": "msm2j97i-8171c9377e",
-      "name": "USB Phone Control [scrcpy_01]",
-      "createdAt": "2026-08-09T17:20:29.023Z",
-      "updatedAt": "2026-08-09T17:21:28.998Z",
-      "status": "stored",
-      "completionStatus": "completed",
-      "completionReason": "",
-      "summary": "## Description\nThis project provides a Windows-based solution for controlling an Android phone from a PC, leveraging `scrcpy` for screen mirroring and input. It supports both USB and Wi-Fi (wireless debugging) connections, offering a Python-based graphical user interface (GUI) and a suite of PowerShell scripts for various control and setup tasks. The aim is to simplify the interaction with `scrcpy` and `adb` for a smoother user experience.\n\n## Highlights\n- Features a Python Tkinter GUI (`phone_control_ui.py`) for simplified phone control with a Catppuccin Mocha-inspired dark theme.\n- Includes comprehensive PowerShell scripts for device checking, wireless connection management (pairing, connect/disconnect), and initial setup.\n- Bundles `adb` (Android Debug Bridge) and `scrcpy` binaries, specifically for Windows 64-bit environments.\n- Supports both USB and wireless (Wi-Fi) debugging, including options for pairing code and QR code pairing.\n- The `README.md` indicates `setup.ps1` is designed to download the latest `scrcpy` and `platform-tools` versions automatically.\n- Project is marked as \"not completed / still in progress,\" suggesting ongoing development.\n\n## Likely Tech Stack\n- **Languages**: Python, PowerShell, Markdown, Batch\n- **GUI Framework**: Tkinter (Python)\n- **Core Tools**: scrcpy, Android Debug Bridge (adb)\n- **Runtime Environment**: Windows (64-bit implied by bundled binaries)\n- **Libraries/Dependencies**: SDL2, FFmpeg (via `avcodec`, `avformat`, `avutil` DLLs), libusb\n\n## Run / Restore Notes\n- This project is marked as \"not completed / still in progress.\"\n- To run, Python 3.x is required. The main GUI can likely be started via `python phone_control_ui.py` or by executing `start-ui.ps1`.\n- Initial setup likely involves running `setup.ps1` to ensure `adb` and `scrcpy` binaries are up-to-date and correctly configured within the `tools` directory.\n- The project relies heavily on pre-compiled Windows binaries (`.exe`, `.dll`) for `adb`, `scrcpy`, and related tools, indicating a Windows-specific execution environment.\n- PowerShell scripts (`.ps1`) are integral for managing device connections and other functionalities, so PowerShell must be enabled and accessible.\n\n## Tags\nandroid, scrcpy, phone control, usb, wireless debugging, adb, python, powershell, tkinter, windows, gui, mobile, mirroring, in-progress\nThe previous archive summary was complete and included all requested sections. There is no unfinished content to continue.\n- Note that while the `README.md` mentions `scrcpy v4.x`, the archived `scrcpy` binaries are version `2.5`, which might require an update via `setup.ps1` for full functionality as described.\n\n## Tags\nandroid, scrcpy, phone control, usb, wireless debugging, adb, python, powershell, tkinter, windows, mobile, mirroring, in-progress, version discrepancy",
-      "acceptedAt": "2026-08-09T17:21:26.011Z",
-      "fileCount": 44,
-      "totalBytes": 34124638,
-      "totalSizeLabel": "33 MB",
-      "topLanguages": [
-        {
-          "name": "Other",
-          "count": 42
-        },
-        {
-          "name": "Python",
-          "count": 1
-        },
-        {
-          "name": "Markdown",
-          "count": 1
-        }
-      ],
-      "topFileTypes": [
-        {
-          "name": ".ps1",
-          "count": 11
-        },
-        {
-          "name": ".dll",
-          "count": 11
-        },
-        {
-          "name": ".exe",
-          "count": 10
-        },
-        {
-          "name": ".bat",
-          "count": 2
-        },
-        {
-          "name": ".py",
-          "count": 1
-        },
-        {
-          "name": ".md",
-          "count": 1
-        },
-        {
-          "name": ".zip",
-          "count": 1
-        },
-        {
-          "name": ".conf",
-          "count": 1
-        },
-        {
-          "name": ".txt",
-          "count": 1
-        },
-        {
-          "name": ".properties",
-          "count": 1
-        },
-        {
-          "name": ".png",
-          "count": 1
-        },
-        {
-          "name": ".vbs",
-          "count": 1
-        }
-      ],
-      "githubUrl": "https://github.com/rober42539/lao-dictionary",
-      "repoVisibility": "public",
-      "isUpdated": false,
-      "thumbnail": "data/screenshots/msm2j97i-8171c9377e.svg"
     },
     {
       "id": "msjwhd9s-c88aa78351",
@@ -854,7 +854,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/ircc-track",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msjar4qg-e6181144fe.jpg"
     },
@@ -1374,7 +1374,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/replica",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mshysjrv-928916b0e3.jpg"
     },
@@ -1562,7 +1562,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Kilo-lookup",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mshxzdhf-539024ab34.jpg"
     },
@@ -1664,7 +1664,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/achievelom-",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/mshxxgqm-1bbab0eb49.jpg"
     },
@@ -2068,7 +2068,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/worldbuild",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": false,
       "thumbnail": "data/screenshots/msg9zh3h-a01b453027.jpg"
     },
