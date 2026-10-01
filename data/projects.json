@@ -614,43 +614,43 @@
       "id": "mt1p9jq7-2469820d1e",
       "name": "Half-made-world-Reference",
       "createdAt": "2026-08-20T15:53:19.904Z",
-      "updatedAt": "2026-08-20T15:54:37.788Z",
+      "updatedAt": "2026-10-01T15:59:55.166Z",
       "status": "stored",
       "completionStatus": "not-completed",
       "completionReason": "Still building core features",
       "summary": "## Description\nThis project is an interactive web application designed as a searchable and editable knowledge base for the lore, magic systems, and characters of a fantasy novel titled \"Half-Made World.\" It aims to centralize worldbuilding details that were originally scattered across documents, providing a dynamic reference hub for the author.\n\n## Highlights\n*   Features a full-stack web application with a React/TypeScript frontend and a Node/Express backend.\n*   Persists worldbuilding data, relationships, and story links to local JSON files on disk.\n*   Contains 542 entries across 29 categories, including characters, skills, locations, and magic systems.\n*   Includes original source documents in Markdown and DOCX formats, such as \"Half_made world ideas.docx\" and various chapter drafts.\n*   The archive includes the full Git repository history, which may be useful for tracking development progress and changes.\n\n## Likely Tech Stack\n*   **Frontend**: React, TypeScript, Vite, CSS\n*   **Backend**: Node.js, Express.js\n*   **Data Storage**: JSON files (on disk)\n*   **Version Control**: Git\n*   **Build/Dev Tools**: npm, concurrently\n*   **Documentation**: Markdown, Microsoft Word (DOCX)\n\n## Run / Restore Notes\nTo run this project, navigate to the `Half-made-world-Reference/half-made-world-hub/` directory.\n1.  Install dependencies for both client and server: `npm run install:all`\n2.  Start the development servers: `npm run dev`\n    *   The client application will likely be accessible at `http://localhost:5173`.\n    *   The server API will run on `http://localhost:5001`.\nThe project is marked \"not completed / still in progress,\" so functionality may be incomplete. The `.git` directory is included, preserving full version history.\n\n## Tags\nworldbuilding, fantasy, novel, reference, react, typescript, node.js, express, json, git, web app, full-stack, lore, interactive, draft\nThe previous response was already complete and included the `## Tags` section. There is nothing further to add.\nAdditionally, a `regenerate-seeds.js` script exists in the server directory, suggesting a method for updating the initial dataset (`world.json`, `story-links.json`, `relationships.json`) from a live state, which could be useful for maintaining the project's foundational data.",
       "acceptedAt": "2026-08-20T15:54:20.025Z",
-      "fileCount": 5879,
-      "totalBytes": 103376120,
-      "totalSizeLabel": "99 MB",
+      "fileCount": 6346,
+      "totalBytes": 136297178,
+      "totalSizeLabel": "130 MB",
       "topLanguages": [
         {
           "name": "JavaScript",
-          "count": 2490
+          "count": 2504
         },
         {
           "name": "Other",
-          "count": 1964
+          "count": 2397
         },
         {
           "name": "TypeScript",
-          "count": 842
+          "count": 848
         },
         {
           "name": "JSON",
-          "count": 286
+          "count": 290
         },
         {
           "name": "Markdown",
-          "count": 256
+          "count": 259
         },
         {
           "name": "YAML",
-          "count": 23
+          "count": 24
         },
         {
           "name": "React/TypeScript",
-          "count": 12
+          "count": 17
         },
         {
           "name": "HTML",
@@ -660,7 +660,7 @@
       "topFileTypes": [
         {
           "name": ".js",
-          "count": 2490
+          "count": 2504
         },
         {
           "name": ".map",
@@ -668,27 +668,27 @@
         },
         {
           "name": ".ts",
-          "count": 842
+          "count": 848
         },
         {
           "name": "[no extension]",
-          "count": 353
+          "count": 779
         },
         {
           "name": ".json",
-          "count": 286
+          "count": 290
         },
         {
           "name": ".md",
-          "count": 256
+          "count": 259
+        },
+        {
+          "name": ".mjs",
+          "count": 29
         },
         {
           "name": ".mts",
           "count": 28
-        },
-        {
-          "name": ".mjs",
-          "count": 27
         },
         {
           "name": ".cts",
@@ -696,7 +696,7 @@
         },
         {
           "name": ".yml",
-          "count": 23
+          "count": 24
         },
         {
           "name": ".cjs",
@@ -709,7 +709,7 @@
       ],
       "githubUrl": "https://github.com/gamer-09/Half-made-world-Reference",
       "repoVisibility": "public",
-      "isUpdated": false,
+      "isUpdated": true,
       "thumbnail": "data/screenshots/mt1p9jq7-2469820d1e.jpg"
     },
     {
