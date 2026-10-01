@@ -733,8 +733,8 @@ async function detectGitHubUrl(project) {
   const projectRoot = path.join(projectsDir, project.id, 'files');
   if (!fs.existsSync(projectRoot)) return '';
 
-  // --- Pass 1: The "Cheat" - check if the source JSON already has it ---
-  if (project.githubUrl && project.githubUrl.startsWith('http')) {
+  // --- Pass 1: Check source JSON first (High Priority) ---
+  if (project.githubUrl && typeof project.githubUrl === 'string' && project.githubUrl.startsWith('http')) {
     return project.githubUrl;
   }
 
@@ -752,7 +752,7 @@ async function detectGitHubUrl(project) {
     if (url) return url;
   }
 
-  // --- Pass 4: Broad text search (MD, TXT, etc.) ---
+  // --- Pass 4: Broad text search ---
   const mdFiles = findFiles(projectRoot, /\\.(md|txt)$/i, /node_modules/).slice(0, 15);
   for (const mdFile of mdFiles) {
     const url = await extractGitHubUrlFromText(mdFile);
