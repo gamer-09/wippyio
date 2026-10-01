@@ -1,5 +1,7 @@
 # wippyio
 
+**[Visit wippy →](https://gamer-09.github.io/wippyio/)** — live on GitHub Pages.
+
 A personal website that displays all projects from the [storage-packed](https://github.com/gamer-09/storage-packed) vault.
 
 ## How It Works
