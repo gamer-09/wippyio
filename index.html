@@ -192,6 +192,7 @@
               <li>Small tools &amp; scripts (Python, Node, Bash)</li>
               <li>Static or light web pages / UI components</li>
               <li>Simple Discord / Telegram bots</li>
+              <li>AI tools &amp; chatbots — <strong>you bring your own AI API key</strong></li>
               <li>Small APIs or CRUD apps with a lightweight database</li>
               <li>Bug fixes &amp; refactors of small projects</li>
             </ul>
@@ -199,13 +200,14 @@
           <div class="scope-card scope-cant">
             <h3>🚫 Out of scope</h3>
             <ul>
-              <li>AI / ML models, training, or LLM-powered products</li>
+              <li>Training / fine-tuning custom AI models</li>
               <li>Full SaaS, enterprise systems, or "company-grade" platforms</li>
-              <li>Projects needing ongoing hosting, big infra, or paid APIs</li>
-              <li>Anything needing teams, compliance, or long-term upkeep</li>
+              <li>Projects needing ongoing hosting, big infra, or long-term upkeep</li>
+              <li>Anything needing compliance (SOC 2, HIPAA) or a team</li>
             </ul>
           </div>
         </div>
+        <p class="scope-note">🤖 Requesting an AI tool? You must provide your own AI API key as a <code>.env</code> file. You upload it <strong>at your own risk</strong> — I only use it to build your project and delete it on request.</p>
 
         <form class="request-form" id="requestForm" novalidate>
           <div class="rf-row">
@@ -258,12 +260,34 @@
           </div>
 
           <label class="rf-check">
+            <input type="checkbox" id="rfUsesAi" />
+            <span>This project uses an AI API (OpenAI, Anthropic, etc.) — I'll provide my own key.</span>
+          </label>
+
+          <div class="rf-env" id="rfEnvGroup" hidden>
+            <div class="rf-env-head">
+              <h4>🔑 AI API key (<code>.env</code>)</h4>
+              <p>Upload your <code>.env</code> file <strong>or</strong> paste its contents. This is stored privately and only I can see it. <strong>Upload at your own risk.</strong></p>
+            </div>
+            <div class="rf-row">
+              <div class="rf-field">
+                <label for="rfEnvFile">Upload <code>.env</code> <span class="rf-opt">(max 100 KB)</span></label>
+                <input type="file" id="rfEnvFile" accept=".env,.txt,.json,.yml,.yaml,.ini,text/plain" />
+              </div>
+              <div class="rf-field">
+                <label for="rfEnvText">…or paste the contents</label>
+                <textarea id="rfEnvText" rows="3" maxlength="5000" placeholder="OPENAI_API_KEY=sk-..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <label class="rf-check">
             <input type="checkbox" id="rfAck" required />
-            <span>I understand this is a small-to-medium personal project and <strong>not</strong> an AI / enterprise-scale request.</span>
+            <span>I understand this is a small-to-medium personal project and <strong>not</strong> an enterprise-scale request.</span>
           </label>
 
           <div class="rf-warning" id="rfWarning" hidden>
-            <span>⚠️ Your description mentions something that may be out of scope (AI / ML, enterprise, SaaS…). Please simplify it, or tick the box below and I'll review it anyway.</span>
+            <span>⚠️ Your description mentions something that may be out of scope (enterprise, SaaS, large-scale…). Please simplify it, or tick the box below and I'll review it anyway.</span>
             <label class="rf-check rf-check-sub">
               <input type="checkbox" id="rfOverride" />
               <span>Submit anyway — let me review it.</span>

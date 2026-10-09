@@ -1735,6 +1735,59 @@ footer {
 .rf-status-success { color: var(--green); }
 .rf-status-error { color: var(--danger); }
 
+.scope-note {
+  margin: -1rem 0 2rem;
+  font-size: 0.82rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  padding: 0.7rem 0.9rem;
+  border: 1px dashed var(--border-hover);
+  border-radius: var(--radius-xs);
+}
+.scope-note code {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  background: var(--accent-glow);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+/* AI .env block */
+.rf-env {
+  border: 1px solid var(--purple-dim);
+  border-color: rgba(155, 93, 229, 0.3);
+  background: var(--purple-dim);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.rf-env-head h4 { font-size: 0.88rem; margin-bottom: 0.3rem; color: var(--purple); }
+.rf-env-head p { font-size: 0.8rem; color: var(--text-2); line-height: 1.5; }
+.rf-env-head code { font-family: var(--mono); font-size: 0.78rem; }
+.rf-env .rf-row { gap: 0.9rem; }
+.rf-field input[type="file"] {
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+.rf-field input[type="file"]::file-selector-button {
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-xs);
+  margin-right: 0.6rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.rf-field input[type="file"]::file-selector-button:hover { border-color: var(--accent); color: var(--accent); }
+
 /* ==========================================================================
    Admin dashboard
    ========================================================================== */
@@ -1941,6 +1994,27 @@ footer {
 .admin-status-accepted { color: var(--purple); border-color: rgba(155, 93, 229, 0.4); }
 .admin-status-done { color: var(--green); border-color: rgba(0, 229, 160, 0.4); }
 .admin-status-rejected { color: var(--danger); border-color: rgba(255, 71, 87, 0.4); }
+
+.admin-flag-ai { color: var(--purple); }
+.admin-env {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(155, 93, 229, 0.3);
+  background: var(--purple-dim);
+  border-radius: var(--radius-xs);
+}
+.admin-env-label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--purple);
+}
+.admin-env-missing { font-size: 0.75rem; color: var(--danger); font-style: italic; }
 
 .admin-empty { text-align: center; padding: 4rem 1rem; }
 .admin-empty .empty-icon { font-size: 3rem; opacity: 0.4; }

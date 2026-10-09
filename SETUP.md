@@ -32,6 +32,10 @@ create table if not exists public.requests (
   scope             text not null,
   contact_method    text not null,
   contact_value     text not null,
+  uses_ai           boolean not null default false,
+  env_content       text,
+  env_file_path     text,
+  env_file_name     text,
   out_of_scope_flag boolean not null default false,
   status            text not null default 'new'
 );
@@ -62,7 +66,28 @@ create policy "admin delete requests"
   on public.requests for delete
   to authenticated
   using (auth.uid() = 'YOUR-ADMIN-USER-UUID');
+
+-- Private bucket for uploaded .env files (visitors backup their own AI keys).
+insert into storage.buckets (id, name, public)
+values ('request-env', 'request-env', false)
+on conflict (id) do nothing;
+
+create policy "anon upload env"
+  on storage.objects for insert to anon
+  with check (bucket_id = 'request-env');
+
+create policy "admin read env"
+  on storage.objects for select to authenticated
+  using (bucket_id = 'request-env' and auth.uid() = 'YOUR-ADMIN-USER-UUID');
+
+create policy "admin delete env"
+  on storage.objects for delete to authenticated
+  using (bucket_id = 'request-env' and auth.uid() = 'YOUR-ADMIN-USER-UUID');
 ```
+
+> Already created the table? Just run the `alter table ... add column` lines,
+> the `insert into storage.buckets` line, and the three `storage.objects`
+> policies.
 
 ## 3. Lock down sign-ups (important)
 

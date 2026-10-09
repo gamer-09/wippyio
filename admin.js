@@ -178,11 +178,29 @@
         const id = btn.dataset.del;
         if (!confirm('Delete this request permanently?')) return;
         btn.disabled = true;
+        const req = allRequests.find((x) => x.id === id);
+        if (req && req.env_file_path) {
+          await client.storage.from('request-env').remove([req.env_file_path]).catch(() => {});
+        }
         const { error } = await client.from('requests').delete().eq('id', id);
         if (error) { alert('Delete failed: ' + error.message); btn.disabled = false; return; }
         allRequests = allRequests.filter((x) => x.id !== id);
         renderStats();
         render();
+      });
+    });
+
+    listEl.querySelectorAll('[data-envfile]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const path = btn.dataset.envfile;
+        const old = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Opening…';
+        const { data, error } = await client.storage.from('request-env').createSignedUrl(path, 120);
+        btn.disabled = false;
+        btn.textContent = old;
+        if (error) { alert('Could not open file: ' + error.message); return; }
+        window.open(data.signedUrl, '_blank', 'noopener');
       });
     });
 
@@ -204,7 +222,23 @@
       '<option value="' + s + '"' + (s === status ? ' selected' : '') + '>' + s[0].toUpperCase() + s.slice(1) + '</option>'
     ).join('');
     const flag = r.out_of_scope_flag ? '<span class="admin-flag">⚠︎ flagged</span>' : '';
+    const aiBadge = r.uses_ai ? '<span class="admin-flag admin-flag-ai">🤖 AI</span>' : '';
     const contact = r.contact_method + ': ' + r.contact_value;
+
+    let envHTML = '';
+    if (r.uses_ai) {
+      let inner = '<span class="admin-env-label">🔑 AI key</span>';
+      if (r.env_file_path) {
+        inner += '<button class="admin-mini" data-envfile="' + escA(r.env_file_path) + '">Download ' + esc(r.env_file_name || '.env') + '</button>';
+      }
+      if (r.env_content) {
+        inner += '<button class="admin-mini" data-copy="' + escA(r.env_content) + '">Copy pasted key</button>';
+      }
+      if (!r.env_file_path && !r.env_content) {
+        inner += '<span class="admin-env-missing">no key provided</span>';
+      }
+      envHTML = '<div class="admin-env">' + inner + '</div>';
+    }
 
     return '<article class="admin-card" data-id="' + escA(r.id) + '">' +
       '<div class="admin-card-top">' +
@@ -214,12 +248,13 @@
             '<span>' + (r.name ? esc(r.name) : 'Anonymous') + '</span>' +
             '<span>·</span><span>' + esc(fmtDate(r.created_at)) + '</span>' +
             '<span>·</span><span class="admin-scope">' + esc(r.scope || '—') + '</span>' +
-            flag +
+            aiBadge + flag +
           '</div>' +
         '</div>' +
         '<select class="admin-status admin-status-' + status + '" data-status="' + escA(r.id) + '">' + opts + '</select>' +
       '</div>' +
       '<p class="admin-card-desc">' + esc(r.description || '') + '</p>' +
+      envHTML +
       '<div class="admin-card-foot">' +
         '<div class="admin-contact">' +
           '<span class="admin-contact-label">Contact</span>' +
