@@ -29,6 +29,7 @@ node sync-projects.js /path/to/storage-packed --screenshots
 index.html              ← Main page (bento grid layout)
 styles.css              ← Bold colorful theme
 app.js                  ← Client-side rendering, search, filters, cursor trail
+bg3d.js                 ← Live 3D background (three.js via CDN)
 data/projects.json      ← Slimmed project data (synced from vault)
 data/screenshots/       ← Project screenshots and gradient fallbacks
 sync-projects.js        ← Local sync script (with Puppeteer screenshot capture)

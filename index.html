@@ -47,6 +47,9 @@
   <!-- Cursor trail canvas -->
   <canvas class="cursor-trail" id="cursorTrail"></canvas>
 
+  <!-- Live 3D background -->
+  <canvas class="bg3d" id="bg3d" aria-hidden="true"></canvas>
+
   <!-- Aurora background -->
   <div class="aurora">
     <div class="aurora-1"></div>
@@ -65,7 +68,6 @@
       <span class="nav-title">wippy</span>
     </a>
     <div class="nav-right">
-      <a href="help.html" class="nav-link">Guide</a>
       <a href="https://github.com/gamer-09/storage-packed" target="_blank" class="nav-link">Vault ↗</a>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -184,12 +186,13 @@
 
   <footer>
     <div class="footer-inner">
-      <p><a href="help.html">📖 Help & Guide</a> · Synced from <a href="https://github.com/gamer-09/storage-packed" target="_blank">storage-packed</a> vault</p>
+      <p>Synced from <a href="https://github.com/gamer-09/storage-packed" target="_blank">storage-packed</a> vault</p>
       <p class="footer-sub">Built with ❤️ and a lot of ☕</p>
       <p class="footer-sub" style="margin-top:0.5rem;opacity:0.35;font-size:0.65rem">© 2026 gamer-09 · All rights reserved · Code is proprietary</p>
     </div>
   </footer>
 
+  <script type="module" src="bg3d.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
