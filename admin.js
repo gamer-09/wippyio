@@ -18,7 +18,11 @@
     return;
   }
 
-  const client = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+  // Memory-only session: the login never persists across page loads, so
+  // leaving/navigating away/reloading automatically logs you out.
+  const client = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+  });
 
   // ---- DOM ----
   const $ = (s) => document.querySelector(s);
@@ -93,6 +97,15 @@
 
   client.auth.onAuthStateChange((_event, session) => {
     showSession(session);
+  });
+
+  // Leaving the page (navigate away, close tab, reload) ends the session.
+  window.addEventListener('pagehide', () => {
+    try { client.auth.signOut(); } catch (e) { /* ignore */ }
+  });
+  // If restored from back/forward cache, force a clean (logged-out) load.
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) location.reload();
   });
 
   function showSession(session) {
