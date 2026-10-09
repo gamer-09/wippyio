@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <title>wippy — admin</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23ff6b35'/><text x='50' y='68' text-anchor='middle' font-size='52' fill='white' font-family='system-ui'>⚡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="admin-body">
+  <div class="noise-overlay"></div>
+  <div class="aurora">
+    <div class="aurora-1"></div>
+    <div class="aurora-2"></div>
+    <div class="aurora-3"></div>
+    <div class="aurora-4"></div>
+  </div>
+
+  <header class="admin-topbar">
+    <div class="admin-brand"><span>⚡</span> wippy <span class="admin-brand-sub">admin</span></div>
+    <div class="admin-topbar-right">
+      <button class="admin-btn" id="adminRefresh" hidden>↻ Refresh</button>
+      <button class="theme-toggle" id="adminTheme" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a class="admin-btn" href="index.html">← Site</a>
+      <button class="admin-btn admin-btn-danger" id="adminLogout" hidden>Log out</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <!-- Login -->
+    <section class="admin-login" id="adminLogin" hidden>
+      <div class="admin-login-card">
+        <h1>Admin login</h1>
+        <p class="admin-login-sub">Sign in to view build requests.</p>
+        <form id="loginForm" novalidate>
+          <label for="adminEmail">Email</label>
+          <input type="email" id="adminEmail" autocomplete="username" placeholder="you@example.com" required />
+          <label for="adminPassword">Password</label>
+          <input type="password" id="adminPassword" autocomplete="current-password" placeholder="••••••••" required />
+          <button type="submit" class="rf-submit" id="loginBtn">Log in</button>
+          <p class="rf-status" id="loginStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="admin-dash" id="adminDash" hidden>
+      <div class="admin-stats" id="adminStats"></div>
+      <div class="admin-controls">
+        <input type="text" id="adminSearch" placeholder="Search requests…" autocomplete="off" />
+        <select id="adminStatusFilter">
+          <option value="all">All statuses</option>
+          <option value="new">New</option>
+          <option value="reviewing">Reviewing</option>
+          <option value="accepted">Accepted</option>
+          <option value="done">Done</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+      <div class="admin-list" id="adminList"></div>
+      <div class="admin-empty" id="adminEmpty" hidden>
+        <div class="empty-icon">📭</div>
+        <p class="empty-title">No requests yet</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="supabase-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -68,6 +68,7 @@
       <span class="nav-title">wippy</span>
     </a>
     <div class="nav-right">
+      <a href="#request" class="nav-link">Request</a>
       <a href="https://github.com/gamer-09/storage-packed" target="_blank" class="nav-link">Vault ↗</a>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -174,6 +175,108 @@
       <p class="empty-title" id="emptyTitle">No projects found</p>
       <p class="empty-sub">Try a different search or filter.</p>
     </section>
+
+    <!-- Request a build -->
+    <section class="request-section reveal" id="request">
+      <div class="request-inner">
+        <div class="request-head">
+          <span class="request-badge">Build requests</span>
+          <h2 class="request-title">Want me to build <span class="hero-accent">something?</span></h2>
+          <p class="request-sub">Describe what you need. If it fits the scope below, I'll build it as a repo and reach out using the contact you leave so I can send you the link.</p>
+        </div>
+
+        <div class="scope-grid">
+          <div class="scope-card scope-can">
+            <h3>✅ In scope</h3>
+            <ul>
+              <li>Small tools &amp; scripts (Python, Node, Bash)</li>
+              <li>Static or light web pages / UI components</li>
+              <li>Simple Discord / Telegram bots</li>
+              <li>Small APIs or CRUD apps with a lightweight database</li>
+              <li>Bug fixes &amp; refactors of small projects</li>
+            </ul>
+          </div>
+          <div class="scope-card scope-cant">
+            <h3>🚫 Out of scope</h3>
+            <ul>
+              <li>AI / ML models, training, or LLM-powered products</li>
+              <li>Full SaaS, enterprise systems, or "company-grade" platforms</li>
+              <li>Projects needing ongoing hosting, big infra, or paid APIs</li>
+              <li>Anything needing teams, compliance, or long-term upkeep</li>
+            </ul>
+          </div>
+        </div>
+
+        <form class="request-form" id="requestForm" novalidate>
+          <div class="rf-row">
+            <div class="rf-field">
+              <label for="rfName">Your name <span class="rf-opt">(optional)</span></label>
+              <input type="text" id="rfName" name="name" maxlength="80" placeholder="Jane Doe" autocomplete="name" />
+            </div>
+            <div class="rf-field">
+              <label for="rfTitle">What should I build? <span class="rf-req">*</span></label>
+              <input type="text" id="rfTitle" name="title" maxlength="120" placeholder="A CLI that renames files by date" required />
+            </div>
+          </div>
+
+          <div class="rf-field">
+            <label for="rfDesc">Describe it <span class="rf-req">*</span></label>
+            <textarea id="rfDesc" name="description" rows="5" maxlength="2000" placeholder="What it does, who it's for, and any must-have features. Please keep it to a single small-to-medium project." required></textarea>
+            <div class="rf-count"><span id="rfCount">0</span> / 2000</div>
+          </div>
+
+          <div class="rf-row">
+            <div class="rf-field">
+              <label for="rfScope">Scope <span class="rf-req">*</span></label>
+              <select id="rfScope" name="scope" required>
+                <option value="" disabled selected>Choose a scope…</option>
+                <option>Small tool / script</option>
+                <option>Web page / UI component</option>
+                <option>Discord / Telegram bot</option>
+                <option>Small API / CRUD app</option>
+                <option>Bug fix / refactor</option>
+              </select>
+            </div>
+            <div class="rf-field">
+              <label for="rfContactMethod">Preferred contact <span class="rf-req">*</span></label>
+              <select id="rfContactMethod" name="contact_method" required>
+                <option value="" disabled selected>How should I reach you?</option>
+                <option>Email</option>
+                <option>Discord</option>
+                <option>Telegram</option>
+                <option>X / Twitter DM</option>
+                <option>GitHub</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="rf-field">
+            <label for="rfContact">Contact detail <span class="rf-req">*</span></label>
+            <input type="text" id="rfContact" name="contact_value" maxlength="160" placeholder="you@example.com or @username" required />
+            <p class="rf-hint">Where I'll send the repo link once it's built. Only I can see this.</p>
+          </div>
+
+          <label class="rf-check">
+            <input type="checkbox" id="rfAck" required />
+            <span>I understand this is a small-to-medium personal project and <strong>not</strong> an AI / enterprise-scale request.</span>
+          </label>
+
+          <div class="rf-warning" id="rfWarning" hidden>
+            <span>⚠️ Your description mentions something that may be out of scope (AI / ML, enterprise, SaaS…). Please simplify it, or tick the box below and I'll review it anyway.</span>
+            <label class="rf-check rf-check-sub">
+              <input type="checkbox" id="rfOverride" />
+              <span>Submit anyway — let me review it.</span>
+            </label>
+          </div>
+
+          <div class="rf-actions">
+            <button type="submit" class="rf-submit" id="rfSubmit">Send request</button>
+            <p class="rf-status" id="rfStatus" role="status"></p>
+          </div>
+        </form>
+      </div>
+    </section>
   </main>
 
   <!-- Project detail popup -->
@@ -194,5 +297,8 @@
 
   <script type="module" src="bg3d.js"></script>
   <script src="app.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="requests.js"></script>
 </body>
 </html>
