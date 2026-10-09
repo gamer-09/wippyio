@@ -1,6 +1,80 @@
 {
   "projects": [
     {
+      "id": "mv17o7vl-b3ded4c816",
+      "name": "code-analyzer",
+      "createdAt": "2026-10-09T17:00:15.970Z",
+      "updatedAt": "2026-10-09T17:02:33.352Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "Paused or abandoned for now",
+      "summary": "## Description\nThis project is a web-based code analyzer built with a React frontend and a Node.js/Express backend. It leverages Google's Gemini AI to provide intelligent code analysis, offering improvement suggestions, issue detection, and real-time metrics for submitted code. The application aims to help developers enhance their code quality across various languages.\n\n## Highlights\n- Full-stack application featuring a React client and a Node.js/Express server.\n- Integrates with Google Gemini AI for advanced code analysis and suggestions.\n- Provides a responsive UI with a code editor, real-time metrics, and detailed analysis results.\n- Supports analysis for JavaScript, TypeScript, and plain text code.\n- Utilizes `concurrently` for streamlined development, running both client and server simultaneously.\n- Includes basic code parsing capabilities via Babel and ESLint.\n\n## Likely Tech Stack\n- Frontend: React, JavaScript, CSS, HTML, Axios, React Syntax Highlighter, Lucide React\n- Backend: Node.js, Express.js, JavaScript, Dotenv, CORS\n- AI Integration: Google Generative AI (`@google/generative-ai`)\n- Code Parsing: Babel (`@babel/parser`, `@babel/traverse`, `@babel/types`), ESLint\n- Development Tools: Nodemon, Concurrently, React Scripts\n\n## Run / Restore Notes\nTo run this project, ensure Node.js is installed. Navigate to the project root directory and execute `npm run install-all` to install all necessary dependencies for both the client and server. A Google Gemini API Key is required; create a `.env` file in the project root with `GEMINI_API_KEY=your_key_here`. The project can then be started in development mode using `npm run dev`, which will launch both the React frontend and the Express backend.\n\n## Tags\nweb, full-stack, react, node.js, express, ai, code analysis, google gemini, javascript, frontend, backend, development tool, incomplete\nIts modular structure with separate client and server directories facilitates clear separation of concerns and scalable development.",
+      "acceptedAt": "2026-10-09T17:02:33.352Z",
+      "fileCount": 18,
+      "totalBytes": 787920,
+      "totalSizeLabel": "769 KB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 6
+        },
+        {
+          "name": "JSON",
+          "count": 4
+        },
+        {
+          "name": "CSS",
+          "count": 4
+        },
+        {
+          "name": "Other",
+          "count": 2
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 6
+        },
+        {
+          "name": ".json",
+          "count": 4
+        },
+        {
+          "name": ".css",
+          "count": 4
+        },
+        {
+          "name": "[no extension]",
+          "count": 1
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        }
+      ],
+      "githubUrl": "",
+      "repoVisibility": "",
+      "isUpdated": true,
+      "thumbnail": "data/screenshots/mv17o7vl-b3ded4c816.svg"
+    },
+    {
       "id": "mv16t7b7-a65f609011",
       "name": "API [api_01]",
       "createdAt": "2026-10-09T16:36:08.899Z",
