@@ -1,6 +1,108 @@
 {
   "projects": [
     {
+      "id": "mv14nrk1-581db439b2",
+      "name": "secret-journal-web",
+      "createdAt": "2026-10-09T15:35:55.969Z",
+      "updatedAt": "2026-10-09T16:14:31.410Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "Paused or abandoned for now",
+      "summary": "## Description\nThis project, `secret-journal-web`, is a web-based personal journal application designed to allow users to create, view, and manage their journal entries. A key feature appears to be the ability to lock and unlock individual entries with a password, providing a layer of privacy for sensitive thoughts. The project was paused or abandoned before completion, so some functionality may be incomplete.\n\n## Highlights\n- Implements core journal functionalities including adding, expanding, editing, and deleting entries.\n- Features a password-based locking and unlocking mechanism for individual journal entries.\n- Built with a modern frontend stack, leveraging React for UI and Vite for a fast development experience.\n- Utilizes Tailwind CSS for styling, PostCSS for processing, and Framer Motion for UI animations.\n- Integrates Lucide React for a rich set of icons, enhancing the user interface.\n\n## Likely Tech Stack\n- Frontend Framework: React\n- Build Tool: Vite\n- Styling: Tailwind CSS, PostCSS, Autoprefixer\n- UI Components/Icons: Lucide React\n- Animation Library: Framer Motion\n- Primary Languages: JavaScript, TypeScript\n- Runtime Environment: Node.js (for development and build processes)\n\n## Run / Restore Notes\nThis project appears to be a standard Vite/React application. To set up and run:\n1. Ensure Node.js is installed on your system.\n2. Navigate to the `secret-journal-web/` directory in your terminal.\n3. Install project dependencies using `npm install` or `yarn install`.\n4. To start the development server, run `npm run dev` or `yarn dev`. The application should then be accessible in your browser, likely at `http://localhost:3009` as configured in `vite.config.js`.\n5. To build a production version, use `npm run build` or `yarn build`. The compiled assets will be placed in the `dist/` directory.\nAs the project was marked as \"not completed / still in progress,\" some features might be unfinished or contain bugs.\n\n## Tags\nweb application, frontend, react, vite, journal, personal, privacy, tailwind css, framer motion, javascript, typescript, incomplete, node.js, development, build, ui, ux, components, authentication",
+      "acceptedAt": "2026-10-09T15:40:56.758Z",
+      "fileCount": 6708,
+      "totalBytes": 75217458,
+      "totalSizeLabel": "72 MB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 3587
+        },
+        {
+          "name": "Other",
+          "count": 2456
+        },
+        {
+          "name": "TypeScript",
+          "count": 287
+        },
+        {
+          "name": "JSON",
+          "count": 188
+        },
+        {
+          "name": "Markdown",
+          "count": 167
+        },
+        {
+          "name": "CSS",
+          "count": 10
+        },
+        {
+          "name": "YAML",
+          "count": 7
+        },
+        {
+          "name": "HTML",
+          "count": 4
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 3587
+        },
+        {
+          "name": ".map",
+          "count": 1842
+        },
+        {
+          "name": ".mjs",
+          "count": 312
+        },
+        {
+          "name": ".ts",
+          "count": 287
+        },
+        {
+          "name": ".json",
+          "count": 188
+        },
+        {
+          "name": "[no extension]",
+          "count": 168
+        },
+        {
+          "name": ".md",
+          "count": 167
+        },
+        {
+          "name": ".mts",
+          "count": 28
+        },
+        {
+          "name": ".cts",
+          "count": 27
+        },
+        {
+          "name": ".cmd",
+          "count": 20
+        },
+        {
+          "name": ".ps1",
+          "count": 20
+        },
+        {
+          "name": ".cjs",
+          "count": 19
+        }
+      ],
+      "githubUrl": "",
+      "repoVisibility": "",
+      "isUpdated": true,
+      "thumbnail": "data/screenshots/mv14nrk1-581db439b2.jpg"
+    },
+    {
       "id": "muptvne3-3cffbf827d",
       "name": "site-inspect-chrome",
       "createdAt": "2026-10-01T17:48:40.107Z",
