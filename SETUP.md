@@ -67,6 +67,66 @@ create policy "admin delete requests"
   to authenticated
   using (auth.uid() = 'YOUR-ADMIN-USER-UUID');
 
+-- ==========================================================================
+-- Likes + comments (project pages)
+-- ==========================================================================
+
+-- One row per project; keeps a server-side count anyone can +1 / -1.
+create table if not exists public.project_likes (
+  project_id text primary key,
+  likes integer not null default 0
+);
+
+alter table public.project_likes enable row level security;
+
+create policy "public read project_likes"
+  on public.project_likes for select
+  to anon, authenticated
+  using (true);
+
+-- Likes are guarded server-side so the count can never go negative.
+create or replace function public.adjust_project_likes(p_project_id text, p_delta integer)
+returns integer
+language sql
+security definer
+set search_path = public
+as $$
+  insert into public.project_likes (project_id, likes)
+  values (p_project_id, greatest(0, p_delta))
+  on conflict (project_id)
+  do update set likes = greatest(0, project_likes.likes + p_delta)
+  returning likes;
+$$;
+
+grant execute on function public.adjust_project_likes(text, integer) to anon, authenticated;
+
+create table if not exists public.project_comments (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  project_id text not null,
+  name text,
+  body text not null check (char_length(body) between 1 and 1000)
+);
+
+alter table public.project_comments enable row level security;
+
+create policy "public read project_comments"
+  on public.project_comments for select
+  to anon, authenticated
+  using (true);
+
+-- Visitors may POST comments (name is optional; body required).
+create policy "public insert project_comments"
+  on public.project_comments for insert
+  to anon, authenticated
+  with check (true);
+
+-- Only your admin account may delete comments.
+create policy "admin delete project_comments"
+  on public.project_comments for delete
+  to authenticated
+  using (auth.uid() = 'YOUR-ADMIN-USER-UUID');
+
 -- Private bucket for uploaded .env files (visitors backup their own AI keys).
 insert into storage.buckets (id, name, public)
 values ('request-env', 'request-env', false)
@@ -140,8 +200,10 @@ insert. Keep the **service_role** key secret and never put it in this repo.
 | --- | --- |
 | `index.html` | Adds the `#request` section + nav link (public form). |
 | `requests.js` | Validates the form, enforces scope rules, inserts into Supabase. |
+| `app.js` | Renders projects; now also like buttons + comments on cards & popup. |
 | `admin.html` | Hidden admin page (`noindex`, not linked from the site). |
 | `admin.js` | Supabase email/password login + dashboard (read/status/delete). |
+| `admin-bg.js` | Admin-only live node-network background (distinct from home). |
 | `supabase-config.js` | Your public URL + anon key. |
 
 ### Notes

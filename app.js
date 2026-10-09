@@ -69,6 +69,24 @@
   const popupBody = $('#popupBody');
   const themeToggle = $('#themeToggle');
 
+  // ---- Supabase (likes + comments) ----
+  const CFG = window.WIPPY_CONFIG || {};
+  const SB = (CFG.supabaseUrl && window.supabase && window.supabase.createClient)
+    ? window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, { auth: { persistSession: false, autoRefreshToken: false } })
+    : null;
+
+  const likeCounts = new Map();
+  const commentCounts = new Map();
+  const LIKED_KEY = 'wippy-liked';
+  function getLikedSet() {
+    try { return new Set(JSON.parse(localStorage.getItem(LIKED_KEY) || '[]')); }
+    catch { return new Set(); }
+  }
+  function saveLikedSet(set) {
+    try { localStorage.setItem(LIKED_KEY, JSON.stringify([...set])); } catch { /* ignore */ }
+  }
+  let likedSet = getLikedSet();
+
   // ---- Theme ----
   function getPreferredTheme() {
     const saved = localStorage.getItem('portfolio-theme');
@@ -251,6 +269,7 @@
       console.error('Failed to load projects:', err);
       allProjects = [];
     }
+    await loadSocial();
     skeletonGrid.classList.add('hiding');
     skeletonGrid.addEventListener('animationend', () => { skeletonGrid.style.display = 'none'; }, { once: true });
     await new Promise((r) => setTimeout(r, 150));
@@ -359,6 +378,7 @@
     container.querySelectorAll('[data-id]').forEach((el, i) => {
       el.addEventListener('click', (e) => {
         if (e.target.closest('a')) return;
+        if (e.target.closest('.like-btn')) return;
         const id = el.dataset.id;
         const project = allProjects.find((p) => p.id === id);
         if (project) openPopup(project);
@@ -392,7 +412,24 @@
         cardObserver.observe(el);
       }
     });
+
+    container.addEventListener('click', (e) => {
+      const likeBtn = e.target.closest('.like-btn');
+      if (!likeBtn) return;
+      const id = likeBtn.dataset.like;
+      if (!id) return;
+      e.stopPropagation();
+      toggleLike(id);
+    });
   }
+
+  document.addEventListener('click', (e) => {
+    const likeBtn = e.target.closest('.like-btn');
+    if (!likeBtn || !likeBtn.closest('#popupOverlay')) return;
+    const id = likeBtn.dataset.like;
+    if (!id) return;
+    toggleLike(id);
+  });
 
   // ---- Bento Card HTML ----
   function bentoCardHTML(p, i) {
@@ -441,6 +478,8 @@
         <span class="bento-card-date">📅 ${date}</span>
         <div style="display:flex;align-items:center;gap:0.5rem">
           <span class="bento-card-size">${esc(p.totalSizeLabel || '')}</span>
+          ${commentSpanHTML(p)}
+          ${likeBtnHTML(p)}
           ${ghLink}
         </div>
       </div>
@@ -474,6 +513,8 @@
         ${p.isUpdated ? '<span class="bento-card-badge badge-updated">✨ Updated</span>' : ''}
         ${p.repoVisibility === 'private' ? '<span class="bento-card-badge badge-private">🔒 Private</span>' : ''}
         <span class="bento-card-badge ${badge.cls}">${badge.label}</span>
+        ${commentSpanHTML(p)}
+        ${likeBtnHTML(p)}
         ${ghLink}
       </div>
     </article>`;
@@ -518,6 +559,8 @@
             <div class="tl-card-bottom">
               <span>${esc(p.totalSizeLabel || '')} · ${p.fileCount || 0} files</span>
               ${langs ? `<span class="tl-card-langs">${esc(langs)}</span>` : ''}
+              ${commentSpanHTML(p)}
+              ${likeBtnHTML(p)}
               ${ghLink}
             </div>
           </div>
@@ -528,6 +571,149 @@
     }
     html += '</div>';
     return html;
+  }
+
+  // ---- Social: likes + comments ----
+  function cssQ(s) { return (window.CSS && CSS.escape) ? CSS.escape(s) : String(s).replace(/["\\]/g, '\\$&'); }
+
+  function likeBtnHTML(p) {
+    const count = likeCounts.get(p.id) || 0;
+    const liked = likedSet.has(p.id);
+    return `<button class="like-btn${liked ? ' liked' : ''}" data-like="${escA(p.id)}" aria-pressed="${liked}" title="${liked ? 'Unlike' : 'Like'}">
+      <svg viewBox="0 0 24 24" fill="${liked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span class="like-count">${count}</span>
+    </button>`;
+  }
+  function commentSpanHTML(p) {
+    const count = commentCounts.get(p.id) || 0;
+    return `<span class="comment-count" data-comment="${escA(p.id)}" title="Comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>${count}</span>`;
+  }
+
+  async function loadSocial() {
+    if (!SB) return;
+    try {
+      const [likesRes, comRes] = await Promise.all([
+        SB.from('project_likes').select('project_id,likes'),
+        SB.from('project_comments').select('project_id'),
+      ]);
+      if (likesRes.data) likesRes.data.forEach((r) => likeCounts.set(r.project_id, r.likes || 0));
+      if (comRes.data) comRes.data.forEach((r) => commentCounts.set(r.project_id, (commentCounts.get(r.project_id) || 0) + 1));
+    } catch (err) {
+      console.warn('Could not load likes/comments:', err);
+    }
+  }
+
+  async function toggleLike(id) {
+    if (!SB) return;
+    const liked = likedSet.has(id);
+    const delta = liked ? -1 : 1;
+    if (liked) likedSet.delete(id); else likedSet.add(id);
+    saveLikedSet(likedSet);
+    likeCounts.set(id, Math.max(0, (likeCounts.get(id) || 0) + delta));
+    updateLikeUI(id);
+
+    const { data, error } = await SB.rpc('adjust_project_likes', { p_project_id: id, p_delta: delta });
+    if (!error && typeof data === 'number') {
+      likeCounts.set(id, data);
+    } else if (error) {
+      console.warn('Like failed:', error.message);
+      if (liked) likedSet.add(id); else likedSet.delete(id);
+      saveLikedSet(likedSet);
+      likeCounts.set(id, Math.max(0, (likeCounts.get(id) || 0) - delta));
+    }
+    updateLikeUI(id);
+  }
+
+  function updateLikeUI(id) {
+    const count = likeCounts.get(id) || 0;
+    const liked = likedSet.has(id);
+    document.querySelectorAll('[data-like="' + cssQ(id) + '"]').forEach((btn) => {
+      btn.classList.toggle('liked', liked);
+      btn.setAttribute('aria-pressed', String(liked));
+      btn.title = liked ? 'Unlike' : 'Like';
+      const c = btn.querySelector('.like-count');
+      if (c) c.textContent = count;
+      const path = btn.querySelector('svg path');
+      if (path) path.setAttribute('fill', liked ? 'currentColor' : 'none');
+    });
+  }
+
+  function updateCommentCountUI(id) {
+    const count = commentCounts.get(id) || 0;
+    document.querySelectorAll('[data-comment="' + cssQ(id) + '"]').forEach((el) => {
+      const svg = el.querySelector('svg');
+      el.textContent = '';
+      if (svg) el.appendChild(svg);
+      el.append(String(count));
+    });
+  }
+
+  async function loadComments(projectId) {
+    const listEl = document.getElementById('commentsList');
+    const formEl = document.getElementById('commentForm');
+    if (!listEl) return;
+    if (!SB) {
+      listEl.innerHTML = '<p class="comments-empty">Comments are unavailable right now.</p>';
+      if (formEl) formEl.style.display = 'none';
+      return;
+    }
+    listEl.innerHTML = '<p class="comments-loading">Loading comments…</p>';
+    const { data, error } = await SB
+      .from('project_comments')
+      .select('id,name,body,created_at')
+      .eq('project_id', projectId)
+      .order('created_at', { ascending: true });
+    if (error) {
+      listEl.innerHTML = '<p class="comments-empty">Could not load comments.</p>';
+      return;
+    }
+    listEl.innerHTML = renderComments(data || []);
+
+    if (formEl) {
+      formEl.onsubmit = async (e) => {
+        e.preventDefault();
+        const nameEl = document.getElementById('commentName');
+        const bodyEl = document.getElementById('commentBody');
+        const statusEl = document.getElementById('commentStatus');
+        const btn = formEl.querySelector('button');
+        const body = bodyEl.value.trim();
+        if (!body) { statusEl.textContent = 'Write something first.'; statusEl.className = 'comment-status error'; return; }
+        btn.disabled = true; btn.textContent = 'Posting…';
+        const { error: insErr } = await SB.from('project_comments').insert({
+          project_id: projectId,
+          name: nameEl.value.trim() || null,
+          body,
+        });
+        btn.disabled = false; btn.textContent = 'Post comment';
+        if (insErr) {
+          statusEl.textContent = 'Could not post — try again.';
+          statusEl.className = 'comment-status error';
+          return;
+        }
+        statusEl.textContent = '';
+        bodyEl.value = '';
+        commentCounts.set(projectId, (commentCounts.get(projectId) || 0) + 1);
+        updateCommentCountUI(projectId);
+        loadComments(projectId);
+      };
+    }
+  }
+
+  function renderComments(list) {
+    if (!list.length) return '<p class="comments-empty">No comments yet — be the first.</p>';
+    return list.map((c) => {
+      const initial = (c.name || 'Anonymous').trim().charAt(0).toUpperCase() || '?';
+      return `<div class="comment">
+        <div class="comment-avatar">${esc(initial)}</div>
+        <div class="comment-body">
+          <div class="comment-head">
+            <span class="comment-name">${esc(c.name || 'Anonymous')}</span>
+            <span class="comment-date">${esc(fmtDate(c.created_at))}</span>
+          </div>
+          <p class="comment-text">${esc(c.body)}</p>
+        </div>
+      </div>`;
+    }).join('');
   }
 
   // ---- Popup ----
@@ -584,9 +770,31 @@
       <div class="popup-summary">${summaryHTML}</div>
       ${langs ? `<div class="popup-section-title">Languages</div><div class="popup-languages">${langs}</div>` : ''}
       ${fts ? `<div class="popup-section-title">File Types</div><div class="popup-filetypes">${fts}</div>` : ''}
+      <div class="popup-social">
+        <div class="popup-reactions">
+          ${likeBtnHTML(p)}
+          <span class="popup-reaction-link" data-goto-comments>💬 ${commentCounts.get(p.id) || 0} comments</span>
+        </div>
+        <div class="popup-comments">
+          <div class="popup-section-title">Discussion</div>
+          <div id="commentsList" class="comments-list"></div>
+          <form id="commentForm" class="comment-form" novalidate>
+            <input type="text" id="commentName" maxlength="50" placeholder="Name (optional)" autocomplete="nickname" />
+            <textarea id="commentBody" maxlength="1000" placeholder="Say something nice…" required></textarea>
+            <div class="comment-form-bottom">
+              <p class="comment-status" id="commentStatus" role="status"></p>
+              <button type="submit" class="comment-submit">Post comment</button>
+            </div>
+          </form>
+        </div>
+      </div>
     `;
     popupOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    loadComments(p.id);
+    popupBody.querySelector('[data-goto-comments]')?.addEventListener('click', () => {
+      popupBody.querySelector('.popup-comments')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   }
 
   function closePopup() {

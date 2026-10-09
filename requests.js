@@ -38,6 +38,7 @@
   const usesAiEl = document.getElementById('rfUsesAi');
   const envGroup = document.getElementById('rfEnvGroup');
   const envFileEl = document.getElementById('rfEnvFile');
+  const envNameEl = document.getElementById('rfEnvName');
   const envTextEl = document.getElementById('rfEnvText');
 
   // Requests that are too big for this scope (AI is allowed — see AI_TERMS).
@@ -94,6 +95,9 @@
   titleEl.addEventListener('input', () => { updateScopeWarning(); syncAiSection(); });
   usesAiEl.addEventListener('change', syncAiSection);
   overrideEl.addEventListener('change', () => setStatus(''));
+  envFileEl.addEventListener('change', () => {
+    if (envNameEl) envNameEl.textContent = envFileEl.files[0] ? envFileEl.files[0].name : 'No file chosen';
+  });
 
   if (!isConfigured || !client) {
     submitBtn.disabled = true;
@@ -170,6 +174,7 @@
       form.reset();
       countEl.textContent = '0';
       warningEl.hidden = true;
+      if (envNameEl) envNameEl.textContent = 'No file chosen';
       setStatus("Sent! I'll reach out via " + contactMethod + ' with the repo link once it\'s built.', 'success');
     } catch (err) {
       console.error('Request submission failed:', err);

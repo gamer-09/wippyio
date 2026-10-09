@@ -2027,6 +2027,62 @@ footer {
 .admin-empty { text-align: center; padding: 4rem 1rem; }
 .admin-empty .empty-icon { font-size: 3rem; opacity: 0.4; }
 
+/* ==========================================================================
+   Admin — distinct dashboard identity (cyan "console" theme + own motion bg)
+   ========================================================================== */
+.admin-body {
+  --accent: #00bbf9;
+  --accent-2: #06b6d4;
+  --accent-glow: rgba(0, 187, 249, 0.14);
+  background: var(--bg);
+}
+[data-theme="light"] .admin-body {
+  --accent: #0284c7;
+  --accent-2: #0891b2;
+  --accent-glow: rgba(2, 132, 199, 0.1);
+}
+.admin-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.admin-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 72%);
+}
+[data-theme="light"] .admin-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+}
+/* Distinct topbar: floating, pill-shaped brand, glowing underline */
+.admin-topbar {
+  background: rgba(10, 12, 20, 0.72);
+  box-shadow: 0 1px 0 rgba(0, 187, 249, 0.18), 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+[data-theme="light"] .admin-topbar { background: rgba(245, 250, 255, 0.82); }
+.admin-brand { font-family: var(--mono); letter-spacing: -0.5px; }
+.admin-brand-sub { color: var(--accent); border-color: var(--accent); }
+.admin-login-card {
+  border-color: rgba(0, 187, 249, 0.25);
+  box-shadow: 0 0 60px rgba(0, 187, 249, 0.08);
+}
+.admin-stat { border-color: rgba(0, 187, 249, 0.15); }
+.admin-stat-num { color: var(--accent); }
+.admin-card { border-left: 3px solid rgba(0, 187, 249, 0.35); }
+
 @media (max-width: 720px) {
   .request-inner { padding: 1.5rem; }
   .scope-grid { grid-template-columns: 1fr; }
@@ -2039,3 +2095,121 @@ footer {
   .admin-topbar { padding: 0.5rem 0.8rem; }
   .admin-brand-sub { display: none; }
 }
+
+/* ==========================================================================
+   Likes + comments
+   ========================================================================== */
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.28rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text-2);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1;
+  transition: all var(--transition);
+}
+.like-btn svg { width: 14px; height: 14px; }
+.like-btn:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+.like-btn.liked { color: var(--accent); border-color: var(--accent); background: var(--accent-glow); }
+.like-btn:active { transform: scale(0.9); }
+
+.comment-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  cursor: default;
+  white-space: nowrap;
+}
+.comment-count svg { opacity: 0.8; }
+
+.popup-social { margin-top: 1.6rem; border-top: 1px solid var(--border); padding-top: 1.1rem; }
+.popup-reactions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+.popup-reactions .like-btn { padding: 0.5rem 1rem; font-size: 0.85rem; }
+.popup-reaction-link {
+  color: var(--text-2);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.popup-reaction-link:hover { color: var(--accent); }
+
+.comments-list { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1rem; }
+.comments-empty,
+.comments-loading { color: var(--text-3); font-size: 0.85rem; margin: 0.25rem 0; }
+.comment {
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: var(--bg-card);
+}
+.comment-avatar {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--bg);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+.comment-body { min-width: 0; flex: 1; }
+.comment-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+.comment-name { font-weight: 700; font-size: 0.85rem; }
+.comment-date { color: var(--text-3); font-size: 0.7rem; font-family: var(--mono); }
+.comment-text { margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--text-2); word-break: break-word; white-space: pre-wrap; }
+
+.comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: var(--bg-card);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  outline: none;
+  resize: vertical;
+  transition: all var(--transition);
+}
+.comment-form input:focus, .comment-form textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.comment-form textarea { min-height: 70px; }
+.comment-form-bottom { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
+.comment-submit {
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.comment-submit:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.comment-submit:disabled { opacity: 0.5; cursor: default; transform: none; }
+.comment-status { color: var(--text-3); font-size: 0.8rem; margin: 0; }
+.comment-status.error { color: var(--danger); }

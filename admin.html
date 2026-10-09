@@ -12,17 +12,9 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="admin-body">
-  <div class="noise-overlay"></div>
-
-  <!-- Live 3D motion background -->
-  <canvas class="bg3d" id="bg3d" aria-hidden="true"></canvas>
-
-  <div class="aurora">
-    <div class="aurora-1"></div>
-    <div class="aurora-2"></div>
-    <div class="aurora-3"></div>
-    <div class="aurora-4"></div>
-  </div>
+  <!-- Admin-only live motion background (animated node network) -->
+  <canvas class="admin-bg" id="adminBg" aria-hidden="true"></canvas>
+  <div class="admin-grid" aria-hidden="true"></div>
 
   <header class="admin-topbar">
     <div class="admin-brand"><span>⚡</span> wippy <span class="admin-brand-sub">admin</span></div>
@@ -76,7 +68,7 @@
     </section>
   </main>
 
-  <script type="module" src="bg3d.js"></script>
+  <script src="admin-bg.js"></script>
   <script src="supabase-config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="admin.js"></script>

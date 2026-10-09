@@ -222,7 +222,14 @@
             <div class="rf-row">
               <div class="rf-field">
                 <label for="rfEnvFile">Upload <code>.env</code> <span class="rf-opt">(max 100 KB)</span></label>
-                <input type="file" id="rfEnvFile" accept=".env,.txt,.json,.yml,.yaml,.ini,text/plain" />
+                <div class="file-drop">
+                  <label class="file-btn" for="rfEnvFile" id="rfEnvBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span>Choose file</span>
+                  </label>
+                  <input type="file" id="rfEnvFile" class="file-native" accept=".env,.txt,.json,.yml,.yaml,.ini,text/plain" />
+                  <span class="file-name" id="rfEnvName">No file chosen</span>
+                </div>
               </div>
               <div class="rf-field">
                 <label for="rfEnvText">…or paste the contents</label>
@@ -319,10 +326,10 @@
     </div>
   </footer>
 
-  <script type="module" src="bg3d.js"></script>
-  <script src="app.js"></script>
   <script src="supabase-config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="app.js"></script>
   <script src="requests.js"></script>
+  <script type="module" src="bg3d.js"></script>
 </body>
 </html>
