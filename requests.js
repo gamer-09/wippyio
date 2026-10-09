@@ -74,8 +74,6 @@
   function syncAiSection() {
     const text = titleEl.value + ' ' + descEl.value;
     if (AI_RE.test(text)) usesAiEl.checked = true;
-    envGroup.hidden = !usesAiEl.checked;
-    if (envGroup.hidden) { envFileEl.value = ''; envTextEl.value = ''; }
   }
 
   function setBusy(busy) {
@@ -172,7 +170,6 @@
       form.reset();
       countEl.textContent = '0';
       warningEl.hidden = true;
-      envGroup.hidden = true;
       setStatus("Sent! I'll reach out via " + contactMethod + ' with the repo link once it\'s built.', 'success');
     } catch (err) {
       console.error('Request submission failed:', err);

@@ -1766,6 +1766,14 @@ footer {
 .rf-env-head h4 { font-size: 0.88rem; margin-bottom: 0.3rem; color: var(--purple); }
 .rf-env-head p { font-size: 0.8rem; color: var(--text-2); line-height: 1.5; }
 .rf-env-head code { font-family: var(--mono); font-size: 0.78rem; }
+.rf-env-risk {
+  margin-top: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--amber);
+  color: var(--amber) !important;
+  font-size: 0.78rem !important;
+}
+.rf-env .rf-check { color: var(--text); }
 .rf-env .rf-row { gap: 0.9rem; }
 .rf-field input[type="file"] {
   padding: 0.5rem 0.6rem;

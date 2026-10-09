@@ -207,9 +207,31 @@
             </ul>
           </div>
         </div>
-        <p class="scope-note">🤖 Requesting an AI tool? You must provide your own AI API key as a <code>.env</code> file. You upload it <strong>at your own risk</strong> — I only use it to build your project and delete it on request.</p>
 
         <form class="request-form" id="requestForm" novalidate>
+          <div class="rf-env" id="rfEnvGroup">
+            <div class="rf-env-head">
+              <h4>🤖 AI tools are welcome — but bring your own key</h4>
+              <p>Requests that use an AI API (OpenAI, Anthropic, Gemini, etc.) are <strong>in scope</strong>. You must supply your own AI API key by <strong>uploading a <code>.env</code> file</strong> or <strong>pasting its contents</strong> below.</p>
+              <p class="rf-env-risk">⚠️ <strong>At your own risk.</strong> Your key is stored privately and only I can see it. I'll use it only to build your project, and delete it on request.</p>
+            </div>
+            <label class="rf-check">
+              <input type="checkbox" id="rfUsesAi" />
+              <span>This request uses an AI API — I'm providing my own key below.</span>
+            </label>
+            <div class="rf-row">
+              <div class="rf-field">
+                <label for="rfEnvFile">Upload <code>.env</code> <span class="rf-opt">(max 100 KB)</span></label>
+                <input type="file" id="rfEnvFile" accept=".env,.txt,.json,.yml,.yaml,.ini,text/plain" />
+              </div>
+              <div class="rf-field">
+                <label for="rfEnvText">…or paste the contents</label>
+                <textarea id="rfEnvText" rows="3" maxlength="5000" placeholder="OPENAI_API_KEY=sk-..."></textarea>
+              </div>
+            </div>
+            <p class="rf-hint">Only needed if your project uses AI. Not an AI request? Untick the box and leave these blank.</p>
+          </div>
+
           <div class="rf-row">
             <div class="rf-field">
               <label for="rfName">Your name <span class="rf-opt">(optional)</span></label>
@@ -257,28 +279,6 @@
             <label for="rfContact">Contact detail <span class="rf-req">*</span></label>
             <input type="text" id="rfContact" name="contact_value" maxlength="160" placeholder="you@example.com or @username" required />
             <p class="rf-hint">Where I'll send the repo link once it's built. Only I can see this.</p>
-          </div>
-
-          <label class="rf-check">
-            <input type="checkbox" id="rfUsesAi" />
-            <span>This project uses an AI API (OpenAI, Anthropic, etc.) — I'll provide my own key.</span>
-          </label>
-
-          <div class="rf-env" id="rfEnvGroup" hidden>
-            <div class="rf-env-head">
-              <h4>🔑 AI API key (<code>.env</code>)</h4>
-              <p>Upload your <code>.env</code> file <strong>or</strong> paste its contents. This is stored privately and only I can see it. <strong>Upload at your own risk.</strong></p>
-            </div>
-            <div class="rf-row">
-              <div class="rf-field">
-                <label for="rfEnvFile">Upload <code>.env</code> <span class="rf-opt">(max 100 KB)</span></label>
-                <input type="file" id="rfEnvFile" accept=".env,.txt,.json,.yml,.yaml,.ini,text/plain" />
-              </div>
-              <div class="rf-field">
-                <label for="rfEnvText">…or paste the contents</label>
-                <textarea id="rfEnvText" rows="3" maxlength="5000" placeholder="OPENAI_API_KEY=sk-..."></textarea>
-              </div>
-            </div>
           </div>
 
           <label class="rf-check">
