@@ -1775,26 +1775,39 @@ footer {
 }
 .rf-env .rf-check { color: var(--text); }
 .rf-env .rf-row { gap: 0.9rem; }
-.rf-field input[type="file"] {
-  padding: 0.5rem 0.6rem;
-  cursor: pointer;
-  font-size: 0.8rem;
-  color: var(--text-2);
-}
-.rf-field input[type="file"]::file-selector-button {
-  background: var(--bg-card-hover);
+
+/* Compact "Choose file" button + hidden native input */
+.file-drop { display: flex; align-items: center; gap: 0.6rem; padding: 0.35rem 0; }
+.file-native { display: none; }
+.file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.42rem 0.8rem;
   border: 1px solid var(--border);
-  color: var(--text);
-  font-family: var(--font);
-  font-size: 0.78rem;
-  font-weight: 500;
-  padding: 0.35rem 0.7rem;
   border-radius: var(--radius-xs);
-  margin-right: 0.6rem;
+  background: var(--bg-card);
+  color: var(--text-2);
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1;
   cursor: pointer;
+  flex-shrink: 0;
   transition: all var(--transition);
 }
-.rf-field input[type="file"]::file-selector-button:hover { border-color: var(--accent); color: var(--accent); }
+.file-btn svg { width: 14px; height: 14px; }
+.file-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+.file-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.file-name {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
 
 /* ==========================================================================
    Admin dashboard
