@@ -1,6 +1,80 @@
 {
   "projects": [
     {
+      "id": "mv16t7b7-a65f609011",
+      "name": "API [api_01]",
+      "createdAt": "2026-10-09T16:36:08.899Z",
+      "updatedAt": "2026-10-09T16:41:57.758Z",
+      "status": "stored",
+      "completionStatus": "not-completed",
+      "completionReason": "Paused or abandoned for now and some core features are missing/broken",
+      "summary": "## Description\nThis project, named `hhu_87`, is an incomplete Node.js Express API Gateway designed to act as a \"front desk\" for backend services. It's intended to authenticate incoming requests using an API key, forward them to specified downstream services, and log activity. The project also includes an interactive web console for testing and interacting with the gateway.\n\n## Highlights\n- Implements an API Gateway pattern for centralized request routing and authentication.\n- Secures API routes using a configurable `API_KEY` for client authentication.\n- Features an interactive web-based console (`/public`) for sending requests and observing responses.\n- Utilizes `http-proxy-middleware` for efficient request forwarding to backend services.\n- Includes smoke tests (`test/smoke.js`) to verify basic server and proxy functionality.\n- Project is currently incomplete, with core features noted as missing or broken.\n\n## Likely Tech Stack\n- **Languages:** JavaScript, HTML, CSS, JSON, Markdown\n- **Runtime:** Node.js (v16 or newer)\n- **Frameworks/Libraries:** Express.js, http-proxy-middleware, dotenv, cors\n- **Development Tools:** nodemon (for live reloading)\n\n## Run / Restore Notes\nThis project is marked as incomplete, meaning core features are missing or broken, and full functionality should not be expected.\n1.  **Prerequisites:** Ensure Node.js (version 16 or newer) is installed.\n2.  **Dependencies:** Run `npm install` (or `yarn install`) in the project root to install required packages.\n3.  **Configuration:** Copy `.env.example` to `.env` and populate the `API_KEY` and `SERVICE_<NAME>_URL` variables. The `API_KEY` is crucial for authenticating requests.\n4.  **Run:** Use `npm start` to run the server in production mode, or `npm run dev` for development with `nodemon`.\n5.  **Test:** Execute `npm test` to run the included smoke tests.\n6.  The interactive console is accessible by navigating to the gateway's root URL in a web browser.\n\n## Tags\napi gateway, node.js, express, javascript, proxy, authentication, incomplete, web console, development, backend, microservices",
+      "acceptedAt": "2026-10-09T16:40:47.697Z",
+      "fileCount": 12,
+      "totalBytes": 91768,
+      "totalSizeLabel": "90 KB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 4
+        },
+        {
+          "name": "Other",
+          "count": 3
+        },
+        {
+          "name": "JSON",
+          "count": 2
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 4
+        },
+        {
+          "name": "[no extension]",
+          "count": 2
+        },
+        {
+          "name": ".json",
+          "count": 2
+        },
+        {
+          "name": ".env.example",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".css",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        }
+      ],
+      "githubUrl": "",
+      "repoVisibility": "",
+      "isUpdated": true,
+      "thumbnail": "data/screenshots/mv16t7b7-a65f609011.jpg"
+    },
+    {
       "id": "mv16crcc-0b3505a343",
       "name": "Smart Wrist Watch [sww_01]",
       "createdAt": "2026-10-09T16:23:21.708Z",
