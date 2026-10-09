@@ -1,6 +1,76 @@
 {
   "projects": [
     {
+      "id": "mv16crcc-0b3505a343",
+      "name": "Smart Wrist Watch [sww_01]",
+      "createdAt": "2026-10-09T16:23:21.708Z",
+      "updatedAt": "2026-10-09T16:26:34.290Z",
+      "status": "stored",
+      "completionStatus": "completed",
+      "completionReason": "",
+      "summary": "## Description\nThis project is an Electron-based desktop application named \"Smart Wrist-Watch — DaFit for PC\". It aims to replicate the DaFit mobile app experience on Windows, allowing users to connect their DaFit-compatible smartwatches and fitness bands via Bluetooth Low Energy (BLE) to view health data like steps, heart rate, and sleep on a PC-optimized dashboard. The application provides a desktop alternative for monitoring fitness and health data from compatible devices.\n\n## Highlights\n- Desktop application built with Electron, primarily targeting Windows (also supports macOS/Linux).\n- Implements Bluetooth Low Energy (BLE) for scanning and connecting to smartwatches and fitness bands.\n- Features a dashboard to display key health metrics such as steps, heart rate, sleep, and SpO₂.\n- Utilizes Electron's `contextBridge` for secure inter-process communication between the main and renderer processes.\n- Includes custom CSS (`renderer.css`) for a tailored user interface and `index.html` for the main application layout.\n- Designed to be compatible with Bluetooth 4.0 devices that work with the DaFit mobile app.\n\n## Likely Tech Stack\n- **Languages:** JavaScript, HTML, CSS\n- **Runtime/Frameworks:** Electron, Node.js\n- **Package Management:** npm\n- **APIs:** Web Bluetooth API (for device interaction)\n\n## Run / Restore Notes\nTo run this project, you would typically need Node.js installed on your system.\n1. Navigate to the project's root directory (`Smart Wrist Watch [sww_01]`).\n2. Install project dependencies using npm: `npm install`\n3. Start the application: `npm start` (or `npm run dev` for development mode with logging).\nThe application is designed for Windows 10/11 and requires a Bluetooth adapter with BLE (Bluetooth Low Energy) support.\n\n## Tags\ndafit, smartwatch, fitness, ble, bluetooth, pc, desktop, electron, javascript, health, dashboard, windows",
+      "acceptedAt": "2026-10-09T16:26:23.076Z",
+      "fileCount": 9,
+      "totalBytes": 90810,
+      "totalSizeLabel": "89 KB",
+      "topLanguages": [
+        {
+          "name": "JavaScript",
+          "count": 3
+        },
+        {
+          "name": "JSON",
+          "count": 2
+        },
+        {
+          "name": "Other",
+          "count": 1
+        },
+        {
+          "name": "HTML",
+          "count": 1
+        },
+        {
+          "name": "Markdown",
+          "count": 1
+        },
+        {
+          "name": "CSS",
+          "count": 1
+        }
+      ],
+      "topFileTypes": [
+        {
+          "name": ".js",
+          "count": 3
+        },
+        {
+          "name": ".json",
+          "count": 2
+        },
+        {
+          "name": "[no extension]",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        },
+        {
+          "name": ".css",
+          "count": 1
+        }
+      ],
+      "githubUrl": "",
+      "repoVisibility": "",
+      "isUpdated": true,
+      "thumbnail": "data/screenshots/mv16crcc-0b3505a343.jpg"
+    },
+    {
       "id": "mv14nrk1-581db439b2",
       "name": "secret-journal-web",
       "createdAt": "2026-10-09T15:35:55.969Z",
@@ -192,7 +262,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/site-inspect-chrome",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/muptvne3-3cffbf827d.jpg"
     },
@@ -282,7 +352,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/server-monitor-tool",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/muptup8z-0fc1f8b408.jpg"
     },
@@ -372,7 +442,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/researchai-assistant-school",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/muptr7q8-37f4837cd5.jpg"
     },
@@ -466,7 +536,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/reseacrchai-assistant-v2",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/muptnzmr-854339dffe.jpg"
     },
@@ -560,7 +630,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/reseacrchai-assistant",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/muppd0qo-26b9fdcf04.jpg"
     },
@@ -642,7 +712,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/USB_Phone_Control-scrcpy_01-",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/muouul9i-6d47b790bc.svg"
     },
@@ -712,7 +782,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/admin-help-bot",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mt25gfv0-a46b51ea78.svg"
     },
@@ -814,7 +884,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Half-made-world-Reference",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mt1p9jq7-2469820d1e.jpg"
     },
@@ -916,7 +986,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/mail-organizer",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mt1p69ft-21a4540c4b.jpg"
     },
@@ -1010,7 +1080,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/bash",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msqbpdfw-c3ddc8e495.jpg"
     },
@@ -1112,7 +1182,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Note_vault",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msqbakdk-ab24c34b74.jpg"
     },
@@ -1214,7 +1284,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Phone_security_camera",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msqb7a2k-f37177ac59.jpg"
     },
@@ -1418,7 +1488,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/ircc-track",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msjar4qg-e6181144fe.jpg"
     },
@@ -1488,7 +1558,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/legends-of-virelia",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msj106vw-7f1f1bae1d.jpg"
     },
@@ -1750,7 +1820,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/SUNNY",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mshz2q1i-1a148a153d.jpg"
     },
@@ -1938,7 +2008,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/replica",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mshysjrv-928916b0e3.jpg"
     },
@@ -2028,7 +2098,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/techevent",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mshyl5zt-eb9c3fd01e.jpg"
     },
@@ -2126,7 +2196,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Kilo-lookup",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mshxzdhf-539024ab34.jpg"
     },
@@ -2228,7 +2298,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/achievelom-",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/mshxxgqm-1bbab0eb49.jpg"
     },
@@ -2632,7 +2702,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/worldbuild",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msg9zh3h-a01b453027.jpg"
     },
@@ -2804,7 +2874,7 @@
         }
       ],
       "githubUrl": "https://github.com/gamer-09/Discord-Bot",
-      "repoVisibility": "public",
+      "repoVisibility": "",
       "isUpdated": true,
       "thumbnail": "data/screenshots/msg88gk0-1ec05b3fbb.svg"
     },
