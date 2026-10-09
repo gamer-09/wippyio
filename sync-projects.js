@@ -315,10 +315,10 @@ function findWebEntry(projectId) {
       if (/^client[/\\\\].*index/i.test(rel)) s += 15;
       if (/^src[/\\\\]index/i.test(rel)) s += 14;
       if (/^templates[/\\\\]index/i.test(rel)) s += 13;
-      if (/index\\.html$/i.test(rel)) s += 10;
+      if (/index\.html$/i.test(rel)) s += 10;
       if (/extension|plugin|addon/i.test(rel)) s -= 20;
-      if (/popup\\.html$/i.test(rel)) s -= 15;
-      if (/options\\.html$/i.test(rel)) s -= 15;
+      if (/popup\.html$/i.test(rel)) s -= 15;
+      if (/options\.html$/i.test(rel)) s -= 15;
       if (/test|spec|demo/i.test(rel)) s -= 10;
       const dirOf = path.dirname(p);
       if (fs.existsSync(path.join(dirOf, 'package.json'))) s += 5;
@@ -334,7 +334,7 @@ function findWebEntry(projectId) {
     return {
       dir: serverRoot,
       entry: best.file,
-      prefix: prefix === '.' ? '' : prefix.replace(/\\\\/g, '/'),
+      prefix: prefix === '.' ? '' : prefix.replace(/\\/g, '/'),
     };
   }
 
@@ -815,7 +815,7 @@ async function extractPackageJsonUrl(filePath) {
 async function extractGitHubUrlFromText(filePath) {
   try {
     const text = await fsp.readFile(filePath, 'utf8');
-    const match = text.match(/https?:\/\/github\.com\/[^/\\s)]+\/[^/\\s).#]+(?:\.git)?/i);
+    const match = text.match(/https?:\/\/github\.com\/[^/\s)]+\/[^/\s).#]+(?:\.git)?/i);
     if (match) return parseGitHubUrl(match[0]);
   } catch {}
   return '';
@@ -824,11 +824,11 @@ async function extractGitHubUrlFromText(filePath) {
 function parseGitHubUrl(raw) {
   if (!raw) return '';
   const cleaned = raw.replace(/^git\+/, '').replace(/^url\s*=\s*/i, '').trim();
-  const https = cleaned.match(/^https?:\/\/(?:[^/@\\s]+@)?github\.com[:/]([^/\\s]+)\/([^/\\s#?]+?)(?:\.git)?(?:[/?#].*)?$/i);
+  const https = cleaned.match(/^https?:\/\/(?:[^/@\s]+@)?github\.com[:/]([^/\s]+)\/([^/\s#?]+?)(?:\.git)?(?:[/?#].*)?$/i);
   if (https) return `https://github.com/${https[1]}/${https[2]}`;
-  const ssh = cleaned.match(/^git@github\.com:([^/\\s]+)\/([^/\\s#?]+?)(?:\.git)?$/i);
+  const ssh = cleaned.match(/^git@github\.com:([^/\s]+)\/([^/\s#?]+?)(?:\.git)?$/i);
   if (ssh) return `https://github.com/${ssh[1]}/${ssh[2]}`;
-  const short = cleaned.match(/^([^/\\s]+)\/([^/\\s#?]+?)(?:\.git)?$/i);
+  const short = cleaned.match(/^([^/\s]+)\/([^/\s#?]+?)(?:\.git)?$/i);
   if (short && !cleaned.includes(' ')) return `https://github.com/${short[1]}/${short[2]}`;
   return '';
 }
