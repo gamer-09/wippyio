@@ -1710,6 +1710,7 @@ footer {
 }
 .rf-owner[hidden] { display: none; }
 .rf-owner .rf-owner-label { color: var(--text-3); }
+.rf-owner .rf-owner-note { color: var(--text-3); font-style: italic; }
 .rf-owner a { color: var(--accent-2); word-break: break-all; }
 .rf-owner strong { color: var(--text); font-weight: 600; }
 

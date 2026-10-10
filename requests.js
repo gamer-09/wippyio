@@ -96,11 +96,13 @@
     'Email': {
       name: 'Email', label: 'Your email', placeholder: 'you@example.com', type: 'email',
       ownerKey: 'email', intro: 'I’ll reply by email from',
+      note: '— no follow or approval needed.',
       link: (h) => 'mailto:' + h,
     },
     'Discord': {
       name: 'Discord', label: 'Your Discord username', placeholder: 'username or username#0000', type: 'text',
-      ownerKey: 'discord', intro: 'I’ll send a friend request, then DM you, from',
+      ownerKey: 'discord', intro: 'I’ll send a friend request from',
+      note: '— Discord only allows DMs between friends or shared-server members, so accept it and I can DM you.',
     },
     'Telegram': {
       name: 'Telegram', label: 'Your Telegram handle', placeholder: '@username', type: 'text',
@@ -111,16 +113,19 @@
     'X / Twitter DM': {
       name: 'X (Twitter)', label: 'Your X (Twitter) handle', placeholder: '@username', type: 'text',
       ownerKey: 'x', intro: 'I’ll DM you on X from',
+      note: '— X only delivers DMs if your account allows messages from anyone.',
       link: (h) => 'https://x.com/' + h.replace(/^@/, ''),
     },
     'GitHub': {
       name: 'GitHub', label: 'Your GitHub username', placeholder: '@username', type: 'text',
       ownerKey: 'github', intro: 'I’ll reply on GitHub as',
+      note: '— GitHub has no DMs, so I’ll @mention you on the issue/PR instead.',
       link: (h) => 'https://github.com/' + h.replace(/^@/, ''),
     },
     'Instagram': {
       name: 'Instagram', label: 'Your Instagram username', placeholder: '@username', type: 'text',
       ownerKey: 'instagram', intro: 'I’ll DM you on Instagram from',
+      note: '— Instagram only lets me DM people I follow or who’ve messaged me, so follow me and I’ll reach out.',
       link: (h) => 'https://www.instagram.com/' + h.replace(/^[@#]/, ''),
     },
   };
@@ -179,7 +184,8 @@
     }
 
     ownerInfoEl.innerHTML =
-      '<span class="rf-owner-label">' + escapeHtml(spec.intro) + '</span> ' + buildLinkHtml(spec.link, spec.ownerKey, handle);
+      '<span class="rf-owner-label">' + escapeHtml(spec.intro) + '</span> ' + buildLinkHtml(spec.link, spec.ownerKey, handle) +
+      (spec.note ? ' <span class="rf-owner-note">' + escapeHtml(spec.note) + '</span>' : '');
     ownerInfoEl.hidden = false;
   }
 
