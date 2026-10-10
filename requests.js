@@ -95,32 +95,32 @@
   const CONTACT_METHODS = {
     'Email': {
       name: 'Email', label: 'Your email', placeholder: 'you@example.com', type: 'email',
-      ownerKey: 'email', intro: 'I’ll email you from',
+      ownerKey: 'email', intro: 'I’ll reply by email from',
       link: (h) => 'mailto:' + h,
     },
     'Discord': {
       name: 'Discord', label: 'Your Discord username', placeholder: 'username or username#0000', type: 'text',
-      ownerKey: 'discord', intro: 'Watch for a friend request / DM from',
+      ownerKey: 'discord', intro: 'I’ll message you on Discord from',
     },
     'Telegram': {
       name: 'Telegram', label: 'Your Telegram handle', placeholder: '@username', type: 'text',
-      ownerKey: 'telegram', intro: 'Message me first or watch for my DM at',
+      ownerKey: 'telegram', intro: 'I’ll message you on Telegram from',
       alt: 'Email',
       link: (h) => 'https://t.me/' + h.replace(/^@/, ''),
     },
     'X / Twitter DM': {
       name: 'X (Twitter)', label: 'Your X (Twitter) handle', placeholder: '@username', type: 'text',
-      ownerKey: 'x', intro: 'DM me or watch for a message from',
+      ownerKey: 'x', intro: 'I’ll reach you on X at',
       link: (h) => 'https://x.com/' + h.replace(/^@/, ''),
     },
     'GitHub': {
       name: 'GitHub', label: 'Your GitHub username', placeholder: '@username', type: 'text',
-      ownerKey: 'github', intro: 'Find me on GitHub as',
+      ownerKey: 'github', intro: 'I’ll reach you on GitHub as',
       link: (h) => 'https://github.com/' + h.replace(/^@/, ''),
     },
     'Instagram': {
       name: 'Instagram', label: 'Your Instagram username', placeholder: '@username', type: 'text',
-      ownerKey: 'instagram', intro: 'Follow or DM me on Instagram at',
+      ownerKey: 'instagram', intro: 'I’ll reach you on Instagram as',
       link: (h) => 'https://www.instagram.com/' + h.replace(/^[@#]/, ''),
     },
   };
@@ -170,9 +170,9 @@
         ownerInfoEl.textContent = '';
       } else {
         ownerInfoEl.innerHTML =
-          '<span class="rf-owner-label">I don\'t have ' + escapeHtml(spec.name) + '.</span> ' +
+          '<span class="rf-owner-label">I\'m not on ' + escapeHtml(spec.name) + '.</span> ' +
           'Use ' + escapeHtml(alt.name) + ' instead: ' + buildLinkHtml(alt.link, alt.ownerKey, altHandle) +
-          ' — pick <strong>' + escapeHtml(alt.name) + '</strong> above and I\'ll be on the lookout for you there.';
+          ' — pick <strong>' + escapeHtml(alt.name) + '</strong> above and I\'ll reply from there.';
         ownerInfoEl.hidden = false;
       }
       return;
