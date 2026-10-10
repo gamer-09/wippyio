@@ -21,7 +21,7 @@ window.WIPPY_CONFIG = {
    */
   contact: {
     email:    "samueludodong9@gmail.com",
-    discord:  "1131924375424213013",   // your Discord client/user ID
+    discord:  "voided_2026",
     telegram: "",                      // no Telegram
     x:        "samueludodong9@gmail.com", // you sign in to X with this email
     github:   "gamer-09",
