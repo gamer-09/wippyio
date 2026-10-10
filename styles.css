@@ -1694,6 +1694,25 @@ footer {
 }
 .rf-hint { font-size: 0.72rem; color: var(--text-3); }
 
+.rf-owner {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.1rem 0 0;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.76rem;
+  color: var(--text-2);
+  background: var(--accent-glow);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  line-height: 1.4;
+}
+.rf-owner[hidden] { display: none; }
+.rf-owner .rf-owner-label { color: var(--text-3); }
+.rf-owner a { color: var(--accent-2); word-break: break-all; }
+.rf-owner strong { color: var(--text); font-weight: 600; }
+
 .rf-check {
   display: flex;
   align-items: flex-start;

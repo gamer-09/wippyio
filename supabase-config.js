@@ -12,4 +12,19 @@
 window.WIPPY_CONFIG = {
   supabaseUrl: "https://fvvuvkfdukrrgypbvgha.supabase.co",
   supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2dnV2a2ZkdWtycmd5cGJ2Z2hhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE1NjYyMjAsImV4cCI6MjEwNzE0MjIyMH0.otaiRcyy1pqh8VKpHW_oniE8BWEkzillGyKSPkqg0t4",
+
+  /*
+   * Your own public contact handles. On the request form, when a visitor
+   * picks how they want to be reached, the matching handle below is shown
+   * ("reach out to me at …") so they know who will contact them and can be
+   * on the lookout for it. Leave a value as "" for any platform you're not on.
+   */
+  contact: {
+    email:    "samueludodong9@gmail.com",
+    discord:  "1131924375424213013",   // your Discord client/user ID
+    telegram: "",                      // no Telegram
+    x:        "samueludodong9@gmail.com", // you sign in to X with this email
+    github:   "gamer-09",
+    other:    "",
+  },
 };

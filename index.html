@@ -281,9 +281,10 @@
           </div>
 
           <div class="rf-field">
-            <label for="rfContact">Contact detail <span class="rf-req">*</span></label>
+            <label for="rfContact"><span id="rfContactLabel">Contact detail</span> <span class="rf-req">*</span></label>
             <input type="text" id="rfContact" name="contact_value" maxlength="160" placeholder="you@example.com or @username" required />
-            <p class="rf-hint">Where I'll send the repo link once it's built. Only I can see this.</p>
+            <p class="rf-hint" id="rfContactHint">Where I'll send the repo link once it's built. Only I can see this.</p>
+            <p class="rf-owner" id="rfOwnerInfo" hidden></p>
           </div>
 
           <label class="rf-check">

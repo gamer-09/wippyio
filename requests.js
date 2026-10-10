@@ -28,6 +28,9 @@
   const scopeEl = document.getElementById('rfScope');
   const methodEl = document.getElementById('rfContactMethod');
   const contactEl = document.getElementById('rfContact');
+  const contactLabelEl = document.getElementById('rfContactLabel');
+  const contactHintEl = document.getElementById('rfContactHint');
+  const ownerInfoEl = document.getElementById('rfOwnerInfo');
   const nameEl = document.getElementById('rfName');
   const ackEl = document.getElementById('rfAck');
   const overrideEl = document.getElementById('rfOverride');
@@ -86,6 +89,84 @@
     return (name || 'env').replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 80) || 'env';
   }
 
+  // ---- Contact picker ----
+  // Each platform reshapes the "contact detail" field and shows my own handle
+  // (from WIPPY_CONFIG.contact) so the visitor knows who will reach out.
+  const CONTACT_METHODS = {
+    'Email': {
+      label: 'Your email', placeholder: 'you@example.com', type: 'email',
+      ownerKey: 'email', intro: 'I’ll email you from',
+      link: (h) => 'mailto:' + h,
+    },
+    'Discord': {
+      label: 'Your Discord username', placeholder: 'username or username#0000', type: 'text',
+      ownerKey: 'discord', intro: 'Watch for a friend request / DM from',
+    },
+    'Telegram': {
+      label: 'Your Telegram handle', placeholder: '@username', type: 'text',
+      ownerKey: 'telegram', intro: 'Message me first or watch for my DM at',
+      link: (h) => 'https://t.me/' + h.replace(/^@/, ''),
+    },
+    'X / Twitter DM': {
+      label: 'Your X (Twitter) handle', placeholder: '@username', type: 'text',
+      ownerKey: 'x', intro: 'DM me or watch for a message from',
+      link: (h) => 'https://x.com/' + h.replace(/^@/, ''),
+    },
+    'GitHub': {
+      label: 'Your GitHub username', placeholder: '@username', type: 'text',
+      ownerKey: 'github', intro: 'Find me on GitHub as',
+      link: (h) => 'https://github.com/' + h.replace(/^@/, ''),
+    },
+    'Other': {
+      label: 'How should I reach you?', placeholder: 'App + username (e.g. Signal: yourname)', type: 'text',
+      ownerKey: 'other', intro: 'You can also reach me at',
+    },
+  };
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+  }
+
+  function updateContactField() {
+    const spec = CONTACT_METHODS[methodEl.value];
+
+    if (!spec) {
+      contactLabelEl.textContent = 'Contact detail';
+      contactEl.placeholder = 'you@example.com or @username';
+      contactEl.type = 'text';
+      contactEl.removeAttribute('inputmode');
+      contactHintEl.textContent = "Where I'll send the repo link once it's built. Only I can see this.";
+      ownerInfoEl.hidden = true;
+      ownerInfoEl.textContent = '';
+      return;
+    }
+
+    contactLabelEl.textContent = spec.label;
+    contactEl.placeholder = spec.placeholder;
+    contactEl.type = spec.type || 'text';
+    if (spec.type === 'email') contactEl.setAttribute('inputmode', 'email');
+    else contactEl.removeAttribute('inputmode');
+
+    const handles = (window.WIPPY_CONFIG || {}).contact || {};
+    const handle = String(handles[spec.ownerKey] || '').trim();
+
+    if (!handle) {
+      ownerInfoEl.hidden = true;
+      ownerInfoEl.textContent = '';
+      return;
+    }
+
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(handle);
+const href = spec.link && (spec.ownerKey === 'email' || !isEmail) ? spec.link(handle) : '';
+    const shown = spec.link
+      ? '<a href="' + escapeHtml(href) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(handle) + '</a>'
+      : '<strong>' + escapeHtml(handle) + '</strong>';
+    ownerInfoEl.innerHTML = '<span class="rf-owner-label">' + escapeHtml(spec.intro) + '</span> ' + shown;
+    ownerInfoEl.hidden = false;
+  }
+
   // ---- Live UI ----
   descEl.addEventListener('input', () => {
     countEl.textContent = descEl.value.length;
@@ -98,6 +179,8 @@
   envFileEl.addEventListener('change', () => {
     if (envNameEl) envNameEl.textContent = envFileEl.files[0] ? envFileEl.files[0].name : 'No file chosen';
   });
+  methodEl.addEventListener('change', updateContactField);
+  updateContactField();
 
   if (!isConfigured || !client) {
     submitBtn.disabled = true;
