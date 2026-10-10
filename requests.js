@@ -100,27 +100,27 @@
     },
     'Discord': {
       name: 'Discord', label: 'Your Discord username', placeholder: 'username or username#0000', type: 'text',
-      ownerKey: 'discord', intro: 'I’ll message you on Discord from',
+      ownerKey: 'discord', intro: 'I’ll send a friend request, then DM you, from',
     },
     'Telegram': {
       name: 'Telegram', label: 'Your Telegram handle', placeholder: '@username', type: 'text',
-      ownerKey: 'telegram', intro: 'I’ll message you on Telegram from',
+      ownerKey: 'telegram', intro: 'I’ll message you on Telegram at',
       alt: 'Email',
       link: (h) => 'https://t.me/' + h.replace(/^@/, ''),
     },
     'X / Twitter DM': {
       name: 'X (Twitter)', label: 'Your X (Twitter) handle', placeholder: '@username', type: 'text',
-      ownerKey: 'x', intro: 'I’ll reach you on X at',
+      ownerKey: 'x', intro: 'I’ll DM you on X from',
       link: (h) => 'https://x.com/' + h.replace(/^@/, ''),
     },
     'GitHub': {
       name: 'GitHub', label: 'Your GitHub username', placeholder: '@username', type: 'text',
-      ownerKey: 'github', intro: 'I’ll reach you on GitHub as',
+      ownerKey: 'github', intro: 'I’ll reply on GitHub as',
       link: (h) => 'https://github.com/' + h.replace(/^@/, ''),
     },
     'Instagram': {
       name: 'Instagram', label: 'Your Instagram username', placeholder: '@username', type: 'text',
-      ownerKey: 'instagram', intro: 'I’ll reach you on Instagram as',
+      ownerKey: 'instagram', intro: 'I’ll DM you on Instagram from',
       link: (h) => 'https://www.instagram.com/' + h.replace(/^[@#]/, ''),
     },
   };
