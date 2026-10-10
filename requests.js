@@ -94,31 +94,32 @@
   // (from WIPPY_CONFIG.contact) so the visitor knows who will reach out.
   const CONTACT_METHODS = {
     'Email': {
-      label: 'Your email', placeholder: 'you@example.com', type: 'email',
+      name: 'Email', label: 'Your email', placeholder: 'you@example.com', type: 'email',
       ownerKey: 'email', intro: 'I’ll email you from',
       link: (h) => 'mailto:' + h,
     },
     'Discord': {
-      label: 'Your Discord username', placeholder: 'username or username#0000', type: 'text',
+      name: 'Discord', label: 'Your Discord username', placeholder: 'username or username#0000', type: 'text',
       ownerKey: 'discord', intro: 'Watch for a friend request / DM from',
     },
     'Telegram': {
-      label: 'Your Telegram handle', placeholder: '@username', type: 'text',
+      name: 'Telegram', label: 'Your Telegram handle', placeholder: '@username', type: 'text',
       ownerKey: 'telegram', intro: 'Message me first or watch for my DM at',
+      alt: 'Email',
       link: (h) => 'https://t.me/' + h.replace(/^@/, ''),
     },
     'X / Twitter DM': {
-      label: 'Your X (Twitter) handle', placeholder: '@username', type: 'text',
+      name: 'X (Twitter)', label: 'Your X (Twitter) handle', placeholder: '@username', type: 'text',
       ownerKey: 'x', intro: 'DM me or watch for a message from',
       link: (h) => 'https://x.com/' + h.replace(/^@/, ''),
     },
     'GitHub': {
-      label: 'Your GitHub username', placeholder: '@username', type: 'text',
+      name: 'GitHub', label: 'Your GitHub username', placeholder: '@username', type: 'text',
       ownerKey: 'github', intro: 'Find me on GitHub as',
       link: (h) => 'https://github.com/' + h.replace(/^@/, ''),
     },
     'Other': {
-      label: 'How should I reach you?', placeholder: 'App + username (e.g. Signal: yourname)', type: 'text',
+      name: 'Other', label: 'How should I reach you?', placeholder: 'App + username (e.g. Signal: yourname)', type: 'text',
       ownerKey: 'other', intro: 'You can also reach me at',
     },
   };
@@ -127,6 +128,14 @@
     return String(s).replace(/[&<>"']/g, (c) => (
       { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
     ));
+  }
+
+  function buildLinkHtml(link, ownerKey, handle) {
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(handle);
+    const href = link && (ownerKey === 'email' || !isEmail) ? link(handle) : '';
+    return href
+      ? '<a href="' + escapeHtml(href) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(handle) + '</a>'
+      : '<strong>' + escapeHtml(handle) + '</strong>';
   }
 
   function updateContactField() {
@@ -153,17 +162,23 @@
     const handle = String(handles[spec.ownerKey] || '').trim();
 
     if (!handle) {
-      ownerInfoEl.hidden = true;
-      ownerInfoEl.textContent = '';
+      const alt = spec.alt ? CONTACT_METHODS[spec.alt] : null;
+      const altHandle = alt ? String(handles[alt.ownerKey] || '').trim() : '';
+      if (!alt || !altHandle) {
+        ownerInfoEl.hidden = true;
+        ownerInfoEl.textContent = '';
+      } else {
+        ownerInfoEl.innerHTML =
+          '<span class="rf-owner-label">I don\'t have ' + escapeHtml(spec.name) + '.</span> ' +
+          'Use ' + escapeHtml(alt.name) + ' instead: ' + buildLinkHtml(alt.link, alt.ownerKey, altHandle) +
+          ' — pick <strong>' + escapeHtml(alt.name) + '</strong> above and I\'ll be on the lookout for you there.';
+        ownerInfoEl.hidden = false;
+      }
       return;
     }
 
-    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(handle);
-const href = spec.link && (spec.ownerKey === 'email' || !isEmail) ? spec.link(handle) : '';
-    const shown = spec.link
-      ? '<a href="' + escapeHtml(href) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(handle) + '</a>'
-      : '<strong>' + escapeHtml(handle) + '</strong>';
-    ownerInfoEl.innerHTML = '<span class="rf-owner-label">' + escapeHtml(spec.intro) + '</span> ' + shown;
+    ownerInfoEl.innerHTML =
+      '<span class="rf-owner-label">' + escapeHtml(spec.intro) + '</span> ' + buildLinkHtml(spec.link, spec.ownerKey, handle);
     ownerInfoEl.hidden = false;
   }
 
