@@ -26,5 +26,7 @@ window.WIPPY_CONFIG = {
     x:         "samueludodong9@gmail.com", // you sign in to X with this email
     github:    "gamer-09",
     instagram: "not_udo2024",
+    snapchat:  "net_udo2025",
+    tiktok:    "Net_Samu",
   },
 };

@@ -128,6 +128,18 @@
       note: '— Instagram only lets me DM people I follow or who’ve messaged me, so follow me and I’ll reach out.',
       link: (h) => 'https://www.instagram.com/' + h.replace(/^[@#]/, ''),
     },
+    'Snapchat': {
+      name: 'Snapchat', label: 'Your Snapchat username', placeholder: '@username', type: 'text',
+      ownerKey: 'snapchat', intro: 'I’ll add you on Snapchat from',
+      note: '— Snapchat only lets us chat once we’ve added each other, so accept my add and I’ll message you.',
+      link: (h) => 'https://www.snapchat.com/add/' + h.replace(/^@/, ''),
+    },
+    'TikTok': {
+      name: 'TikTok', label: 'Your TikTok username', placeholder: '@username', type: 'text',
+      ownerKey: 'tiktok', intro: 'I’ll message you on TikTok from',
+      note: '— TikTok only allows DMs between mutual followers, so follow me and I’ll follow back.',
+      link: (h) => 'https://www.tiktok.com/@' + h.replace(/^@/, ''),
+    },
   };
 
   function escapeHtml(s) {
