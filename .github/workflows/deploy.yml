@@ -29,10 +29,25 @@ jobs:
         with:
           enablement: true  # auto-enable Pages if not yet configured (avoids "Get Pages site failed / Not Found")
 
+      # Publish ONLY the files the site actually serves. This keeps source
+      # files (package.json, sync-projects.js, SETUP.md, .github/, etc.) and any
+      # accidentally-committed config off the public web. If you add a new
+      # top-level asset, remember to copy it here too.
+      - name: Stage static site
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          cp index.html admin.html styles.css fonts.css \
+             app.js requests.js admin.js admin-bg.js bg3d.js supabase-config.js _site/
+          cp -r data _site/data
+          cp -r fonts _site/fonts
+          echo "Staged files:"
+          find _site -type f | sort
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment

@@ -215,3 +215,21 @@ insert. Keep the **service_role** key secret and never put it in this repo.
   “Submit anyway”, and the admin dashboard shows a ⚠︎ flag.
 - To rotate access later, just create a new admin user and update the uuid in
   the RLS policies.
+
+## 7. Security hardening (recommended)
+
+Run [`supabase/security_hardening.sql`](supabase/security_hardening.sql) once in
+the **SQL Editor**. It is idempotent (safe to re-run) and does not change any
+normal flow. It:
+
+- caps the size of anonymous request rows and comment names,
+- forces new requests to `status = 'new'` (clients can't self-accept),
+- caps anonymous uploads to the private `request-env` bucket (256 KB),
+- adds a generous per-IP rate limit to public inserts (requests & comments).
+
+The last block is a rollback snippet if you ever want to undo it.
+
+Fonts are self-hosted from `fonts/` (see `fonts.css`) so the site makes no
+third-party font requests. Deployment publishes only the files the site needs
+(see the “Stage static site” step in `.github/workflows/deploy.yml`) — if you
+add a new top-level asset, add it to that copy list.
