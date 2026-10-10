@@ -118,9 +118,10 @@
       ownerKey: 'github', intro: 'Find me on GitHub as',
       link: (h) => 'https://github.com/' + h.replace(/^@/, ''),
     },
-    'Other': {
-      name: 'Other', label: 'How should I reach you?', placeholder: 'App + username (e.g. Signal: yourname)', type: 'text',
-      ownerKey: 'other', intro: 'You can also reach me at',
+    'Instagram': {
+      name: 'Instagram', label: 'Your Instagram username', placeholder: '@username', type: 'text',
+      ownerKey: 'instagram', intro: 'Follow or DM me on Instagram at',
+      link: (h) => 'https://www.instagram.com/' + h.replace(/^[@#]/, ''),
     },
   };
 

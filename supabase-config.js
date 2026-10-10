@@ -20,11 +20,11 @@ window.WIPPY_CONFIG = {
    * on the lookout for it. Leave a value as "" for any platform you're not on.
    */
   contact: {
-    email:    "samueludodong9@gmail.com",
-    discord:  "voided_2026",
-    telegram: "",                      // no Telegram
-    x:        "samueludodong9@gmail.com", // you sign in to X with this email
-    github:   "gamer-09",
-    other:    "",
+    email:     "samueludodong9@gmail.com",
+    discord:   "voided_2026",
+    telegram:  "",                       // no Telegram
+    x:         "samueludodong9@gmail.com", // you sign in to X with this email
+    github:    "gamer-09",
+    instagram: "not_udo2024",
   },
 };
