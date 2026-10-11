@@ -38,11 +38,19 @@
   const statsEl = $('#adminStats');
   const searchEl = $('#adminSearch');
   const statusFilter = $('#adminStatusFilter');
+  const engListEl = $('#adminEngagement');
+  const engSubEl = $('#adminEngagementSub');
+  const engEmptyEl = $('#adminEngagementEmpty');
 
   const STATUSES = ['new', 'reviewing', 'accepted', 'done', 'rejected'];
   let allRequests = [];
   let searchQuery = '';
   let statusValue = 'all';
+
+  // Project id → display name, plus live likes/comments pulled from Supabase.
+  const projectsById = new Map();
+  let likesByProject = new Map();
+  let commentsByProject = new Map();
 
   // ---- Theme ----
   function getPreferredTheme() {
@@ -116,7 +124,7 @@
     refreshBtn.hidden = !loggedIn;
     if (loggedIn) {
       $('#adminPassword').value = '';
-      loadRequests();
+      refreshAll();
     }
   }
 
@@ -136,7 +144,11 @@
     render();
   }
 
-  refreshBtn.addEventListener('click', loadRequests);
+  function refreshAll() {
+    loadRequests();
+    loadEngagement();
+  }
+  refreshBtn.addEventListener('click', refreshAll);
 
   searchEl.addEventListener('input', () => {
     searchQuery = searchEl.value.trim().toLowerCase();
@@ -276,6 +288,105 @@
         '</div>' +
         '<button class="admin-mini admin-mini-danger" data-del="' + escA(r.id) + '">Delete</button>' +
       '</div>' +
+    '</article>';
+  }
+
+  // ---- Project engagement (likes + comments) ----
+  async function loadEngagement() {
+    engListEl.innerHTML = '<p class="admin-loading">Loading…</p>';
+    try {
+      // Resolve project ids → names from the published project data.
+      if (projectsById.size === 0) {
+        const res = await fetch('data/projects.json');
+        const db = await res.json();
+        (db.projects || []).forEach((p) => projectsById.set(p.id, p.name || p.id));
+      }
+
+      const [likesRes, commentsRes] = await Promise.all([
+        client.from('project_likes').select('project_id,likes'),
+        client.from('project_comments').select('id,created_at,project_id,name,body').order('created_at', { ascending: false }),
+      ]);
+      if (likesRes.error) throw likesRes.error;
+      if (commentsRes.error) throw commentsRes.error;
+
+      likesByProject = new Map((likesRes.data || []).map((r) => [r.project_id, r.likes || 0]));
+      commentsByProject = new Map();
+      (commentsRes.data || []).forEach((c) => {
+        if (!commentsByProject.has(c.project_id)) commentsByProject.set(c.project_id, []);
+        commentsByProject.get(c.project_id).push(c);
+      });
+
+      renderEngagement();
+    } catch (err) {
+      engSubEl.textContent = '';
+      engEmptyEl.hidden = true;
+      engListEl.innerHTML = '<p class="rf-status rf-status-error">Failed to load engagement: ' + esc(err.message || err) + '</p>';
+    }
+  }
+
+  function renderEngagement() {
+    const ids = new Set([...likesByProject.keys(), ...commentsByProject.keys()]);
+    const rows = [...ids].map((id) => ({
+      id,
+      name: projectsById.get(id) || id,
+      likes: likesByProject.get(id) || 0,
+      comments: commentsByProject.get(id) || [],
+    })).filter((r) => r.likes > 0 || r.comments.length > 0);
+
+    rows.sort((a, b) => (b.likes + b.comments.length) - (a.likes + a.comments.length));
+
+    const totalLikes = rows.reduce((n, r) => n + r.likes, 0);
+    const totalComments = rows.reduce((n, r) => n + r.comments.length, 0);
+    engSubEl.textContent = rows.length
+      ? rows.length + ' project' + (rows.length === 1 ? '' : 's') + ' · ' +
+        totalLikes + ' like' + (totalLikes === 1 ? '' : 's') + ' · ' +
+        totalComments + ' comment' + (totalComments === 1 ? '' : 's')
+      : '';
+    engEmptyEl.hidden = rows.length !== 0;
+    engListEl.innerHTML = rows.map(engagementCardHTML).join('');
+
+    engListEl.querySelectorAll('[data-delcomment]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const cid = btn.dataset.delcomment;
+        if (!confirm('Delete this comment permanently?')) return;
+        btn.disabled = true;
+        const { error } = await client.from('project_comments').delete().eq('id', cid);
+        if (error) { alert('Delete failed: ' + error.message); btn.disabled = false; return; }
+        for (const [pid, list] of commentsByProject) {
+          const idx = list.findIndex((c) => c.id === cid);
+          if (idx !== -1) { list.splice(idx, 1); if (!list.length) commentsByProject.delete(pid); break; }
+        }
+        renderEngagement();
+      });
+    });
+  }
+
+  function engagementCardHTML(r) {
+    const commentsHTML = r.comments.length
+      ? r.comments.map((c) =>
+          '<div class="eng-comment">' +
+            '<div class="eng-comment-head">' +
+              '<span class="eng-comment-name">' + esc(c.name || 'Anonymous') + '</span>' +
+              '<span class="eng-comment-date">' + esc(fmtDate(c.created_at)) + '</span>' +
+              '<button class="admin-mini admin-mini-danger" data-delcomment="' + escA(c.id) + '">Delete</button>' +
+            '</div>' +
+            '<p class="eng-comment-body">' + esc(c.body) + '</p>' +
+          '</div>'
+        ).join('')
+      : '<p class="eng-none">No comments yet.</p>';
+
+    return '<article class="admin-card eng-card">' +
+      '<div class="admin-card-top">' +
+        '<div>' +
+          '<h3 class="admin-card-title">' + esc(r.name) + '</h3>' +
+          '<div class="admin-card-meta"><span class="admin-scope">' + esc(String(r.id)) + '</span></div>' +
+        '</div>' +
+        '<div class="eng-pills">' +
+          '<span class="eng-pill">❤️ ' + r.likes + '</span>' +
+          '<span class="eng-pill">💬 ' + r.comments.length + '</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="eng-comments">' + commentsHTML + '</div>' +
     '</article>';
   }
 

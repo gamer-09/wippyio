@@ -2060,6 +2060,49 @@ footer {
 .admin-empty { text-align: center; padding: 4rem 1rem; }
 .admin-empty .empty-icon { font-size: 3rem; opacity: 0.4; }
 
+/* Project engagement panel */
+.admin-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 2rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.admin-section-title { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.3px; }
+.admin-section-sub { font-size: 0.75rem; color: var(--text-3); }
+.eng-pills { display: flex; gap: 0.4rem; flex-shrink: 0; }
+.eng-pill {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.28rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-2);
+}
+.eng-comments { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.eng-comment {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 0.6rem 0.75rem;
+  background: var(--bg-2);
+}
+.eng-comment-head { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; font-size: 0.75rem; color: var(--text-3); }
+.eng-comment-name { font-weight: 700; color: var(--text); }
+.eng-comment-head .admin-mini { margin-left: auto; }
+.eng-comment-body {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.eng-none { font-size: 0.8rem; color: var(--text-3); font-style: italic; margin: 0; }
+
 /* ==========================================================================
    Admin — distinct dashboard identity (cyan "console" theme + own motion bg)
    ========================================================================== */
