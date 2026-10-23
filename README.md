@@ -2,6 +2,8 @@
 
 **[Visit wippy →](https://gamer-09.github.io/wippyio/)** — live on GitHub Pages.
 
+**[Visit wippy →](https://wippyio.netlify.app)** — live on Netlify.
+
 A personal project portfolio: every project from the [storage-packed](https://github.com/gamer-09/storage-packed) vault, rendered as a searchable, filterable bento-grid site with live screenshots, a 3D background, and a Supabase-backed build-request system.
 
 ## The public site
